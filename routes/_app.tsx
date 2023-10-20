@@ -13,7 +13,7 @@ export default function App({ Component, route }: AppProps) {
       <body>
         <Header active={route} />
         <div class="px-4 py-8 mx-auto bg-[#86efac]">
-          <div class="max-w-screen-md mx-auto flex items-center justify-center flex-row flex-wrap">
+          <div class="mx-auto items-center justify-center grid grid-cols-3 gap-3">
             <Component />
           </div>
         </div>

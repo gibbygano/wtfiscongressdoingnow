@@ -27,8 +27,8 @@ export default function Transit(props: { buses: SeptaBus[] }) {
       {props.buses.map((bus) => {
         const { destination, Direction, VehicleID, route_id, ...restBus } = bus;
         return (
-          <span class="border-solid border-2 border-sky-500 p-5 m-5 flex flex-col whitespace-nowrap">
-            <h1 class="mt-5 mb-2">
+          <span class="border-solid border-2 border-sky-500 p-5 flex flex-col">
+            <h1 class="mt-5 mb-2 whitespace-nowrap">
               {route_id} - {destination} ({Direction}) [{VehicleID}]
             </h1>
             <ul>
