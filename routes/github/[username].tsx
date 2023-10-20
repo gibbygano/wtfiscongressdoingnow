@@ -18,10 +18,10 @@ export default async function Page(_req: Request, ctx: RouteContext) {
   const { login, name, avatar_url } = (await resp.json()) as GitHubResponse;
 
   return (
-    <div>
+    <a target="_blank" href={`https://github.com/${ctx.params.username}`}>
       <img src={avatar_url} width={64} height={64} />
       <h1>{name}</h1>
       <p>{login}</p>
-    </div>
+    </a>
   );
 }
