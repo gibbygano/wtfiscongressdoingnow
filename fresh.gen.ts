@@ -6,17 +6,15 @@ import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/about.tsx";
 import * as $3 from "./routes/api/joke.ts";
-import * as $4 from "./routes/api/random-uuid.tsx";
-import * as $5 from "./routes/countdown.tsx";
-import * as $6 from "./routes/github/[username].tsx";
-import * as $7 from "./routes/greet/[name].tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/search.tsx";
-import * as $10 from "./routes/septa/[route].tsx";
+import * as $4 from "./routes/api/septa/[route].ts";
+import * as $5 from "./routes/github/[username].tsx";
+import * as $6 from "./routes/greet/[name].tsx";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/search.tsx";
+import * as $9 from "./routes/septa/[route].tsx";
 import * as $$0 from "./islands/Button.tsx";
-import * as $$1 from "./islands/Countdown.tsx";
-import * as $$2 from "./islands/Input.tsx";
-import * as $$3 from "./islands/Transit.tsx";
+import * as $$1 from "./islands/Input.tsx";
+import * as $$2 from "./islands/Transit.tsx";
 
 const manifest = {
   routes: {
@@ -24,19 +22,17 @@ const manifest = {
     "./routes/_app.tsx": $1,
     "./routes/about.tsx": $2,
     "./routes/api/joke.ts": $3,
-    "./routes/api/random-uuid.tsx": $4,
-    "./routes/countdown.tsx": $5,
-    "./routes/github/[username].tsx": $6,
-    "./routes/greet/[name].tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/search.tsx": $9,
-    "./routes/septa/[route].tsx": $10,
+    "./routes/api/septa/[route].ts": $4,
+    "./routes/github/[username].tsx": $5,
+    "./routes/greet/[name].tsx": $6,
+    "./routes/index.tsx": $7,
+    "./routes/search.tsx": $8,
+    "./routes/septa/[route].tsx": $9,
   },
   islands: {
     "./islands/Button.tsx": $$0,
-    "./islands/Countdown.tsx": $$1,
-    "./islands/Input.tsx": $$2,
-    "./islands/Transit.tsx": $$3,
+    "./islands/Input.tsx": $$1,
+    "./islands/Transit.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };

@@ -1,3 +1,6 @@
+import { useSignal } from "@preact/signals";
+import { useEffect } from "preact/hooks";
+
 interface SeptaBus {
   lat: string;
   lng: string;
@@ -19,12 +22,37 @@ interface SeptaBus {
   timestamp: number;
 }
 
-export default function Transit(props: { buses: SeptaBus[] }) {
-  if (!props.buses) return <h1>Issue Reaching SEPTA API</h1>;
+type Props = {
+  route: string;
+};
+
+const Transit = ({ route }: Props) => {
+  const buses = useSignal<SeptaBus[]>([]);
+
+  useEffect(() => {
+    fetchTransitView(route);
+
+    const timer = setInterval(() => {
+      fetchTransitView(route);
+    }, 15000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const fetchTransitView = async (route: string) => {
+    try {
+      const resp = await fetch(`/api/septa/${route}`);
+      buses.value = await resp.json();
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  if (!buses.value || buses.value.length < 1) return <h1>Loading...</h1>;
 
   return (
     <>
-      {props.buses.map((bus) => {
+      {buses.value.map((bus) => {
         const { destination, Direction, VehicleID, route_id, ...restBus } = bus;
         return (
           <span class="border-solid border-2 border-sky-500 p-5 flex flex-col">
@@ -41,4 +69,6 @@ export default function Transit(props: { buses: SeptaBus[] }) {
       })}
     </>
   );
-}
+};
+
+export default Transit;

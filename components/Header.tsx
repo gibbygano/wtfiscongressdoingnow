@@ -1,4 +1,3 @@
-import { PageProps } from "$fresh/server.ts";
 import LemonIcon from "https://deno.land/x/tabler_icons_tsx@0.0.3/tsx/lemon-2.tsx";
 
 type Props = {

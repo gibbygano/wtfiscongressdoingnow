@@ -2,7 +2,6 @@ import { AppProps } from "$fresh/server.ts";
 import Header from "../components/Header.tsx";
 
 export default function App({ Component, route }: AppProps) {
-  console.log(route);
   return (
     <html>
       <head>
