@@ -1,13 +1,11 @@
-import { load } from "$std/dotenv/mod.ts";
-
 export interface AppConfig {
   GoogleMapsAPISecret: string;
+  RootUrl: string;
 }
 
-export async function getAppConfig(): Promise<AppConfig> {
-  const env = await load({ export: true });
-
+export function getAppConfig(): AppConfig {
   return <AppConfig> {
-    GoogleMapsAPISecret: env["GoogleMapsAPISecret"],
+    GoogleMapsAPISecret: Deno.env.get("GoogleMapsAPISecret"),
+    RootUrl: Deno.env.get("ROOT_URL"),
   };
 }

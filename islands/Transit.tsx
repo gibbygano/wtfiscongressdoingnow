@@ -1,7 +1,7 @@
 import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 
-interface SeptaBus {
+export interface SeptaBus {
   lat: string;
   lng: string;
   label: string;
@@ -34,7 +34,7 @@ const Transit = ({ route }: Props) => {
 
     const timer = setInterval(() => {
       fetchTransitView(route);
-    }, 15000);
+    }, 30000);
     return () => clearInterval(timer);
   }, []);
 

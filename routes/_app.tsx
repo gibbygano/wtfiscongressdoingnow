@@ -1,7 +1,8 @@
-import { AppProps } from "$fresh/server.ts";
-import Header from "../components/Header.tsx";
+import { AppProps, RouteConfig } from "$fresh/server.ts";
+import Navigation from "../components/Navigation.tsx";
+import Sidebar from "../components/Sidebar.tsx";
 
-export default function App({ Component, route }: AppProps) {
+export default function App({ Component }: AppProps) {
   return (
     <html>
       <head>
@@ -10,13 +11,20 @@ export default function App({ Component, route }: AppProps) {
         <title>RJB-FRESH</title>
       </head>
       <body>
-        <Header active={route} />
-        <div class="px-4 py-8 mx-auto bg-[#86efac]">
-          <div class="mx-auto items-center justify-center grid grid-cols-3 gap-3">
+        <div class="w-full flex flex-col sm:flex-row flex-wrap sm:flex-nowrap py-4 flex-grow">
+          <Navigation />
+          <main role="main" class="w-full flex-grow pt-1 px-3">
             <Component />
-          </div>
+          </main>
+          <Sidebar />
         </div>
+        <footer class="bg-black mt-auto">
+        </footer>
       </body>
     </html>
   );
 }
+
+export const config: RouteConfig = {
+  csp: true,
+};

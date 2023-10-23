@@ -12,6 +12,7 @@ export default async function Page(_req: Request, ctx: RouteContext) {
   );
 
   if (!resp.ok) {
+    console.log(resp);
     return <h1>An Error occurred</h1>;
   }
 
