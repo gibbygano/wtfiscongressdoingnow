@@ -1,6 +1,7 @@
 import { Button, Loader, Main } from "lunchbox";
 import useFetchBills from "../hooks/useFetchBills.ts";
 import "humanizer";
+import { JSX } from "preact/jsx-runtime";
 
 export interface CongressionalBills {
 	count: number;
@@ -19,9 +20,12 @@ export interface CongressionalBills {
 }
 
 const onDownloadClick = (
+	e: JSX.TargetedMouseEvent<HTMLElement>,
 	packageId: string,
 	docType: string,
 ) => {
+	e.preventDefault();
+	const docWindow = window.open();
 	fetch(`/api/bills/download/${packageId}?docType=${docType}`, {
 		headers: {
 			"Accept": "application/pdf",
@@ -30,7 +34,6 @@ const onDownloadClick = (
 		if (!response.ok) throw new Error(response.statusText);
 		return response;
 	}).then((response) => response.blob()).then((blob) => {
-		const docWindow = window.open();
 		if (!docWindow) {
 			throw new Error("Could not open new window to display document");
 		}
@@ -93,7 +96,7 @@ const Bills = () => {
 							</ul>
 							<Button
 								class="mt-2"
-								onClick={() => onDownloadClick(p.packageId, "pdf")}
+								onClick={(e) => onDownloadClick(e, p.packageId, "pdf")}
 							>
 								PDF
 							</Button>
