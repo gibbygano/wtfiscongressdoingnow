@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import { Handlers, Status } from "$fresh/server.ts";
 import { CongressionalBills } from "../../../islands/Bills.tsx";
 import { getAppConfig } from "../../../config.ts";
 
@@ -25,8 +25,12 @@ const fetchBills = async (fromDate: string) => {
 };
 
 export const handler: Handlers<CongressionalBills> = {
-	async GET(_req, ctx) {
-		const bills = await fetchBills(ctx.params.fromDate);
-		return new Response(JSON.stringify(bills));
+	async GET(_req, ctx): Promise<Response> {
+		try {
+			const bills = await fetchBills(ctx.params.fromDate);
+			return new Response(JSON.stringify(bills));
+		} catch (error) {
+			return new Response(null, { status: Status.BadRequest, statusText: error.message });
+		}
 	},
 };

@@ -1,4 +1,4 @@
-import { Button, Loader, Main, Panel } from "lunchbox";
+import { Button, Loader, Main } from "lunchbox";
 import useFetchBills from "../hooks/useFetchBills.ts";
 import "humanizer";
 
@@ -42,7 +42,7 @@ const Bills = () => {
 	const fromDate = new Date("1996-04-26T04:00:00Z");
 	const fromDateISO = new Date("1996-04-26T04:00:00Z").toISOString().split(".")[0] + "Z";
 	const fromDateLocal = fromDate.toLocaleDateString();
-	const { bills, loading } = useFetchBills(fromDateISO);
+	const { bills, loading, error } = useFetchBills(fromDateISO);
 
 	if (loading) {
 		return (
@@ -50,6 +50,17 @@ const Bills = () => {
 				class="h-screen flex items-center justify-center"
 				allowFullScreen={true}
 			/>
+		);
+	}
+
+	if (error.isError) {
+		return (
+			<div
+				class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+				role="alert"
+			>
+				{error.message}
+			</div>
 		);
 	}
 
@@ -91,7 +102,7 @@ const Bills = () => {
 				</div>
 			</span>
 			<h1 class="font-bold m-5">
-				{count} Results since {fromDate.toLocaleDateString()}
+				{count} Results since {fromDateLocal}
 			</h1>
 		</Main>
 	);
