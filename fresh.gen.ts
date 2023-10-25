@@ -5,34 +5,38 @@
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/about.tsx";
-import * as $3 from "./routes/api/joke.ts";
-import * as $4 from "./routes/api/septa/[route].ts";
-import * as $5 from "./routes/github/[username].tsx";
-import * as $6 from "./routes/index.tsx";
-import * as $7 from "./routes/search.tsx";
-import * as $8 from "./routes/septa/[route].tsx";
-import * as $$0 from "./islands/Button.tsx";
-import * as $$1 from "./islands/Input.tsx";
-import * as $$2 from "./islands/Transit.tsx";
+import * as $3 from "./routes/api/bills/[fromDate].ts";
+import * as $4 from "./routes/api/bills/[packageId].ts";
+import * as $5 from "./routes/api/joke.ts";
+import * as $6 from "./routes/bills.tsx";
+import * as $7 from "./routes/github/[username].tsx";
+import * as $8 from "./routes/index.tsx";
+import * as $9 from "./routes/search.tsx";
+import * as $$0 from "./islands/Bills.tsx";
+import * as $$1 from "./islands/Button.tsx";
+import * as $$2 from "./islands/DatePicker.tsx";
+import * as $$3 from "./islands/Input.tsx";
 
 const manifest = {
-  routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/_app.tsx": $1,
-    "./routes/about.tsx": $2,
-    "./routes/api/joke.ts": $3,
-    "./routes/api/septa/[route].ts": $4,
-    "./routes/github/[username].tsx": $5,
-    "./routes/index.tsx": $6,
-    "./routes/search.tsx": $7,
-    "./routes/septa/[route].tsx": $8,
-  },
-  islands: {
-    "./islands/Button.tsx": $$0,
-    "./islands/Input.tsx": $$1,
-    "./islands/Transit.tsx": $$2,
-  },
-  baseUrl: import.meta.url,
+	routes: {
+		"./routes/_404.tsx": $0,
+		"./routes/_app.tsx": $1,
+		"./routes/about.tsx": $2,
+		"./routes/api/bills/[fromDate].ts": $3,
+		"./routes/api/bills/[packageId].ts": $4,
+		"./routes/api/joke.ts": $5,
+		"./routes/bills.tsx": $6,
+		"./routes/github/[username].tsx": $7,
+		"./routes/index.tsx": $8,
+		"./routes/search.tsx": $9,
+	},
+	islands: {
+		"./islands/Bills.tsx": $$0,
+		"./islands/Button.tsx": $$1,
+		"./islands/DatePicker.tsx": $$2,
+		"./islands/Input.tsx": $$3,
+	},
+	baseUrl: import.meta.url,
 };
 
 export default manifest;
