@@ -1,11 +1,14 @@
-import { Link } from "lunchbox";
+import IconHome from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/home.tsx";
+import IconBrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/brand-github.tsx";
+import IconArticle from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/article.tsx";
+import IconInfoCircle from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/info-circle.tsx";
 
 const Navigation = () => {
 	const menus = [
-		{ name: "Home", href: "/" },
-		{ name: "GitHub", href: "/github/gibbygano" },
-		{ name: "Congressional Bills", href: "/bills" },
-		{ name: "About", href: "/about" },
+		{ name: "Home", icon: <IconHome class="w-9 h-9" />, href: "/" },
+		{ name: "GitHub", icon: <IconBrandGithub class="w-9 h-9" />, href: "/github/gibbygano" },
+		{ name: "Congressional Bills", icon: <IconArticle class="w-9 h-9" />, href: "/bills" },
+		{ name: "About", icon: <IconInfoCircle class="w-9 h-9" />, href: "/about" },
 	];
 
 	return (
@@ -16,9 +19,12 @@ const Navigation = () => {
 						<li class="transition duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
 							<a
 								href={menu.href}
-								class={"[data-current]:font-semibold [data-current]:border-b-2"}
+								class={"[data-current]:font-semibold [data-current]:underline"}
 							>
-								{menu.name}
+								<span class="hidden lg:block">{menu.name}</span>
+								<span class="lg:hidden" alt={menu.name} title={menu.name}>
+									{menu.icon}
+								</span>
 							</a>
 						</li>
 					))}

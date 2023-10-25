@@ -66,9 +66,9 @@ const Bills = () => {
 
 	const { count, message, nextPage, previousPage, packages } = bills;
 	return (
-		<Main>
+		<>
 			<span class="h-full flex items-center justify-center">
-				<div class="grid grid-cols-4 gap-3 p-10">
+				<div class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs  gap-3 p-10">
 					{packages.map((p) => (
 						<div class="inline-block mb-5">
 							<span class="font-italic font-bold">{p.title}</span>
@@ -104,7 +104,7 @@ const Bills = () => {
 			<h1 class="font-bold m-5">
 				{count} Results since {fromDateLocal}
 			</h1>
-		</Main>
+		</>
 	);
 };
 
