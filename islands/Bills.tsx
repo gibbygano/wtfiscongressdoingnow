@@ -47,15 +47,6 @@ const Bills = () => {
 	const fromDateLocal = fromDate.toLocaleDateString();
 	const { bills, loading, error } = useFetchBills(fromDateISO);
 
-	if (loading) {
-		return (
-			<Loader
-				class="h-screen flex items-center justify-center"
-				allowFullScreen={true}
-			/>
-		);
-	}
-
 	if (error.isError) {
 		return (
 			<div
@@ -68,6 +59,14 @@ const Bills = () => {
 	}
 
 	const { count, message, nextPage, previousPage, packages } = bills;
+	if (loading || packages.length === 0) {
+		return (
+			<Loader
+				class="h-screen flex items-center justify-center"
+				allowFullScreen={true}
+			/>
+		);
+	}
 	return (
 		<>
 			<span class="h-full flex items-center justify-center">
