@@ -21,7 +21,10 @@ export interface BillRelatedInformation {
 
 const RelatedInformation = ({ originalPackageId, children }: Props) => {
 	const anchorEl = useSignal<HTMLButtonElement | null>(null);
-	const { billRelatedInforamtion: { results }, error, loading } = useFetchBillRelatedInformation(originalPackageId);
+	const { billRelatedInforamtion: { results }, error, loading } = useFetchBillRelatedInformation(
+		originalPackageId,
+		anchorEl,
+	);
 
 	const handleClick = (event: JSX.TargetedMouseEvent<HTMLButtonElement>) => {
 		anchorEl.value = event.currentTarget;
@@ -49,13 +52,28 @@ const RelatedInformation = ({ originalPackageId, children }: Props) => {
 					horizontal: "left",
 				}}
 			>
-				{results.map((i) => (
-					<>
-						<Typography className="p-2">
-							{new Date(i.dateIssued).toLocaleDateString()}: {i.billVersionLabel}
-						</Typography>
-					</>
-				))}
+				{error?.isError
+					? (
+						<div
+							class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+							role="alert"
+						>
+							{error.message}
+						</div>
+					)
+					: loading
+					? (
+						<Box className="p-2 flex items-center justify-center">
+							<CircularProgress />
+						</Box>
+					)
+					: results.map((i) => (
+						<>
+							<Typography className="p-2">
+								{new Date(i.dateIssued).toLocaleDateString()}: {i.billVersionLabel}
+							</Typography>
+						</>
+					))}
 			</Popover>
 		</>
 	);

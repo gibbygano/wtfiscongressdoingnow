@@ -1,17 +1,18 @@
-import { useSignal } from "@preact/signals";
+import { Signal, useSignal } from "@preact/signals";
 import { BillRelatedInformation } from "/islands/RelatedInformation.tsx";
 import { useEffect } from "preact/hooks";
 
-const useFetchBillRelatedInformation = (packageId: string) => {
+const useFetchBillRelatedInformation = (packageId: string, anchorEl: Signal<HTMLButtonElement | null>) => {
 	const loading = useSignal(false);
 	const error = useSignal({ isError: false, message: "" });
 	const billRelatedInforamtion = useSignal<BillRelatedInformation>({ results: [] });
+
+	if (!anchorEl.value) return { billRelatedInforamtion: { results: [] } };
 
 	const fetchRelatedInfo = async () => {
 		loading.value = true;
 		try {
 			const data = await fetch(`/api/bills/related/${packageId}`);
-			console.log(data);
 			billRelatedInforamtion.value = await data.json();
 		} catch (e) {
 			error.value = {
@@ -25,7 +26,7 @@ const useFetchBillRelatedInformation = (packageId: string) => {
 
 	useEffect(() => {
 		fetchRelatedInfo();
-	}, [packageId]);
+	}, [packageId, anchorEl]);
 
 	return {
 		billRelatedInforamtion: billRelatedInforamtion.value,
