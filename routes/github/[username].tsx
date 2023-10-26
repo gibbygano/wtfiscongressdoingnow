@@ -1,5 +1,4 @@
 import { RouteContext } from "$fresh/server.ts";
-import { Main } from "lunchbox";
 
 interface GitHubResponse {
 	login: string;
@@ -20,7 +19,7 @@ export default async function Page(_req: Request, ctx: RouteContext) {
 	const { login, name, avatar_url } = (await resp.json()) as GitHubResponse;
 
 	return (
-		<Main class="h-full flex items-center justify-center">
+		<main class="h-full flex items-center justify-center">
 			<a
 				target="_blank"
 				href={`https://github.com/${ctx.params.username}`}
@@ -29,6 +28,6 @@ export default async function Page(_req: Request, ctx: RouteContext) {
 				<h1>{name}</h1>
 				<p>{login}</p>
 			</a>
-		</Main>
+		</main>
 	);
 }

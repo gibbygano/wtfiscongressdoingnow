@@ -1,5 +1,4 @@
 import { Handlers } from "$fresh/server.ts";
-import { Header, Link, Main } from "lunchbox";
 
 export const handler: Handlers = {
 	async GET(_req, ctx) {
@@ -11,16 +10,16 @@ export const handler: Handlers = {
 
 export default function AboutPage() {
 	return (
-		<Main>
+		<main>
 			<span class="p-10 h-full flex items-center justify-center">
 				<p>Created with Deno Fresh.</p>&nbsp;
 				<p>
 					<span class="font-bold">LOTS</span> of credit to Oscar Alfonso Guerrero, the creator of&nbsp;
-					<Link href="https://github.com/CarcajadaArtificial/lunchbox">
+					<link href="https://github.com/CarcajadaArtificial/lunchbox">
 						Lunchbox
-					</Link>, a component library for Deno Fresh.
+					</link>, a component library for Deno Fresh.
 				</p>
 			</span>
-		</Main>
+		</main>
 	);
 }

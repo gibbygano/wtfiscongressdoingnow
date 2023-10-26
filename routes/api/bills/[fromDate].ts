@@ -1,6 +1,6 @@
 import { Handlers, Status } from "$fresh/server.ts";
-import { CongressionalBills } from "../../../islands/Bills.tsx";
-import { getAppConfig } from "../../../config.ts";
+import { CongressionalBills } from "/islands/Bills.tsx";
+import { getAppConfig } from "appConfig";
 
 const fetchBills = async (fromDate: string) => {
 	const { DataGovAPIKey } = getAppConfig();

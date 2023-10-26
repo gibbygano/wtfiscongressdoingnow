@@ -1,10 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
-import { RouteConfig } from "$fresh/server.ts";
-import { getAppConfig } from "../../../config.ts";
-
-export const config: RouteConfig = {
-	routeOverride: "/api/bills/download/:packageId",
-};
+import { getAppConfig } from "appConfig";
 
 const fetchDoc = async (packageId: string, docType: string | null) => {
 	if (!docType) throw new Error("Request document type must be defined");

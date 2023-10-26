@@ -28,11 +28,18 @@
 		"twind": "https://esm.sh/twind@0.16.19",
 		"twind/": "https://esm.sh/twind@0.16.19/",
 		"$std/": "https://deno.land/std@0.193.0/",
-		"resin": "https://deno.land/x/resin@v0.1.6/mod.ts",
-		"ptera": "https://deno.land/x/ptera@v1.0.2/mod.ts",
-		"lunchbox": "https://deno.land/x/lunchbox@v0.3.4/mod.ts",
-		"atomic": "https://deno.land/x/atomic_ui_react@1.0.0-beta.56",
-		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts"
+		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts",
+		"@emotion/cache": "https://esm.sh/stable/@emotion/cache@11.10.5/dist/emotion-cache.esm.js?external=@emotion/utils",
+		"@emotion/react": "https://esm.sh/stable/@emotion/react@11.10.5/dist/emotion-react.esm.js?alias=react:preact/compat&external=preact,@emotion/cache,@emotion/use-insertion-effect-with-fallbacks,@emotion/utils",
+		"@emotion/styled": "https://esm.sh/stable/@emotion/styled@11.10.5/dist/emotion-styled.esm.js?alias=react:preact/compat&external=preact,@emotion/react,@emotion/use-insertion-effect-with-fallbacks,@emotion/utils",
+		"@emotion/use-insertion-effect-with-fallbacks": "https://esm.sh/stable/@emotion/use-insertion-effect-with-fallbacks@1.0.0/dist/emotion-use-insertion-effect-with-fallbacks.esm.js?alias=react:preact/compat&external=preact",
+		"@emotion/utils": "https://esm.sh/stable/@emotion/utils@1.2.0/dist/emotion-utils.esm.js",
+		"@mui/icons-material": "https://esm.sh/stable/@mui/icons-material@5.11.0?alias=react:preact/compat,@types/react:preact/compat,react-dom:preact/compat&external=preact,@emotion/cache,@emotion/react,@emotion/styled",
+		"@mui/material": "https://esm.sh/stable/@mui/material@5.11.7?alias=react:preact/compat,@types/react:preact/compat,react-dom:preact/compat&external=preact,@emotion/cache,@emotion/react,@emotion/styled",
+		"@mui/x-data-grid": "https://esm.sh/stable/@mui/x-data-grid@5.17.22?alias=react:preact/compat,@types/react:preact/compat,react-dom:preact/compat&external=preact,@emotion/cache,@emotion/react,@emotion/styled",
+		"/islands/": "./islands/",
+		"appConfig": "./config.ts",
+		"/hooks/": "./hooks/"
 	},
 	"compilerOptions": {
 		"jsx": "react-jsx",
