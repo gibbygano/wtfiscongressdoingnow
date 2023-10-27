@@ -10,7 +10,7 @@ const fetchBills = async (fromDate: string) => {
 	);
 	const queryParams = new URLSearchParams({
 		offset: "0",
-		pageSize: "10",
+		pageSize: "25",
 	});
 	requestUrl.search = queryParams.toString();
 

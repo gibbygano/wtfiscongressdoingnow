@@ -1,4 +1,3 @@
-import { Box, CircularProgress, IconButton, Popover, Tooltip, Typography } from "@mui/material";
 import { useSignal } from "@preact/signals";
 import { JSX } from "preact/jsx-runtime";
 import useFetchBillRelatedInformation from "/hooks/useFetchBillRelatedInformation.ts";
@@ -37,44 +36,6 @@ const RelatedInformation = ({ originalPackageId, children }: Props) => {
 
 	return (
 		<>
-			<Tooltip title="View additional information">
-				<IconButton aria-describedby={id} onClick={handleClick}>
-					{children}
-				</IconButton>
-			</Tooltip>
-			<Popover
-				id={id}
-				open={open}
-				anchorEl={anchorEl.value}
-				onClose={handleClose}
-				anchorOrigin={{
-					vertical: "bottom",
-					horizontal: "left",
-				}}
-			>
-				{error?.isError
-					? (
-						<div
-							class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-							role="alert"
-						>
-							{error.message}
-						</div>
-					)
-					: loading
-					? (
-						<Box className="p-2 flex items-center justify-center">
-							<CircularProgress />
-						</Box>
-					)
-					: results.map((i) => (
-						<>
-							<Typography className="p-2">
-								{new Date(i.dateIssued).toLocaleDateString()}: {i.billVersionLabel}
-							</Typography>
-						</>
-					))}
-			</Popover>
 		</>
 	);
 };

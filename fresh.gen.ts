@@ -11,9 +11,8 @@ import * as $5 from "./routes/api/bills/related/[packageId].ts";
 import * as $6 from "./routes/bills.tsx";
 import * as $7 from "./routes/github/[username].tsx";
 import * as $8 from "./routes/index.tsx";
-import * as $$0 from "./islands/BillCard.tsx";
-import * as $$1 from "./islands/Bills.tsx";
-import * as $$2 from "./islands/RelatedInformation.tsx";
+import * as $$0 from "./islands/Bills.tsx";
+import * as $$1 from "./islands/RelatedInformation.tsx";
 
 const manifest = {
 	routes: {
@@ -28,9 +27,8 @@ const manifest = {
 		"./routes/index.tsx": $8,
 	},
 	islands: {
-		"./islands/BillCard.tsx": $$0,
-		"./islands/Bills.tsx": $$1,
-		"./islands/RelatedInformation.tsx": $$2,
+		"./islands/Bills.tsx": $$0,
+		"./islands/RelatedInformation.tsx": $$1,
 	},
 	baseUrl: import.meta.url,
 };

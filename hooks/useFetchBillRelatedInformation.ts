@@ -2,7 +2,10 @@ import { Signal, useSignal } from "@preact/signals";
 import { BillRelatedInformation } from "/islands/RelatedInformation.tsx";
 import { useEffect } from "preact/hooks";
 
-const useFetchBillRelatedInformation = (packageId: string, anchorEl: Signal<HTMLButtonElement | null>) => {
+const useFetchBillRelatedInformation = (
+	packageId: string,
+	anchorEl: Signal<HTMLButtonElement | null>,
+) => {
 	const loading = useSignal(false);
 	const error = useSignal({ isError: false, message: "" });
 	const billRelatedInforamtion = useSignal<BillRelatedInformation>({ results: [] });
