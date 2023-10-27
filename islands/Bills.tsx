@@ -1,6 +1,5 @@
 import useFetchBills from "/hooks/useFetchBills.ts";
 import "humanizer";
-import dayjs from "npm:dayjs";
 import Card from "../components/Card.tsx";
 
 export interface CongressionalBills {
@@ -63,8 +62,8 @@ export default () => {
 							buttonText={"Download PDF"}
 						>
 							<p>PkgId: {packageId}</p>
-							<p>Date Issued: {dayjs(dateIssued).format("MMMM DD YYYY")}</p>
-							<p>Last Change: {dayjs(lastModified).format("MMMM DD YYYY")}</p>
+							<p>Date Issued: {new Date(dateIssued).toDateString()}</p>
+							<p>Last Change: {new Date(lastModified).toDateString()}</p>
 						</Card>
 					</div>
 				))}
