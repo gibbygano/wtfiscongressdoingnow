@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import Navigation from "../components/Navigation.tsx";
 import Sidebar from "../components/Sidebar.tsx";
 
+
 export default function App({ Component }: AppProps) {
 	return (
 		<html>

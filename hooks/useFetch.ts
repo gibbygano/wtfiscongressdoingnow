@@ -10,8 +10,7 @@ interface Results {
 
 export default <T>(
 	url: string,
-	queryParams: Array<Record<string, string>> = [],
-	headers: Array<Record<string, string>> = [{ "application/json": "application/json" }],
+	headers: Record<string, string> = { "Content-Type": "application/json" },
 	responseObjectSignal: Signal<T>,
 ): Results => {
 	const loading = useSignal(false);
@@ -21,18 +20,12 @@ export default <T>(
 
 	const internalFetch = async (
 		url: string,
-		queryParams: Array<Record<string, string>>,
-		headers: Array<Record<string, string>> = [{ "application/json": "application/json" }],
+		headers: Record<string, string>,
 		responseObjectSignal: Signal<T>,
 	) => {
 		loading.value = true;
 		try {
-			if (queryParams.length > 0) {
-				const query = new URLSearchParams(...queryParams);
-				url += "?" + query.toString();
-			}
-
-			const response = await fetch(url, ...headers);
+			const response = await fetch(url, { headers: headers });
 			status.value = response.status;
 			statusText.value = response.statusText;
 
@@ -51,7 +44,7 @@ export default <T>(
 	};
 
 	useEffect(() => {
-		internalFetch(url, queryParams, headers, responseObjectSignal);
+		internalFetch(url, headers, responseObjectSignal);
 	}, [url]);
 
 	return {

@@ -1,76 +1,82 @@
-import useFetchBills from "/hooks/useFetchBills.ts";
+import { JSX } from "preact/jsx-runtime";
 import "humanizer";
-import Card from "../components/Card.tsx";
+import Select from "../components/Select.tsx";
+import { useSignal } from "@preact/signals";
+import BillsGrid, { CongressionalBill } from "../components/BillsGrid.tsx";
+import useFetchBills from "/hooks/useFetchBills.ts";
 
 export interface CongressionalBills {
 	count: number;
 	message?: string;
-	nextPage?: URL;
-	previousPage?: URL;
-	packages: Array<
-		{
-			packageId: string;
-			lastModified: Date;
-			packageLink: URL;
-			docClass: string;
-			title: string;
-			congress: number;
-			dateIssued: Date;
-		}
-	>;
+	nextPage?: string;
+	previousPage?: string;
+	packages: Array<CongressionalBill>;
 }
 
 export default () => {
+	const pageSize = useSignal("12");
+	const offset = useSignal("0");
+
 	const fromDate = new Date("04/26/2023");
 	const fromDateISO = fromDate.toISOString().split(".")[0] + "Z";
 	const {
 		bills: { count, message, nextPage, previousPage, packages },
 		loading,
 		error,
-		status,
-		statusText,
-	} = useFetchBills(fromDateISO);
+	} = useFetchBills(fromDateISO, pageSize.value, offset.value);
 
-	if (error.name) {
+	const onSelectChange = (e: JSX.TargetedEvent<HTMLSelectElement, Event>) => {
+		e.preventDefault();
+		pageSize.value = e.currentTarget.value;
+	};
+
+	const onNextOrPreviousClick = (e: JSX.TargetedMouseEvent<HTMLSpanElement>) => {
+		e.preventDefault();
+
+		if (e.currentTarget.id === "nextPage" && nextPage) {
+			offset.value = new URL(nextPage).searchParams.get("offset") ?? "0";
+		}
+		if (e.currentTarget.id === "previousPage" && previousPage) {
+			offset.value = new URL(previousPage).searchParams.get("offset") ?? "0";
+		}
+	};
+
+	const PageSizeSelect = () => {
 		return (
-			<div
-				class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-				role="alert"
+			<Select
+				inputId="pageSize"
+				label="Results per page"
+				value={pageSize.value}
+				onChange={onSelectChange}
 			>
-				{error.message}
-			</div>
+				<option value="12" selected>
+					12
+				</option>
+				<option value="24">
+					24
+				</option>
+				<option value="48">
+					48
+				</option>
+				<option value="96">
+					96
+				</option>
+			</Select>
 		);
-	}
+	};
 
-	if (loading || packages.length === 0) {
-		return (
-			<div className="h-screen flex items-center justify-center">
-			</div>
-		);
-	}
 	return (
-		<>
-			<div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs  gap-3 p-10">
-				{packages.map((
-					{ packageId, lastModified, dateIssued, title, docClass, congress },
-				) => (
-					<div>
-						<Card
-							headerText={title}
-							href={`/api/bills/download/${packageId}?docType=pdf`}
-							target="_blank"
-							buttonText={"Download PDF"}
-						>
-							<p>PkgId: {packageId}</p>
-							<p>Date Issued: {new Date(dateIssued).toDateString()}</p>
-							<p>Last Change: {new Date(lastModified).toDateString()}</p>
-						</Card>
-					</div>
-				))}
-			</div>
-			<h1 class="font-bold m-5">
-				{count} Results since {fromDate.toDateString()}. Showing 25 most recent.
-			</h1>
-		</>
+		<div>
+			<PageSizeSelect />
+			<BillsGrid
+				error={error}
+				loading={loading}
+				pageSize={pageSize.value}
+				packages={packages}
+				onNextOrPreviousClick={onNextOrPreviousClick}
+				previousPage={previousPage}
+				nextPage={nextPage}
+			/>
+		</div>
 	);
 };

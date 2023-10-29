@@ -2,15 +2,15 @@ import { Handlers, Status } from "$fresh/server.ts";
 import { CongressionalBills } from "/islands/Bills.tsx";
 import { getAppConfig } from "appConfig";
 
-const fetchBills = async (fromDate: string) => {
+const fetchBills = async (fromDate: string, pageSize: string, offset: string) => {
 	const { DataGovAPIKey } = getAppConfig();
 
 	const requestUrl = new URL(
 		`https://api.govinfo.gov/collections/BILLS/${fromDate}`,
 	);
 	const queryParams = new URLSearchParams({
-		offset: "0",
-		pageSize: "25",
+		offset: offset,
+		pageSize: pageSize,
 	});
 	requestUrl.search = queryParams.toString();
 
@@ -25,9 +25,13 @@ const fetchBills = async (fromDate: string) => {
 };
 
 export const handler: Handlers<CongressionalBills> = {
-	async GET(_req, ctx): Promise<Response> {
+	async GET(req, ctx): Promise<Response> {
 		try {
-			const bills = await fetchBills(ctx.params.fromDate);
+			const url = new URL(req.url);
+			const pageSize = url.searchParams.get("pageSize");
+			const offset = url.searchParams.get("offset");
+
+			const bills = await fetchBills(ctx.params.fromDate, pageSize ?? "10", offset ?? "0");
 			return new Response(JSON.stringify(bills));
 		} catch (error) {
 			return new Response(null, { status: Status.BadRequest, statusText: error.message });
