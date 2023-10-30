@@ -1,8 +1,7 @@
 import { JSX } from "preact/jsx-runtime";
 import "humanizer";
-import Select from "../components/Select.tsx";
+import { Bill, BillsGrid, Error, Loading, Select } from "components";
 import { useSignal } from "@preact/signals";
-import BillsGrid, { CongressionalBill } from "../components/BillsGrid.tsx";
 import useFetchBills from "/hooks/useFetchBills.ts";
 
 export interface CongressionalBills {
@@ -10,7 +9,7 @@ export interface CongressionalBills {
 	message?: string;
 	nextPage?: string;
 	previousPage?: string;
-	packages: Array<CongressionalBill>;
+	packages: Array<Bill>;
 }
 
 export default () => {
@@ -64,6 +63,14 @@ export default () => {
 			</Select>
 		);
 	};
+
+	if (error.name) {
+		<Error>{error.name}</Error>;
+	}
+
+	if (loading || packages.length === 0) {
+		<Loading>Loading Bills...</Loading>;
+	}
 
 	return (
 		<div>

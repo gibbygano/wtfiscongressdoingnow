@@ -32,6 +32,7 @@
 		"$std/": "https://deno.land/std@0.193.0/",
 		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts",
 		"/islands/": "./islands/",
+		"components": "./components/index.ts",
 		"appConfig": "./config.ts",
 		"/hooks/": "./hooks/"
 	},

@@ -1,11 +1,11 @@
 import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
-import { BillRelatedInformation } from "/islands/RelatedInformation.tsx";
+import { BillSummary } from "/islands/BillSummaryAccordion.tsx";
 
 const fetchRelatedInfo = async (packageId: string) => {
 	const { DataGovAPIKey } = getAppConfig();
 	const requestUrl = new URL(
-		`https://api.govinfo.gov/related/${packageId}/BILLS`,
+		`https://api.govinfo.gov/packages/${packageId}/summary`,
 	);
 	const resp = await fetch(requestUrl, {
 		headers: {
@@ -19,7 +19,7 @@ const fetchRelatedInfo = async (packageId: string) => {
 	return await resp.json();
 };
 
-export const handler: Handlers<BillRelatedInformation> = {
+export const handler: Handlers<BillSummary> = {
 	async GET(_req, ctx) {
 		const data = await fetchRelatedInfo(ctx.params.packageId);
 		return new Response(JSON.stringify(data));

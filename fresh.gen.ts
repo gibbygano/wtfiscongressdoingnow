@@ -7,13 +7,12 @@ import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/about.tsx";
 import * as $3 from "./routes/api/bills/[fromDate].ts";
 import * as $4 from "./routes/api/bills/download/[packageId].ts";
-import * as $5 from "./routes/api/bills/related/[packageId].ts";
+import * as $5 from "./routes/api/bills/summary/[packageId].ts";
 import * as $6 from "./routes/bills.tsx";
 import * as $7 from "./routes/github/[username].tsx";
 import * as $8 from "./routes/index.tsx";
-import * as $$0 from "./islands/Bills.tsx";
-import * as $$1 from "./islands/Card.tsx";
-import * as $$2 from "./islands/RelatedInformation.tsx";
+import * as $$0 from "./islands/BillSummaryAccordion.tsx";
+import * as $$1 from "./islands/Bills.tsx";
 
 const manifest = {
 	routes: {
@@ -22,15 +21,14 @@ const manifest = {
 		"./routes/about.tsx": $2,
 		"./routes/api/bills/[fromDate].ts": $3,
 		"./routes/api/bills/download/[packageId].ts": $4,
-		"./routes/api/bills/related/[packageId].ts": $5,
+		"./routes/api/bills/summary/[packageId].ts": $5,
 		"./routes/bills.tsx": $6,
 		"./routes/github/[username].tsx": $7,
 		"./routes/index.tsx": $8,
 	},
 	islands: {
-		"./islands/Bills.tsx": $$0,
-		"./islands/Card.tsx": $$1,
-		"./islands/RelatedInformation.tsx": $$2,
+		"./islands/BillSummaryAccordion.tsx": $$0,
+		"./islands/Bills.tsx": $$1,
 	},
 	baseUrl: import.meta.url,
 };

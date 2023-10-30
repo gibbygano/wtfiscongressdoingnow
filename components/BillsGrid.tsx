@@ -1,5 +1,7 @@
 import { JSX } from "preact/jsx-runtime";
-import Card from "../islands/Card.tsx";
+import Card from "./Card.tsx";
+import { LinkButton } from "components";
+import BillSummaryAccordion from "/islands/BillSummaryAccordion.tsx";
 
 export interface CongressionalBill {
 	packageId: string;
@@ -24,24 +26,6 @@ type Props = {
 export default (
 	{ pageSize, packages, error, loading, previousPage, nextPage, onNextOrPreviousClick }: Props,
 ) => {
-	if (error.name) {
-		return (
-			<div
-				class="mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-				role="alert"
-			>
-				{error.message}
-			</div>
-		);
-	}
-
-	if (loading || packages.length === 0) {
-		return (
-			<div class="h-screen flex items-center justify-center">
-			</div>
-		);
-	}
-
 	return (
 		<div class="relative">
 			<div
@@ -54,9 +38,14 @@ export default (
 					<Card
 						key={packageId}
 						headerText={title}
-						href={`/api/bills/download/${packageId}?docType=pdf`}
-						target="_blank"
-						buttonText={"Download PDF"}
+						actionChildren={
+							<LinkButton
+								href={`/api/bills/download/${packageId}?docType=pdf`}
+								target="_blank"
+							>
+								Download PDF
+							</LinkButton>
+						}
 					>
 						<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
 							PkgId: {packageId}
@@ -67,6 +56,7 @@ export default (
 						<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
 							Last Change: {new Date(lastModified).toDateString()}
 						</p>
+						<BillSummaryAccordion packageId={packageId} />
 					</Card>
 				))}
 			</div>
