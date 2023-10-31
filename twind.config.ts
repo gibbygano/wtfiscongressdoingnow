@@ -4,10 +4,11 @@ import { defineConfig } from "twind";
 import presetAutoPrefix from "twind-preset-autoprefix";
 import presetTailWind from "twind-preset-tailwind";
 import presetTypography from "twind-preset-typography";
+import presetLineClamp from "twind-preset-line-clamp";
 
 export default {
 	...defineConfig({
-		presets: [presetAutoPrefix(), presetTailWind(), presetTypography()],
+		presets: [presetAutoPrefix(), presetTailWind(), presetTypography(), presetLineClamp()],
 		theme: {},
 	}),
 	selfURL: import.meta.url,

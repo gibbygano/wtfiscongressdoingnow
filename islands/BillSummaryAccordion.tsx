@@ -3,6 +3,7 @@ import { Accordion, Badge, Error, Loading } from "components";
 import "humanizer";
 import { JSX } from "preact/jsx-runtime";
 import { useSignal } from "@preact/signals";
+import c from "https://esm.sh/v128/@twind/preset-tailwind@1.1.4/denonext/baseTheme.js";
 
 export interface BillSummary {
 	originChamber: string;
@@ -115,18 +116,32 @@ export default ({ packageId }: Props) => {
 							</>
 						))}
 						<p>References:</p>
-						<ul>
-							{references.map((r) =>
-								r.contents.map((c) => (
-									<>
-										<ul>
-											{c.label && <li>Label: {c.label}</li>}
-											{c.title && <li>Title: {c.title}</li>}
-											{c.sections && <li>Section: {c.sections}</li>}
-										</ul>
-									</>
-								))
-							)}
+						<ul class="pl-">
+							{references.map((r) => (
+								<ul class="pl-2.5">
+									{r.contents.map((c) => (
+										<li>
+											<span class="whitespace-nowrap">
+												{c.title && c.title} {c.label && c.label}
+											</span>&nbsp;
+											<ul class="pl-2.5">
+												{c.sections &&
+													c.sections.map((section) => (
+														<li>
+															<a
+																target="_blank"
+																href={`https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title${c.title}-section${section}&num=0&edition=prelim`}
+															>
+																§{section}
+															</a>
+															&nbsp;
+														</li>
+													))}
+											</ul>
+										</li>
+									))}
+								</ul>
+							))}
 						</ul>
 					</div>
 				)}

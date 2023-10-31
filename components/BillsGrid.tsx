@@ -30,7 +30,7 @@ export default (
 		<>
 			<div class="relative">
 				<div
-					class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3 p-10"
+					class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3 p-3"
 					id="bills"
 				>
 					{packages.map((
