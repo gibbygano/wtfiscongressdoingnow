@@ -10,6 +10,8 @@ const fetchRelatedInfo = async (packageId: string) => {
 	const resp = await fetch(requestUrl, {
 		headers: {
 			"X-Api-Key": DataGovAPIKey,
+			"Content-Type": "application/json",
+			"Accept": "application/json",
 		},
 	});
 

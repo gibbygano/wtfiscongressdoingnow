@@ -7,7 +7,19 @@ import Loading from "./Loading.tsx";
 import Navigation from "./Navigation.tsx";
 import Select from "./Select.tsx";
 import Sidebar from "./Sidebar.tsx";
+import Badge from "./Badge.tsx";
 
-export { Accordion, BillsGrid, Card, Error, LinkButton, Loading, Navigation, Select, Sidebar };
+export {
+	Accordion,
+	Badge,
+	BillsGrid,
+	Card,
+	Error,
+	LinkButton,
+	Loading,
+	Navigation,
+	Select,
+	Sidebar,
+};
 
 export type Bill = CongressionalBill;

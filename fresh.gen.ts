@@ -9,8 +9,7 @@ import * as $3 from "./routes/api/bills/[fromDate].ts";
 import * as $4 from "./routes/api/bills/download/[packageId].ts";
 import * as $5 from "./routes/api/bills/summary/[packageId].ts";
 import * as $6 from "./routes/bills.tsx";
-import * as $7 from "./routes/github/[username].tsx";
-import * as $8 from "./routes/index.tsx";
+import * as $7 from "./routes/index.tsx";
 import * as $$0 from "./islands/BillSummaryAccordion.tsx";
 import * as $$1 from "./islands/Bills.tsx";
 
@@ -23,8 +22,7 @@ const manifest = {
 		"./routes/api/bills/download/[packageId].ts": $4,
 		"./routes/api/bills/summary/[packageId].ts": $5,
 		"./routes/bills.tsx": $6,
-		"./routes/github/[username].tsx": $7,
-		"./routes/index.tsx": $8,
+		"./routes/index.tsx": $7,
 	},
 	islands: {
 		"./islands/BillSummaryAccordion.tsx": $$0,

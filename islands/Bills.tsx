@@ -12,6 +12,8 @@ export interface CongressionalBills {
 	packages: Array<Bill>;
 }
 
+const pageSizes = [12, 24, 48, 96];
+
 export default () => {
 	const pageSize = useSignal("12");
 	const offset = useSignal("0");
@@ -40,50 +42,60 @@ export default () => {
 		}
 	};
 
-	const PageSizeSelect = () => {
-		return (
+	const PageSizeSelect = () => (
+		<header class="w-full sticky top-0 z-[1] bg-slate-100 px-5 rounded">
 			<Select
 				inputId="pageSize"
 				label="Results per page"
 				value={pageSize.value}
 				onChange={onSelectChange}
 			>
-				<option value="12" selected>
-					12
-				</option>
-				<option value="24">
-					24
-				</option>
-				<option value="48">
-					48
-				</option>
-				<option value="96">
-					96
-				</option>
+				{pageSizes.map((s) => (
+					<option value={s}>
+						{s}
+					</option>
+				))}
 			</Select>
-		);
-	};
-
-	if (error.name) {
-		<Error>{error.name}</Error>;
-	}
-
-	if (loading || packages.length === 0) {
-		<Loading>Loading Bills...</Loading>;
-	}
+		</header>
+	);
 
 	return (
 		<div>
 			<PageSizeSelect />
-			<BillsGrid
-				error={error}
-				loading={loading}
-				pageSize={pageSize.value}
-				packages={packages}
-				onNextOrPreviousClick={onNextOrPreviousClick}
-				previousPage={previousPage}
-				nextPage={nextPage}
-			/>
+			{error.name
+				? <Error fullscreen>{error.name}</Error>
+				: loading
+				? <Loading fullscreen>Loading Bills...</Loading>
+				: (
+					<BillsGrid
+						error={error}
+						loading={loading}
+						pageSize={pageSize.value}
+						packages={packages}
+						previousPage={previousPage}
+						nextPage={nextPage}
+					/>
+				)}
+			<footer class="sticky bottom-0 z-[1] w-auto bg-slate-100 grid grid-col-3 py-5 rounded">
+				{previousPage && (
+					<a
+						id="previousPage"
+						onClick={onNextOrPreviousClick}
+						class="cursor-pointer hover:underline mx-5"
+					>
+						← Previous Page
+					</a>
+				)}
+				{nextPage && (
+					<a
+						id="nextPage"
+						onClick={onNextOrPreviousClick}
+						class="cursor-pointer hover:underline col-start-3 justify-self-end mx-5"
+					>
+						Next Page →
+					</a>
+				)}
+			</footer>
 		</div>
 	);
 };

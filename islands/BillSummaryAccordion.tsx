@@ -1,5 +1,5 @@
 import useFetchBillSummary from "/hooks/useFetchBillSummary.ts";
-import { Accordion, Error, Loading } from "components";
+import { Accordion, Badge, Error, Loading } from "components";
 import "humanizer";
 import { JSX } from "preact/jsx-runtime";
 import { useSignal } from "@preact/signals";
@@ -78,7 +78,7 @@ type Props = {
 export default ({ packageId }: Props) => {
 	const accordionIsOpen = useSignal(false);
 
-	const { billSummary: { members, originChamber, congress }, loading, error } =
+	const { billSummary: { members, originChamber, congress, references }, loading, error } =
 		useFetchBillSummary(
 			packageId,
 			accordionIsOpen.value,
@@ -87,32 +87,48 @@ export default ({ packageId }: Props) => {
 	const onSummaryExpand = (e: JSX.TargetedEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
-		const accordionItem = document.getElementById(`summary-${packageId}`);
-		const maxHeight = "max-h-52";
-		const padding = "p-4";
-
 		accordionIsOpen.value = !accordionIsOpen.value;
-
-		accordionItem?.classList.toggle(maxHeight);
-		accordionItem?.classList.toggle(padding);
 	};
 
 	return (
-		<Accordion title="Summary" onSummaryExpand={onSummaryExpand} id={`summary-${packageId}`}>
+		<Accordion
+			title="Summary"
+			onExpand={onSummaryExpand}
+			id={`summary-${packageId}`}
+			isOpen={accordionIsOpen.value}
+		>
 			{error?.name
 				? <Error>{error.message}</Error>
 				: loading
 				? <Loading>Loading Bill Summary...</Loading>
 				: (
-					<article class="prose mb-5">
-						<h5>Origin: {originChamber} - {congress.ordinalize()} Congress</h5>
-						<br />
-						{members.map((m) => (
-							<p>
-								{m.role}: {m.memberName} - {m.party} {m.state}
-							</p>
+					<div class="prose prose-slate dark:prose-invert mb-5">
+						<p>
+							Origin: {originChamber} - {congress.ordinalize()} Congress
+						</p>
+						{members && members.map((m) => (
+							<>
+								<p>
+									{m.memberName} - {m.party} {m.state}&nbsp;
+									<Badge badgeType={m.role} />
+								</p>
+							</>
 						))}
-					</article>
+						<p>References:</p>
+						<ul>
+							{references.map((r) =>
+								r.contents.map((c) => (
+									<>
+										<ul>
+											{c.label && <li>Label: {c.label}</li>}
+											{c.title && <li>Title: {c.title}</li>}
+											{c.sections && <li>Section: {c.sections}</li>}
+										</ul>
+									</>
+								))
+							)}
+						</ul>
+					</div>
 				)}
 		</Accordion>
 	);

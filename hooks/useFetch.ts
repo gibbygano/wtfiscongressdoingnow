@@ -10,7 +10,10 @@ interface Results {
 
 export default <T>(
 	url: string,
-	headers: Record<string, string> = { "Content-Type": "application/json" },
+	headers: Record<string, string> = {
+		"Content-Type": "application/json",
+		"Accpet": "application/json",
+	},
 	responseObjectSignal: Signal<T>,
 ): Results => {
 	const loading = useSignal(false);

@@ -10,16 +10,14 @@ export const handler: Handlers = {
 
 export default function AboutPage() {
 	return (
-		<main>
-			<span class="p-10 h-full flex items-center justify-center">
-				<p>Created with Deno Fresh.</p>&nbsp;
-				<p>
-					<span class="font-bold">LOTS</span> of credit to Oscar Alfonso Guerrero, the creator of&nbsp;
-					<link href="https://github.com/CarcajadaArtificial/lunchbox">
-						Lunchbox
-					</link>, a component library for Deno Fresh.
+		<div class="py-8 flex flex-col justify-center relative overflow-hidden lg:py-12">
+			<div class="mt-8 prose prose-slate mx-auto lg:prose-lg">
+				<p class="lead">
+					Created from a Deno Fresh tutorial project and expanded with DATA.GOV API's.
+					Feel free to checkout the project on{" "}
+					<a target="_blank" href="https://github.com/gibbygano/fresh">GitHub</a>.
 				</p>
-			</span>
-		</main>
+			</div>
+		</div>
 	);
 }
