@@ -110,7 +110,7 @@ export default ({ packageId }: Props) => {
 						{members && members.map((m) => (
 							<>
 								<p>
-									{m.memberName} - {m.party} {m.state}&nbsp;
+									{m.memberName} - {m.party} {m.state}<br />
 									<Badge badgeType={m.role} />
 								</p>
 							</>
