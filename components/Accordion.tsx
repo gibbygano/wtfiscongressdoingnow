@@ -36,7 +36,7 @@ export default ({ title, id, children, isOpen, onExpand }: Props) => {
 				<div
 					id={id}
 					class={cx(
-						"ease-out duration-300 overflow-hidden max-h-0 overflow-scroll w-full",
+						"ease-out duration-300 overflow-hidden max-h-0 overflow-y-scroll w-full",
 						{ "border-t border-gray-200 max-h-52 p-4": isOpen },
 					)}
 				>

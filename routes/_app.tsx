@@ -13,10 +13,10 @@ export default function App({ Component }: AppProps) {
 				/>
 				<title>RJB-FRESH</title>
 			</Head>
-			<body class="clr-bg-panel clr-txt-base txt-paragraph">
-				<div class="w-full h-full grid grid-cols-5 _screen">
+			<body>
+				<div class="w-full h-full grid grid-cols-7 lg:grid-cols-10">
 					<Navigation />
-					<main class="w-full flex-grow pt-1 col-span-4 bg-gray-50 min-h-screen">
+					<main class="w-full flex-grow pt-2 pl-2 col-end-8 lg:col-end-11 col-span-6 lg:col-span-8 bg-gray-50 min-h-screen pr-2">
 						<Component />
 					</main>
 				</div>

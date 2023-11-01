@@ -1,4 +1,3 @@
-import { JSX } from "preact/jsx-runtime";
 import Card from "./Card.tsx";
 import { LinkButton } from "components";
 import BillSummaryAccordion from "/islands/BillSummaryAccordion.tsx";
@@ -30,7 +29,7 @@ export default (
 		<>
 			<div class="relative">
 				<div
-					class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3 p-3"
+					class="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3"
 					id="bills"
 				>
 					{packages.map((
