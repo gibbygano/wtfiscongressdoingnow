@@ -16,7 +16,7 @@ export default function App({ Component }: AppProps) {
 			<body>
 				<Header />
 				<div class="w-full h-full">
-					<main class="w-full flex-grow pt-2 pl-2 bg-gray-50 min-h-screen pr-2">
+					<main class="w-full flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200 min-h-screen">
 						<Component />
 					</main>
 				</div>

@@ -59,12 +59,12 @@ export default () => {
 						nextPage={nextPage}
 					/>
 				)}
-			<footer class="fixed w-full bottom-0 z-[1] w-auto bg-slate-100 grid grid-col-3 py-5 gap-2 rounded">
+			<footer class="fixed w-full bottom-0 z-[1] bg-sky-200 grid grid-col-3 py-5 px-5">
 				<a
 					id="previousPage"
 					onClick={onNextOrPreviousClick}
 					title="Previous Page"
-					class={cx("cursor-pointer hover:underline ml-5", {
+					class={cx("cursor-pointer hover:underline", {
 						"collapse": !previousPage,
 					})}
 					disabled={!previousPage}
@@ -104,7 +104,7 @@ export default () => {
 						id="nextPage"
 						title="Next Page"
 						onClick={onNextOrPreviousClick}
-						class="cursor-pointer hover:underline col-start-3 justify-self-end mx-5"
+						class="cursor-pointer hover:underline col-start-3 justify-self-end"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
