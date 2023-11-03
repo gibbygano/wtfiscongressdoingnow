@@ -9,7 +9,7 @@ import presetLineClamp from "twind-preset-line-clamp";
 export default {
 	...defineConfig({
 		presets: [presetAutoPrefix(), presetTailWind(), presetTypography(), presetLineClamp()],
-		theme: {},
 	}),
 	selfURL: import.meta.url,
+	PluginArray: [],
 } as unknown as Options;

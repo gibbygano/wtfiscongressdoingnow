@@ -59,7 +59,7 @@ export default () => {
 						nextPage={nextPage}
 					/>
 				)}
-			<footer class="sticky bottom-0 z-[1] w-auto bg-slate-100 grid grid-col-3 py-5 gap-2 rounded">
+			<footer class="fixed w-full bottom-0 z-[1] w-auto bg-slate-100 grid grid-col-3 py-5 gap-2 rounded">
 				<a
 					id="previousPage"
 					onClick={onNextOrPreviousClick}

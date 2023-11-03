@@ -4,10 +4,10 @@ import Card from "./Card.tsx";
 import Error from "./Error.tsx";
 import LinkButton from "./LinkButton.tsx";
 import Loading from "./Loading.tsx";
-import Navigation from "./Navigation.tsx";
 import Select from "./Select.tsx";
 import Sidebar from "./Sidebar.tsx";
 import Badge from "./Badge.tsx";
+import Header from "../islands/Header.tsx";
 
 export {
 	Accordion,
@@ -15,9 +15,9 @@ export {
 	BillsGrid,
 	Card,
 	Error,
+	Header,
 	LinkButton,
 	Loading,
-	Navigation,
 	Select,
 	Sidebar,
 };

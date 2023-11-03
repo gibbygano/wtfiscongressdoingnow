@@ -27,9 +27,9 @@ export default (
 ) => {
 	return (
 		<>
-			<div class="relative">
+			<div class="relative pb-20">
 				<div
-					class="grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3"
+					class="grid lg:grid-cols-3 xl:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-3"
 					id="bills"
 				>
 					{packages.map((
