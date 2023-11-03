@@ -11,6 +11,7 @@ export default function App({ Component }: AppProps) {
 					name="viewport"
 					content="width=device-width, initial-scale=1.0"
 				/>
+				<link crossOrigin="use-credentials" rel="manifest" href="manifest.json" />
 				<title>WTF Is Congress Doing Now?</title>
 			</Head>
 			<body>

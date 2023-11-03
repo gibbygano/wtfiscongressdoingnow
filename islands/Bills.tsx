@@ -4,6 +4,7 @@ import { cx } from "twind";
 import { Bill, BillsGrid, Error, Loading, Select } from "components";
 import { useSignal } from "@preact/signals";
 import useFetchBills from "/hooks/useFetchBills.ts";
+import useRegisterServiceWorker from "/hooks/useRegisterServiceWorker.ts";
 
 export interface CongressionalBills {
 	count: number;
@@ -16,6 +17,8 @@ export interface CongressionalBills {
 const pageSizes = [12, 24, 48, 96];
 
 export default () => {
+	useRegisterServiceWorker();
+
 	const pageSize = useSignal("12");
 	const offset = useSignal("0");
 
