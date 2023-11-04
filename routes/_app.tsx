@@ -1,6 +1,6 @@
 import { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { Header } from "components";
+import { Footer, Header } from "components";
 
 export default function App({ Component }: AppProps) {
 	return (
@@ -17,10 +17,11 @@ export default function App({ Component }: AppProps) {
 			<body>
 				<Header />
 				<div class="w-full h-full">
-					<main class="w-full flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200 min-h-screen">
+					<main class="w-full flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
 						<Component />
 					</main>
 				</div>
+				<Footer />
 			</body>
 		</html>
 	);

@@ -1,3 +1,7 @@
+const environment = self.location.port;
+const version = "1.0.1";
+const cacheId = `${environment}_${version}_wtf_cache`;
+
 // Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
 
 /*
@@ -52,7 +56,16 @@ const getFixedUrl = (req) => {
  *  waitUntil(): activating ====> activated
  */
 self.addEventListener("activate", (event) => {
-	event.waitUntil(self.clients.claim());
+	event.waitUntil(
+		caches.keys().then((cacheNames) =>
+			Promise.all(
+				cacheNames.filter((cacheName) => cacheName !== cacheId).map((cacheName) =>
+					caches.delete(cacheName)
+				),
+			)
+		),
+		self.clients.claim(),
+	);
 });
 
 /**
@@ -84,7 +97,7 @@ self.addEventListener("fetch", (event) => {
 
 		// Update the cache with the version we fetched (only for ok status)
 		event.waitUntil(
-			Promise.all([fetchedCopy, caches.open("pwa-cache")])
+			Promise.all([fetchedCopy, caches.open(cacheId)])
 				.then(([response, cache]) => response.ok && cache.put(event.request, response))
 				.catch((_) => {/* eat any errors */}),
 		);

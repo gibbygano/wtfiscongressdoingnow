@@ -11,5 +11,4 @@ export default {
 		presets: [presetAutoPrefix(), presetTailWind(), presetTypography(), presetLineClamp()],
 	}),
 	selfURL: import.meta.url,
-	PluginArray: [],
 } as unknown as Options;

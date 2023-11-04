@@ -1,8 +1,8 @@
 import useFetchBillSummary from "/hooks/useFetchBillSummary.ts";
 import { Accordion, Badge, Error, Loading } from "components";
 import "humanizer";
-import { JSX } from "preact/jsx-runtime";
 import { useSignal } from "@preact/signals";
+import { onEvent } from "DOMEventHandlers";
 
 export interface BillSummary {
 	originChamber: string;
@@ -84,16 +84,13 @@ export default ({ packageId }: Props) => {
 			accordionIsOpen.value,
 		);
 
-	const onSummaryExpand = (e: JSX.TargetedEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		accordionIsOpen.value = !accordionIsOpen.value;
-	};
-
 	return (
 		<Accordion
 			title="Summary"
-			onExpand={onSummaryExpand}
+			onExpand={(e) =>
+				onEvent(e, () => {
+					accordionIsOpen.value = !accordionIsOpen.value;
+				})}
 			id={`summary-${packageId}`}
 			isOpen={accordionIsOpen.value}
 		>

@@ -36,8 +36,10 @@
 		"dayjs": "https://deno.land/x/deno_dayjs@v0.5.0/mod.ts",
 		"/islands/": "./islands/",
 		"components": "./components/index.ts",
+		"DOMEventHandlers": "./utilities/DOMEventHandlers.tsx",
 		"appConfig": "./config.ts",
-		"/hooks/": "./hooks/"
+		"/hooks/": "./hooks/",
+		"twind/": "https://esm.sh/twind@0.16.19/"
 	},
 	"compilerOptions": {
 		"jsx": "react-jsx",

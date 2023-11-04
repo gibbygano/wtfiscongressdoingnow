@@ -29,7 +29,7 @@ export default (
 		<>
 			<div class="relative pb-10">
 				<div
-					class="grid lg:grid-cols-3 xl:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10 pb-20"
+					class="grid lg:grid-cols-3 xl:grid-cols-6 md:grid-cols-2 sm:grid-cols-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
 					id="bills"
 				>
 					{packages.map((
