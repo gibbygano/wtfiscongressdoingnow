@@ -29,7 +29,7 @@ export default () => {
 	} = useFetchBills(fromDateISO, pageSize.value, offsetSafe.value);
 
 	return (
-		<div class="relative m-0">
+		<div class="flex-1 flex flex-col">
 			{error.name
 				? <Error fullscreen>{error.name}</Error>
 				: loading

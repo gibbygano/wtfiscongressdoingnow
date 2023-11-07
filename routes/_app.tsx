@@ -14,13 +14,11 @@ export default function App({ Component }: AppProps) {
 				<link crossOrigin="use-credentials" rel="manifest" href="manifest.json" />
 				<title>WTF Is Congress Doing Now?</title>
 			</Head>
-			<body>
+			<body class="min-h-screen flex flex-col">
 				<Header />
-				<div class="w-full h-full">
-					<main class="w-full flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
-						<Component />
-					</main>
-				</div>
+				<main class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
+					<Component />
+				</main>
 				<Footer />
 			</body>
 		</html>
