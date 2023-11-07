@@ -1,6 +1,6 @@
 # WTFIsCongressDoingNow.us
 
-Your new Fresh project is ready to go. You can follow the Fresh "Getting Started" guide here:
+Visit @
 https://wtfiscongressdoingnow.us
 
 ### About
