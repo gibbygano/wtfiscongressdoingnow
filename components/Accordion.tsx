@@ -11,7 +11,7 @@ type Props = {
 
 export default ({ title, id, children, isOpen, onExpand }: Props) => {
 	return (
-		<div class="max-w-md mx-auto dark:text-white mt-10">
+		<div class="max-w-md mx-auto dark:text-white mt-10 shadow-lg shadow-gray-700">
 			<div class="border border-gray-200 rounded">
 				<div>
 					<button
@@ -36,8 +36,11 @@ export default ({ title, id, children, isOpen, onExpand }: Props) => {
 				<div
 					id={id}
 					class={cx(
-						"ease-out duration-300 overflow-hidden max-h-0 overflow-y-scroll w-full",
-						{ "border-t border-gray-200 max-h-52 p-4": isOpen },
+						"ease-out duration-300 w-full",
+						{
+							"border-t border-gray-200 max-h-[65vh] overflow-auto p-4": isOpen,
+							"overflow-hidden max-h-0": !isOpen,
+						},
 					)}
 				>
 					{children}
