@@ -1,4 +1,4 @@
-import Bills from "/islands/Bills.tsx";
+import { Bills } from "islands";
 
 const BillsPage = () => <Bills />;
 

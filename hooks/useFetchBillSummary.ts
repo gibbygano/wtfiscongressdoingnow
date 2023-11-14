@@ -1,12 +1,12 @@
 import { useSignal } from "@preact/signals";
-import { BillSummary } from "/islands/BillSummaryAccordion.tsx";
-import useFetch from "/hooks/useFetch.ts";
+import useFetch from "./useFetch.ts";
+import { CongressionalBillSummary } from "types";
 
 const useFetchBillSummary = (
 	packageId: string,
 	summaryAccordionIsOpen: boolean,
 ) => {
-	const billSummary = useSignal<BillSummary>({
+	const billSummary = useSignal<CongressionalBillSummary>({
 		originChamber: "",
 		references: [{
 			contents: [{

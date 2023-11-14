@@ -1,6 +1,6 @@
 import { useSignal } from "@preact/signals";
-import { CongressionalBills } from "/islands/Bills.tsx";
-import useFetch from "/hooks/useFetch.ts";
+import { CongressionalBills } from "types";
+import useFetch from "./useFetch.ts";
 
 const useFetchBills = (startDate: string, pageSize: string, offset: string) => {
 	const bills = useSignal<CongressionalBills>({

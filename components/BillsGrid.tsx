@@ -1,29 +1,10 @@
-import Card from "./Card.tsx";
-import { LinkButton } from "components";
-import BillSummaryAccordion from "/islands/BillSummaryAccordion.tsx";
 import dayjs from "dayjs";
-
-export interface CongressionalBill {
-	packageId: string;
-	lastModified: Date;
-	packageLink: URL;
-	docClass: string;
-	title: string;
-	congress: number;
-	dateIssued: Date;
-}
-
-type Props = {
-	pageSize: string;
-	packages: Array<CongressionalBill>;
-	error: Error;
-	loading: boolean;
-	previousPage?: string;
-	nextPage?: string;
-};
+import { Card, LinkButton } from "components";
+import { BillSummaryAccordion } from "islands";
+import { CongressionalBills } from "types";
 
 export default (
-	{ packages, error, loading, previousPage, nextPage }: Props,
+	{ packages }: CongressionalBills,
 ) => {
 	return (
 		<>

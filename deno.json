@@ -7,8 +7,17 @@
 		"preview": "deno run -A main.ts",
 		"update": "deno run -A -r https://fresh.deno.dev/update ."
 	},
-	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
-	"exclude": ["**/_fresh/*"],
+	"lint": {
+		"rules": {
+			"tags": [
+				"fresh",
+				"recommended"
+			]
+		}
+	},
+	"exclude": [
+		"**/_fresh/*"
+	],
 	"imports": {
 		"$fresh/": "https://deno.land/x/fresh@1.5.4/",
 		"preact": "https://esm.sh/preact@10.18.1",
@@ -25,13 +34,22 @@
 		"$std/": "https://deno.land/std@0.193.0/",
 		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts",
 		"dayjs": "https://deno.land/x/deno_dayjs@v0.5.0/mod.ts",
-		"/islands/": "./islands/",
+		"islands": "./islands/index.ts",
 		"components": "./components/index.ts",
+		"types": "./types/index.ts",
 		"DOMEventHandlers": "./utilities/DOMEventHandlers.tsx",
 		"appConfig": "./config.ts",
-		"/hooks/": "./hooks/",
+		"hooks": "./hooks/index.ts",
 		"twind/": "https://esm.sh/twind@0.16.19/"
 	},
-	"compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
-	"fmt": { "useTabs": true, "lineWidth": 100, "indentWidth": 4, "semiColons": true }
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 100,
+		"indentWidth": 4,
+		"semiColons": true
+	}
 }

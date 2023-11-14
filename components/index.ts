@@ -1,13 +1,13 @@
-import Accordion from "./Accordion.tsx";
-import BillsGrid, { CongressionalBill } from "./BillsGrid.tsx";
-import Card from "./Card.tsx";
-import Error from "./Error.tsx";
+import Accordion from "./shared/Accordion.tsx";
+import BillsGrid from "./BillsGrid.tsx";
+import Card from "./shared/Card.tsx";
+import Error from "./shared/Error.tsx";
 import Footer from "./Footer.tsx";
-import LinkButton from "./LinkButton.tsx";
-import Loading from "./Loading.tsx";
-import Select from "./Select.tsx";
+import LinkButton from "./shared/LinkButton.tsx";
+import Loading from "./shared/Loading.tsx";
+import Select from "./shared/Select.tsx";
 import Sidebar from "./Sidebar.tsx";
-import Badge from "./Badge.tsx";
+import Badge from "./shared/Badge.tsx";
 import Header from "./Header.tsx";
 
 export {
@@ -23,5 +23,3 @@ export {
 	Select,
 	Sidebar,
 };
-
-export type Bill = CongressionalBill;

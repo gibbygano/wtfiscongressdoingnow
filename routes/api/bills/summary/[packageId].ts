@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
-import { BillSummary } from "/islands/BillSummaryAccordion.tsx";
+import { CongressionalBillSummary } from "types";
 
 const fetchRelatedInfo = async (packageId: string) => {
 	const { DataGovAPIKey } = getAppConfig();
@@ -21,7 +21,7 @@ const fetchRelatedInfo = async (packageId: string) => {
 	return await resp.json();
 };
 
-export const handler: Handlers<BillSummary> = {
+export const handler: Handlers<CongressionalBillSummary> = {
 	async GET(_req, ctx) {
 		const data = await fetchRelatedInfo(ctx.params.packageId);
 		return new Response(JSON.stringify(data));

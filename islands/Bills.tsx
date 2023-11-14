@@ -1,17 +1,8 @@
-import "humanizer";
-import { Bill, BillsGrid, Error, Loading } from "components";
 import { computed, useSignal } from "@preact/signals";
-import useFetchBills from "/hooks/useFetchBills.ts";
-import useRegisterServiceWorker from "/hooks/useRegisterServiceWorker.ts";
-import BillsNav from "/islands/BillsNav.tsx";
-
-export interface CongressionalBills {
-	count: number;
-	message?: string;
-	nextPage?: string;
-	previousPage?: string;
-	packages: Array<Bill>;
-}
+import "humanizer";
+import { BillsGrid, Error, Loading } from "components";
+import { BillsNav } from "islands";
+import { useFetchBills, useRegisterServiceWorker } from "hooks";
 
 export default () => {
 	useRegisterServiceWorker();
@@ -23,7 +14,7 @@ export default () => {
 	const fromDate = new Date("04/26/2023");
 	const fromDateISO = fromDate.toISOString().split(".")[0] + "Z";
 	const {
-		bills: { count, message, nextPage, previousPage, packages },
+		bills,
 		loading,
 		error,
 	} = useFetchBills(fromDateISO, pageSize.value, offsetSafe.value);
@@ -36,19 +27,14 @@ export default () => {
 				? <Loading fullscreen>Loading Bills...</Loading>
 				: (
 					<BillsGrid
-						error={error}
-						loading={loading}
-						pageSize={pageSize.value}
-						packages={packages}
-						previousPage={previousPage}
-						nextPage={nextPage}
+						{...bills}
 					/>
 				)}
 			<BillsNav
 				offsetUnsafe={offsetUnsafe}
 				pageSize={pageSize}
-				nextPage={nextPage}
-				previousPage={previousPage}
+				nextPage={bills.nextPage}
+				previousPage={bills.previousPage}
 			/>
 		</div>
 	);
