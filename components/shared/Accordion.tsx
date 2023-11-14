@@ -11,7 +11,7 @@ type Props = {
 
 export default ({ title, id, children, isOpen, onExpand }: Props) => {
 	return (
-		<div class="max-w-md mx-auto dark:text-white mt-10 shadow-lg shadow-gray-700">
+		<div class="mx-auto dark:text-white mt-10 shadow-lg shadow-gray-700">
 			<div class="border border-gray-200 rounded">
 				<div>
 					<button

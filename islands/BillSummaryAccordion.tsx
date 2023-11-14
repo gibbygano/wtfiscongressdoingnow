@@ -1,5 +1,4 @@
 import { Accordion, Badge, Error, Loading } from "components";
-import "humanizer";
 import { useSignal } from "@preact/signals";
 import { onEvent } from "DOMEventHandlers";
 import { useFetchBillSummary } from "hooks";
@@ -11,11 +10,10 @@ type Props = {
 export default ({ packageId }: Props) => {
 	const accordionIsOpen = useSignal(false);
 
-	const { billSummary: { members, originChamber, congress, references }, loading, error } =
-		useFetchBillSummary(
-			packageId,
-			accordionIsOpen.value,
-		);
+	const { billSummary: { members, references }, loading, error } = useFetchBillSummary(
+		packageId,
+		accordionIsOpen.value,
+	);
 
 	return (
 		<Accordion
@@ -33,9 +31,6 @@ export default ({ packageId }: Props) => {
 				? <Loading>Loading Bill Summary...</Loading>
 				: (
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						<p>
-							Origin: {originChamber} - {congress.ordinalize()} Congress
-						</p>
 						{members && members.map((m) => (
 							<>
 								<p>

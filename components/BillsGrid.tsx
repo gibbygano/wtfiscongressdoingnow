@@ -1,4 +1,6 @@
+import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
+import "humanizer";
 import { Card, LinkButton } from "components";
 import { BillSummaryAccordion } from "islands";
 import { CongressionalBills } from "types";
@@ -26,12 +28,14 @@ export default (
 									href={`/api/bills/download/${packageId}?docType=pdf`}
 									target="_blank"
 								>
-									Download PDF
+									<IconFileTypePdf class="w-8 h-8" />
 								</LinkButton>,
 							]}
 						>
-							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
-								Package Id: {packageId}
+							<p class="mt-1 text-lg text-gray-800 dark:text-gray-400 clear-left font-bold">
+								{docClass.toUpperCase()}{" "}
+								{packageId.split(docClass)[1].match("\\d+")} -{" "}
+								{congress.ordinalize()} Congress
 							</p>
 							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
 								Date Issued: {dayjs(dateIssued).format("dddd MMMM D, YYYY")}
