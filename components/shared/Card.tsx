@@ -20,7 +20,7 @@ export default (
 			</h3>
 			{children}
 		</div>
-		<div class="mt-auto py-4 md:py-5 px-10">
+		<div class="mt-auto py-4 md:py-5 md:px-10 px-5">
 			{actionChildren}
 		</div>
 	</div>
