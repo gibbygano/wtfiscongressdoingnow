@@ -1,5 +1,5 @@
 const environment = self.location.port;
-const version = "1.0.2";
+const version = "1.0.5";
 const cacheId = `${environment}_${version}_wtf_cache`;
 
 // Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
@@ -29,8 +29,8 @@ const HOSTNAME_WHITELIST = [
 
 // The Util Function to hack URLs of intercepted requests
 const getFixedUrl = (req) => {
-	var now = Date.now();
-	var url = new URL(req.url);
+	const now = Date.now();
+	const url = new URL(req.url);
 
 	// 1. fixed http URL
 	// Just keep syncing with location.protocol
@@ -65,6 +65,29 @@ self.addEventListener("activate", (event) => {
 			)
 		),
 		self.clients.claim(),
+	);
+});
+
+self.addEventListener("visibilitychange", () => {
+	if (document.visibilityState !== "visible") return;
+
+	caches.keys().then((cacheNames) =>
+		cacheNames.map((cacheName) => {
+			caches.open(cacheName).then((cache) =>
+				cache.keys().then((resources) => {
+					for (const request of resources) {
+						if (!request.url.includes("/api/")) return;
+
+						cache.match(request).then((resp) => {
+							const cachedDate = new Date(resp.headers.get("Date"));
+							if (cachedDate < new Date().setDate(now.getDate() - 1)) {
+								window.location.reload();
+							}
+						});
+					}
+				})
+			);
+		})
 	);
 });
 

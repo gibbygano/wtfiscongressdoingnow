@@ -16,7 +16,7 @@ export default ({ title, id, children, isOpen, onExpand }: Props) => {
 				<div>
 					<button
 						onClick={onExpand}
-						class="w-full p-4 text-left focus:outline-none hover:bg-slate-400"
+						class="w-full p-4 text-center text-lg align-text-top inline-block focus:outline-none hover:bg-slate-400"
 					>
 						{title}{" "}
 						<svg

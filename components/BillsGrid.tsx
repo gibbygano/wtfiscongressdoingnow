@@ -38,14 +38,16 @@ export default (
 						<Card
 							key={packageId}
 							headerText={title}
-							actionChildren={
+							actionChildren={[
+								<BillSummaryAccordion packageId={packageId} />,
 								<LinkButton
+									className="mt-7"
 									href={`/api/bills/download/${packageId}?docType=pdf`}
 									target="_blank"
 								>
 									Download PDF
-								</LinkButton>
-							}
+								</LinkButton>,
+							]}
 						>
 							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
 								Package Id: {packageId}
@@ -56,7 +58,6 @@ export default (
 							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
 								Last Change: {dayjs(lastModified).format("dddd MMMM D, YYYY")}
 							</p>
-							<BillSummaryAccordion packageId={packageId} />
 						</Card>
 					))}
 				</div>
