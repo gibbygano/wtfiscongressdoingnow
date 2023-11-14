@@ -469,7 +469,7 @@
     "id": "/",
     "short_name": "WTF Congress?!",
     "orientation": "any",
-    "start_url": ".",
+    "start_url": "./",
     "scope": "/",
     "display": "standalone",
     "background_color": "#fff",

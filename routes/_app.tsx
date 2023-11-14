@@ -13,6 +13,15 @@ export default function App({ Component }: AppProps) {
 				/>
 				<link crossOrigin="use-credentials" rel="manifest" href="manifest.json" />
 				<title>WTF Is Congress Doing Now?</title>
+				<meta property="og:title" content="WTF Is Congress Doing Now?" />
+				<meta property="og:url" content="https://wtfiscongressdoingnow.us" />
+				<meta property="og:image" content="./pwa/windows11/SplashScreen.scale-100.png" />
+				<meta
+					property="og:description"
+					content="Find out WTF Congress is doing to us right now."
+				/>
+				<meta property="og:locale" content="en_US" />
+				<meta property="og:locale:alternate" content="en_GB" />
 			</Head>
 			<body class="min-h-screen flex flex-col">
 				<Header />
