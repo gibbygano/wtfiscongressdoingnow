@@ -17,7 +17,7 @@ export default function App({ Component }: AppProps) {
 				<meta property="og:url" content="https://wtfiscongressdoingnow.us" />
 				<meta
 					property="og:image"
-					content="https://wtfiscongressdoingnow.us/pwa/windows11/SplashScreen.scale-100.png"
+					content="https://wtfiscongressdoingnow.us/pwa/windows11/SplashScreen.scale-400.png"
 				/>
 				<meta
 					property="og:description"
