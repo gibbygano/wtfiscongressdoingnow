@@ -15,7 +15,7 @@ export default function App({ Component }: AppProps) {
 				<title>WTF Is Congress Doing Now?</title>
 				<meta property="og:title" content="WTF Is Congress Doing Now?" />
 				<meta property="og:url" content="https://wtfiscongressdoingnow.us" />
-				<meta property="og:image" content="./pwa/windows11/SplashScreen.scale-100.png" />
+				<meta property="og:image" content="pwa/windows11/SplashScreen.scale-100.png" />
 				<meta
 					property="og:description"
 					content="Find out WTF Congress is doing to us right now."
