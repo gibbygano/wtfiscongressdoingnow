@@ -1,5 +1,5 @@
 const environment = self.location.port;
-const version = "1.1.0";
+const version = "1.1.1";
 const cacheId = `${environment}_${version}_wtf_cache`;
 
 // Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
