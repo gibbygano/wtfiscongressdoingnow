@@ -2,13 +2,14 @@ import { cx } from "twind";
 import { JSX } from "preact/jsx-runtime";
 
 type Props = {
-	href: string;
+	href?: string;
 	target?: string;
 	className?: string;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	partialId?: string;
 };
 
-export default ({ href, target, className, children }: Props) => (
+export default ({ href, target, className, children, partialId }: Props) => (
 	<a
 		class={cx(
 			"mt-3 py-3 px-4 inline-flex justify-center items-center gap-2 " +
@@ -19,6 +20,7 @@ export default ({ href, target, className, children }: Props) => (
 		)}
 		href={href}
 		target={target}
+		f-partial={partialId}
 	>
 		{children}
 	</a>
