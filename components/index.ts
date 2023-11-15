@@ -7,6 +7,7 @@ import LinkButton from "./shared/LinkButton.tsx";
 import Loading from "./shared/Loading.tsx";
 import Select from "./shared/Select.tsx";
 import Sidebar from "./Sidebar.tsx";
+import Status from "./shared/Status.tsx";
 import Badge from "./shared/Badge.tsx";
 import Header from "./Header.tsx";
 
@@ -22,4 +23,5 @@ export {
 	Loading,
 	Select,
 	Sidebar,
+	Status,
 };

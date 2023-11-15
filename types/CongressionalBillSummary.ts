@@ -1,12 +1,9 @@
+import Member from "./Member.ts";
+import Reference from "./Reference.ts";
+
 export default interface CongressionalBillSummary {
 	originChamber: string;
-	references: Array<{
-		contents: Array<{
-			label: string;
-			title: string;
-			sections: Array<string>;
-		}>;
-	}>;
+	references: Array<Reference>;
 	congress: string;
 	session: string;
 	detailsLink: string;
@@ -32,15 +29,7 @@ export default interface CongressionalBillSummary {
 		billStatusLink: string;
 	};
 	relatedLink: string;
-	members: Array<{
-		role: string;
-		chamber: string;
-		congress: number;
-		bioGuideId: string;
-		memberName: string;
-		state: string;
-		party: string;
-	}>;
+	members: Array<Member>;
 	suDocClassNumber: string;
 	dateIssued: string;
 	currentChamber: string;

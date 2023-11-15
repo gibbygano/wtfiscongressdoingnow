@@ -1,6 +1,6 @@
 import { computed, useSignal } from "@preact/signals";
 import "humanizer";
-import { BillsGrid, Error, Loading } from "components";
+import { BillsGrid, Error, Loading, Status } from "components";
 import { BillsNav } from "islands";
 import { useFetchBills, useRegisterServiceWorker } from "hooks";
 
@@ -20,22 +20,16 @@ export default () => {
 	} = useFetchBills(fromDateISO, pageSize.value, offsetSafe.value);
 
 	return (
-		<div class="flex-1 flex flex-col">
-			{error.name
-				? <Error fullscreen>{error.name}</Error>
-				: loading
-				? <Loading fullscreen>Loading Bills...</Loading>
-				: (
-					<BillsGrid
-						{...bills}
-					/>
-				)}
-			<BillsNav
-				offsetUnsafe={offsetUnsafe}
-				pageSize={pageSize}
-				nextPage={bills.nextPage}
-				previousPage={bills.previousPage}
-			/>
-		</div>
+		<Status error={error} loading={loading} fullscreen>
+			<div class="flex-1 flex flex-col">
+				<BillsGrid {...bills} />
+				<BillsNav
+					offsetUnsafe={offsetUnsafe}
+					pageSize={pageSize}
+					nextPage={bills.nextPage}
+					previousPage={bills.previousPage}
+				/>
+			</div>
+		</Status>
 	);
 };
