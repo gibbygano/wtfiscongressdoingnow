@@ -43,7 +43,7 @@ export default interface CongressionalBillSummary {
 	docClass: string;
 	lastModified: string;
 	category: string;
-	billNumber: number;
+	billNumber: string;
 	otherIdentifier: {
 		"migrated-doc-id": string;
 		"parent-ils-system-id": string;

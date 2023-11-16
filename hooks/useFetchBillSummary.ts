@@ -62,7 +62,7 @@ const useFetchBillSummary = (
 		docClass: "",
 		lastModified: "",
 		category: "",
-		billNumber: 1,
+		billNumber: "",
 		otherIdentifier: {
 			"migrated-doc-id": "",
 			"parent-ils-system-id": "",

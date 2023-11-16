@@ -2,11 +2,13 @@ import { JSX } from "preact/jsx-runtime";
 import { useSignal } from "@preact/signals";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
+import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
+import dayjs from "dayjs";
 import { Badge, Status } from "components";
 import { onEvent } from "DOMEventHandlers";
-import { useFetchBillSummary } from "hooks";
+import { useFetchActions, useFetchBillSummary } from "hooks";
 import GroupedAccordion from "../components/shared/GroupedAccordion.tsx";
-import { Member, Reference } from "types";
+import { Action, Member, Reference } from "types";
 
 type Props = {
 	packageId: string;
@@ -15,9 +17,22 @@ type Props = {
 export default ({ packageId }: Props) => {
 	const openSectionId = useSignal<string | null>(null);
 
-	const { billSummary: { members, references }, loading, error } = useFetchBillSummary(
-		packageId,
-		openSectionId.value !== null,
+	const sponsorSectionId = `${packageId}-sponsors`;
+	const referenceSectionId = `${packageId}-references`;
+	const actionSectionId = `${packageId}-actions`;
+	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
+
+	const { billSummary: { members, references, billNumber, congress, billType }, loading, error } =
+		useFetchBillSummary(
+			packageId,
+			openSectionId.value !== null,
+		);
+
+	const { actions, error: actionsError, loading: actionsLoading } = useFetchActions(
+		billIds[1],
+		billIds[2],
+		billIds[3],
+		openSectionId.value === actionSectionId,
 	);
 
 	const sponsorsContent = (data: Array<Member>, error: Error | null, loading: boolean) => {
@@ -77,8 +92,27 @@ export default ({ packageId }: Props) => {
 			</Status>
 		);
 	};
-	const sponsorSectionId = `${packageId}-sponsors`;
-	const referenceSectionId = `${packageId}-references`;
+
+	const actionsContent = (
+		data: Array<Action>,
+		actionsError: Error | null,
+		actionsLoading: boolean,
+	) => (
+		<Status error={actionsError} loading={actionsLoading}>
+			<div class="prose prose-slate dark:prose-invert mb-5">
+				{data
+					? data.map(({ actionDate, text }) => (
+						<>
+							<p class="border-b font-bold">
+								{dayjs(actionDate).format("dddd MMMM D, YYYY")}
+							</p>
+							<p>{text}</p>
+						</>
+					))
+					: <p>No actions, check back later.</p>}
+			</div>
+		</Status>
+	);
 
 	const sections = [{
 		title: "Sponsors",
@@ -102,6 +136,19 @@ export default ({ packageId }: Props) => {
 			onEvent(e, () => {
 				if (openSectionId.value !== referenceSectionId) {
 					openSectionId.value = referenceSectionId;
+				} else {
+					openSectionId.value = null;
+				}
+			}),
+	}, {
+		title: "Actions",
+		icon: <IconFileStack class="w-6 h-6" />,
+		contents: actionsContent(actions, actionsError, actionsLoading),
+		sectionId: actionSectionId,
+		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
+			onEvent(e, () => {
+				if (openSectionId.value !== actionSectionId) {
+					openSectionId.value = actionSectionId;
 				} else {
 					openSectionId.value = null;
 				}
