@@ -17,7 +17,7 @@ const useFetchActions = (
 	return {
 		actions: actions.value,
 		...useFetch(
-			`/api/bills/${congress}/${billType}/${number}`,
+			`/api/bills/${congress}/${billType}/${number}/actions`,
 			undefined,
 			actions,
 		),

@@ -4,11 +4,12 @@
 
 import * as $0 from "./routes/_404.tsx";
 import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/api/bills/[congress]/[billType]/[number].ts";
-import * as $3 from "./routes/api/bills/[fromDate].ts";
-import * as $4 from "./routes/api/bills/download/[packageId].ts";
-import * as $5 from "./routes/api/bills/summary/[packageId].ts";
-import * as $6 from "./routes/index.tsx";
+import * as $2 from "./routes/api/bills/[congress]/[billType]/[number]/actions.ts";
+import * as $3 from "./routes/api/bills/[congress]/[billType]/[number]/text.ts";
+import * as $4 from "./routes/api/bills/[fromDate].ts";
+import * as $5 from "./routes/api/bills/download/[packageId].ts";
+import * as $6 from "./routes/api/bills/summary/[packageId].ts";
+import * as $7 from "./routes/index.tsx";
 import * as $$0 from "./islands/BillSummaryAccordion.tsx";
 import * as $$1 from "./islands/Bills.tsx";
 import * as $$2 from "./islands/BillsNav.tsx";
@@ -18,11 +19,12 @@ const manifest = {
 	routes: {
 		"./routes/_404.tsx": $0,
 		"./routes/_app.tsx": $1,
-		"./routes/api/bills/[congress]/[billType]/[number].ts": $2,
-		"./routes/api/bills/[fromDate].ts": $3,
-		"./routes/api/bills/download/[packageId].ts": $4,
-		"./routes/api/bills/summary/[packageId].ts": $5,
-		"./routes/index.tsx": $6,
+		"./routes/api/bills/[congress]/[billType]/[number]/actions.ts": $2,
+		"./routes/api/bills/[congress]/[billType]/[number]/text.ts": $3,
+		"./routes/api/bills/[fromDate].ts": $4,
+		"./routes/api/bills/download/[packageId].ts": $5,
+		"./routes/api/bills/summary/[packageId].ts": $6,
+		"./routes/index.tsx": $7,
 	},
 	islands: {
 		"./islands/BillSummaryAccordion.tsx": $$0,

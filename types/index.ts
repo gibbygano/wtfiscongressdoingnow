@@ -7,6 +7,7 @@ import CongressionalBillSummary from "./CongressionalBillSummary.ts";
 import Member from "./Member.ts";
 import Reference from "./Reference.ts";
 import Subcommittee from "./Subcommittee.ts";
+import TextVersion from "./TextVersion.ts";
 
 export type {
 	Action,
@@ -18,4 +19,5 @@ export type {
 	Member,
 	Reference,
 	Subcommittee,
+	TextVersion,
 };

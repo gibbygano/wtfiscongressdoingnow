@@ -7,3 +7,9 @@ export const onEvent = (
 	event.preventDefault();
 	callback();
 };
+
+self.onkeydown = (e) => {
+	if (e.key === "Escape") {
+		(document.activeElement as HTMLElement)?.blur();
+	}
+};

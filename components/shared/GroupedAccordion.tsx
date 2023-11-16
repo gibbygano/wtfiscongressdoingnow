@@ -60,7 +60,7 @@ export default ({ sections, openSectionId }: Props) => {
 							</button>
 						</h2>
 						<div
-							class={cx("w-full md:max-h-[40vh] max-h-[50vh] overflow-auto", {
+							class={cx("w-full md:max-h-[25vh] max-h-[50vh] overflow-auto", {
 								"hidden": !isOpen,
 							})}
 						>

@@ -39,8 +39,7 @@
 		"types": "./types/index.ts",
 		"DOMEventHandlers": "./utilities/DOMEventHandlers.tsx",
 		"appConfig": "./config.ts",
-		"hooks": "./hooks/index.ts",
-		"twind/": "https://esm.sh/twind@0.16.19/"
+		"hooks": "./hooks/index.ts"
 	},
 	"compilerOptions": {
 		"jsx": "react-jsx",
