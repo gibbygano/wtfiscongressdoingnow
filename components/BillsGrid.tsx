@@ -1,10 +1,11 @@
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
 import "humanizer";
-import { Card, LinkButton } from "components";
+import { Card, LinkButton } from "components/shared";
 import { BillSummaryAccordion } from "islands";
 import { CongressionalBills } from "types";
 import { cx } from "twind";
+import { onEvent } from "DOMEventHandlers";
 
 export default (
 	{ packages }: CongressionalBills,
@@ -13,15 +14,24 @@ export default (
 		<>
 			<div class="pb-10 flex-1">
 				<div
-					class="relative lg:columns-3 xl:columns-6 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10 md:group"
+					class="columns-1 text-xs gap-5 px-7 pt-10 relative
+						   md:(columns-2,text-sm,group/cards)
+						   lg:(columns-3,text-base)
+						   xl:columns-4 
+						   2xl:columns-6"
 					id="bills"
 				>
 					{packages.map((
 						{ packageId, lastModified, dateIssued, title, docClass, congress },
 					) => (
 						<Card
+							onClose={(e) =>
+								onEvent(e, () => (document.activeElement as HTMLElement)?.blur())}
 							className={cx(
-								"md:(focus-within:(fixed,z-[1],inset-x-0,top-28,mx-auto,max-h-fit,max-w-screen-sm)) transition-transform duration-700 md:([&:not(:focus-within)]:(group-focus-within:(opacity-30))))",
+								`md:(focus-within:(fixed,z-[1],inset-x-0,top-16,mx-auto,max-h-screen-sm,max-w-screen-sm,scale-[.80])) 
+								 md:([&:not(:focus-within)]:(group-focus-within/cards:(opacity-30))))
+								 2xl:(focus-within:(top-28,scale-100)) 
+								 transition-transform ease-in-out duration-700`,
 							)}
 							key={packageId}
 							headerText={title}

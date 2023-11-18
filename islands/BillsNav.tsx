@@ -1,4 +1,4 @@
-import { Select } from "components";
+import { Select } from "components/shared";
 import { onEvent } from "DOMEventHandlers";
 import { Signal } from "@preact/signals";
 import { cx } from "twind";

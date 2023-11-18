@@ -1,8 +1,8 @@
-import { JSX } from "preact/jsx-runtime";
+import { ComponentChildren } from "preact";
 import { cx } from "twind";
 
 type Props = {
-	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	children: ComponentChildren;
 	fullscreen?: boolean;
 };
 

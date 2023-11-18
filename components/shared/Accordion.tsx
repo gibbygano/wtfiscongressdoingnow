@@ -1,10 +1,11 @@
+import { ComponentChildren } from "preact";
 import { JSX } from "preact/jsx-runtime";
 import { cx } from "twind";
 
 type Props = {
 	title: string;
 	id: string;
-	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	children: ComponentChildren;
 	isOpen: boolean;
 	onExpand: JSX.MouseEventHandler<HTMLButtonElement>;
 };

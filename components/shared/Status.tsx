@@ -1,12 +1,13 @@
 import { JSX } from "preact/jsx-runtime";
 import Error from "./Error.tsx";
 import Loading from "./Loading.tsx";
+import { ComponentChildren } from "preact";
 
 type Props = {
 	error: Error | null;
 	loading: boolean;
 	fullscreen?: boolean;
-	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	children: ComponentChildren;
 };
 
 export default ({ error, loading, fullscreen = false, children }: Props) => {

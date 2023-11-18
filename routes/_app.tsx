@@ -26,9 +26,13 @@ export default function App({ Component }: AppProps) {
 				<meta property="og:locale" content="en_US" />
 				<meta property="og:locale:alternate" content="en_GB" />
 			</Head>
-			<body class="min-h-screen flex flex-col">
+			<body class="!block" style="display: none">
 				<Header />
-				<main class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
+				<main
+					f-client-nav
+					class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr 
+									from-red-200 via-slate-100 to-blue-200 float"
+				>
 					<Component />
 				</main>
 				<Footer />

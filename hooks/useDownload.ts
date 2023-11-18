@@ -1,3 +1,4 @@
+
 export default async (downloadUrl: string, acceptHeader: string) => {
 	const response = await fetch(downloadUrl, {
 		headers: {

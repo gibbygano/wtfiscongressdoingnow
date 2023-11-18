@@ -10,7 +10,7 @@ import * as $4 from "./routes/api/bills/[fromDate].ts";
 import * as $5 from "./routes/api/bills/download/[packageId].ts";
 import * as $6 from "./routes/api/bills/summary/[packageId].ts";
 import * as $7 from "./routes/index.tsx";
-import * as $$0 from "./islands/BillSummaryAccordion.tsx";
+import * as $$0 from "./islands/BillAccordion.tsx";
 import * as $$1 from "./islands/Bills.tsx";
 import * as $$2 from "./islands/BillsNav.tsx";
 import * as $$3 from "./islands/index.ts";
@@ -27,7 +27,7 @@ const manifest = {
 		"./routes/index.tsx": $7,
 	},
 	islands: {
-		"./islands/BillSummaryAccordion.tsx": $$0,
+		"./islands/BillAccordion.tsx": $$0,
 		"./islands/Bills.tsx": $$1,
 		"./islands/BillsNav.tsx": $$2,
 		"./islands/index.ts": $$3,
