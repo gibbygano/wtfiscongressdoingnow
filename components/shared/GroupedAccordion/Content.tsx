@@ -17,7 +17,7 @@ const Content = (
 				`w-full max-h-[50vh] overflow-auto ease-in-out duration-300
                  md:max-h-[25vh]`,
 				{
-					"max-h-0 overflow-hidden": !isOpen,
+					"md:max-h-0 max-h-0 overflow-hidden": !isOpen,
 				},
 			)}
 		>
@@ -27,7 +27,6 @@ const Content = (
 					{
 						"border-b-0": !isLast,
 						"rounded-b-xl": isLast,
-						"max-h-0": !isOpen,
 					},
 				)}
 			>
