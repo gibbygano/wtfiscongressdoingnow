@@ -35,7 +35,7 @@ export default () => {
 
 	return (
 		<Status
-			loadingStatusMessage={<span class="font-semibold">Loading More Bills...</span>}
+			loadingStatusMessage={<span class="font-semibold">Loading Bills...</span>}
 			error={error}
 			loading={loading}
 			alreadyHasData={bills.packages.length > 0}
