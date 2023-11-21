@@ -2,8 +2,11 @@ import IconBrandGithub from "fresh-icons/brand-github.tsx";
 
 export default () => {
 	return (
-		<footer class="z-[5] w-full bg-white border-t border-gray-200 shadow flex items-center justify-between p-2 dark:bg-gray-800 dark:border-gray-600
-					   2xl:p-4">
+		<footer
+			id="site-footer"
+			class="sticky bottom-0 z-[5] w-full bg-white border-t border-gray-200 shadow flex items-center justify-between p-2 dark:bg-gray-800 dark:border-gray-600
+					   2xl:p-4"
+		>
 			<span class="text-sm text-gray-500 dark:text-gray-400 items-center">
 				<a
 					href="https://github.com/gibbygano/wtfiscongressdoingnow"

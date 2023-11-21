@@ -77,14 +77,16 @@ const useFetchBillSummary = (
 		return { billSummary: billSummary.value, loading: false, error: null };
 	}
 
-	return {
-		billSummary: billSummary.value,
-		...useFetch(
-			`/api/bills/summary/${packageId}`,
-			undefined,
-			billSummary,
-		),
-	};
+	const { data, error, loading, status, statusText } = useFetch<CongressionalBillSummary>(
+		`/api/bills/summary/${packageId}`,
+		undefined,
+	);
+
+	if (data) {
+		billSummary.value = data;
+	}
+
+	return { billSummary: billSummary.value, error, loading };
 };
 
 export default useFetchBillSummary;

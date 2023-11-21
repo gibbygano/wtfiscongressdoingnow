@@ -72,7 +72,11 @@ export default ({ packageId }: Props) => {
 					<IconUsersGroup class="w-6 h-6" />&nbsp;Sponsors
 				</GroupedAccordionButton>
 				<GroupedAccordionContent>
-					<Status error={error} loading={loading}>
+					<Status
+						loadingStatusMessage={<span class="text-white">Loading Sponsors...</span>}
+						error={error}
+						loading={loading}
+					>
 						<div class="prose prose-slate dark:prose-invert mb-5 shadow-inner">
 							{members
 								? members.map((m) => (
@@ -96,7 +100,11 @@ export default ({ packageId }: Props) => {
 					<IconBook class="w-6 h-6" />&nbsp;References
 				</GroupedAccordionButton>
 				<GroupedAccordionContent>
-					<Status error={error} loading={loading}>
+					<Status
+						loadingStatusMessage={<span class="text-white">Loading References...</span>}
+						error={error}
+						loading={loading}
+					>
 						<div class="prose prose-slate dark:prose-invert mb-5 shadow-inner">
 							<ul>
 								{references
@@ -138,9 +146,13 @@ export default ({ packageId }: Props) => {
 					<IconFileStack class="w-6 h-6" />&nbsp;Actions
 				</GroupedAccordionButton>
 				<GroupedAccordionContent>
-					<Status error={actionsError} loading={actionsLoading}>
+					<Status
+						loadingStatusMessage={<span class="text-white">Loading Actions...</span>}
+						error={actionsError}
+						loading={actionsLoading}
+					>
 						<div class="prose prose-slate dark:prose-invert mb-5 shadow-inner">
-							{actions
+							{Array.isArray(actions)
 								? actions.map(({ actionDate, text }) => (
 									<>
 										<p class="border-b font-bold">
@@ -161,7 +173,13 @@ export default ({ packageId }: Props) => {
 					<IconAlignJustified class="w-6 h-6" />&nbsp;Full Text Versions
 				</GroupedAccordionButton>
 				<GroupedAccordionContent>
-					<Status error={textsError} loading={textsLoading}>
+					<Status
+						loadingStatusMessage={
+							<span class="text-white">Loading Full Text Versions...</span>
+						}
+						error={textsError}
+						loading={textsLoading}
+					>
 						<div class="prose prose-slate dark:prose-invert mb-5 hover:divide-y hover:divide-double shadow-inner">
 							{textVersions?.length > 0
 								? textVersions.map(({ date, formats, type }) => (

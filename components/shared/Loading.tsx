@@ -27,6 +27,6 @@ export default ({ children, fullscreen = false }: Props) => (
 				fill="currentFill"
 			/>
 		</svg>
-		<span class="sr-only">{children}</span>
+		<span>{children}</span>
 	</div>
 );

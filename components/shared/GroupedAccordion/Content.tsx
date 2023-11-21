@@ -17,16 +17,17 @@ const Content = (
 				`w-full max-h-[50vh] overflow-auto ease-in-out duration-300
                  md:max-h-[25vh]`,
 				{
-					"sm,md:max-h-0 overflow-hidden": !isOpen,
+					"max-h-0 overflow-hidden": !isOpen,
 				},
 			)}
 		>
 			<div
 				class={cx(
-					"p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900",
+					"p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900 overscroll-contain",
 					{
 						"border-b-0": !isLast,
 						"rounded-b-xl": isLast,
+						"max-h-0": !isOpen,
 					},
 				)}
 			>

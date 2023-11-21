@@ -4,6 +4,8 @@ import { BillsGrid } from "components";
 import { Status } from "components/shared";
 import { BillsNav } from "islands";
 import { useFetchBills, useRegisterServiceWorker } from "hooks";
+import { useEffect } from "preact/hooks";
+import { scrollListener } from "DOMEventHandlers";
 
 export default () => {
 	useRegisterServiceWorker();
@@ -20,16 +22,27 @@ export default () => {
 		error,
 	} = useFetchBills(fromDateISO, pageSize.value, offsetSafe.value);
 
+	const scrollBottom = () => {
+		if (self.innerHeight + self.scrollY === document.body.scrollHeight && bills.nextPage) {
+			offsetUnsafe.value = new URL(bills.nextPage).searchParams.get("offset");
+		}
+	};
+
+	useEffect(() => {
+		scrollListener(scrollBottom);
+		return () => scrollListener(scrollBottom, true);
+	}, []);
+
 	return (
-		<Status error={error} loading={loading} fullscreen>
+		<Status
+			loadingStatusMessage={<span class="font-semibold">Loading More Bills...</span>}
+			error={error}
+			loading={loading}
+			alreadyHasData={bills.packages.length > 0}
+			fullscreen
+		>
 			<div class="flex-1 flex flex-col">
 				<BillsGrid {...bills} />
-				<BillsNav
-					offsetUnsafe={offsetUnsafe}
-					pageSize={pageSize}
-					nextPage={bills.nextPage}
-					previousPage={bills.previousPage}
-				/>
 			</div>
 		</Status>
 	);

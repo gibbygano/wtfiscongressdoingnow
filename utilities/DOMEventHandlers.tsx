@@ -17,3 +17,11 @@ self.onkeydown = (e) => {
 		(document.activeElement as HTMLElement)?.blur();
 	}
 };
+
+export const scrollListener = (callback: () => void, remove = false) => {
+	if (remove) {
+		self.removeEventListener("scroll", callback);
+	} else {
+		self.addEventListener("scroll", callback);
+	}
+};

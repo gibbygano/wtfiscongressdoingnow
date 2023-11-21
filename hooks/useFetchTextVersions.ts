@@ -14,14 +14,16 @@ const useFetchTextVersions = (
 		return { textVersions: textVersions.value, error: null, loading: false };
 	}
 
-	return {
-		textVersions: textVersions.value,
-		...useFetch(
-			`/api/bills/${congress}/${billType}/${number}/text`,
-			undefined,
-			textVersions,
-		),
-	};
+	const { data, error, loading, statusText, status } = useFetch<TextVersion[]>(
+		`/api/bills/${congress}/${billType}/${number}/text`,
+		undefined,
+	);
+
+	if (data) {
+		textVersions.value = data;
+	}
+
+	return { textVersions: textVersions.value, error, loading };
 };
 
 export default useFetchTextVersions;

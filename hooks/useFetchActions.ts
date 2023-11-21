@@ -14,14 +14,16 @@ const useFetchActions = (
 		return { actions: actions.value, error: null, loading: false };
 	}
 
-	return {
-		actions: actions.value,
-		...useFetch(
-			`/api/bills/${congress}/${billType}/${number}/actions`,
-			undefined,
-			actions,
-		),
-	};
+	const { data, loading, error, status, statusText } = useFetch<Action[]>(
+		`/api/bills/${congress}/${billType}/${number}/actions`,
+		undefined,
+	);
+
+	if (data) {
+		actions.value = data;
+	}
+
+	return {actions: actions.value, loading, error}
 };
 
 export default useFetchActions;
