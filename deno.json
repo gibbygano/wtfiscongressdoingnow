@@ -40,6 +40,7 @@
 		"components/shared": "./components/shared/index.ts",
 		"types": "./types/index.ts",
 		"DOMEventHandlers": "./utilities/DOMEventHandlers.tsx",
+		"helpers": "./utilities/helpers.ts",
 		"appConfig": "./config.ts",
 		"hooks": "./hooks/index.ts"
 	},

@@ -28,11 +28,8 @@ export default function App({ Component }: AppProps) {
 			</Head>
 			<body class="!block" style="display: none">
 				<Header />
-				<main
-					f-client-nav
-					class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr 
-									from-red-200 via-slate-100 to-blue-200 float"
-				>
+				<main class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr 
+									from-red-200 via-slate-100 to-blue-200 float">
 					<Component />
 				</main>
 				<Footer />

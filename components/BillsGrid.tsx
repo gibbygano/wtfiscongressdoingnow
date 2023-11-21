@@ -14,6 +14,7 @@ export default (
 		<>
 			<div class="pb-10 flex-1">
 				<div
+					f-client-nav
 					class="columns-1 text-xs gap-5 px-7 pt-10 relative
 						   md:(columns-2,text-sm,group/cards)
 						   lg:(columns-3,text-base)

@@ -1,4 +1,5 @@
 import { JSX } from "preact/jsx-runtime";
+import { debounce_leading } from "helpers";
 
 export const onEvent = (
 	event: JSX.TargetedEvent<Element, Event>,
@@ -12,16 +13,18 @@ export const onEvent = (
 	callback();
 };
 
-self.onkeydown = (e) => {
-	if (e.key === "Escape") {
-		(document.activeElement as HTMLElement)?.blur();
+export const scrollListener = (callback: () => void, remove = false) => {
+	if (remove) {
+		self.removeEventListener("scroll", debounce_leading(callback));
+	} else {
+		self.addEventListener("scroll", debounce_leading(callback));
 	}
 };
 
-export const scrollListener = (callback: () => void, remove = false) => {
+export const keyListener = (callback: (e: KeyboardEvent) => void, remove = false) => {
 	if (remove) {
-		self.removeEventListener("scroll", callback);
+		self.removeEventListener("keydown", callback);
 	} else {
-		self.addEventListener("scroll", callback);
+		self.addEventListener("keydown", callback);
 	}
 };

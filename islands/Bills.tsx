@@ -2,10 +2,9 @@ import { computed, useSignal } from "@preact/signals";
 import "humanizer";
 import { BillsGrid } from "components";
 import { Status } from "components/shared";
-import { BillsNav } from "islands";
 import { useFetchBills, useRegisterServiceWorker } from "hooks";
 import { useEffect } from "preact/hooks";
-import { scrollListener } from "DOMEventHandlers";
+import { keyListener, scrollListener } from "DOMEventHandlers";
 
 export default () => {
 	useRegisterServiceWorker();
@@ -28,9 +27,19 @@ export default () => {
 		}
 	};
 
+	const escape = (e: KeyboardEvent) => {
+		if (e.key === "Escape") {
+			(document.activeElement as HTMLElement)?.blur();
+		}
+	};
+
 	useEffect(() => {
 		scrollListener(scrollBottom);
-		return () => scrollListener(scrollBottom, true);
+		keyListener(escape);
+
+		return () => {
+			scrollListener(scrollBottom, true), keyListener(escape, true);
+		};
 	}, []);
 
 	return (
