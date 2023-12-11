@@ -1,4 +1,4 @@
-import { Handlers, Status } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
 import { Action } from "types";
 
@@ -33,7 +33,7 @@ export const handler: Handlers<Action[]> = {
 			);
 			return new Response(JSON.stringify(actions));
 		} catch (error) {
-			return new Response(null, { status: Status.BadRequest, statusText: error.message });
+			return new Response(null, { status: 500, statusText: error.message });
 		}
 	},
 };

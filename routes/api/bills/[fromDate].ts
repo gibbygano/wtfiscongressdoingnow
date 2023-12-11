@@ -1,4 +1,4 @@
-import { Handlers, Status } from "$fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
 import { CongressionalBills } from "types";
 
@@ -34,7 +34,7 @@ export const handler: Handlers<CongressionalBills> = {
 			const bills = await fetchBills(ctx.params.fromDate, pageSize ?? "10", offset ?? "0");
 			return new Response(JSON.stringify(bills));
 		} catch (error) {
-			return new Response(null, { status: Status.BadRequest, statusText: error.message });
+			return new Response(null, { status: 500, statusText: error.message });
 		}
 	},
 };

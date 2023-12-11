@@ -2,35 +2,37 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_404.tsx";
-import * as $1 from "./routes/_app.tsx";
-import * as $2 from "./routes/api/bills/[congress]/[billType]/[number].ts";
-import * as $3 from "./routes/api/bills/[fromDate].ts";
-import * as $4 from "./routes/api/bills/download/[packageId].ts";
-import * as $5 from "./routes/api/bills/summary/[packageId].ts";
-import * as $6 from "./routes/index.tsx";
-import * as $$0 from "./islands/BillSummaryAccordion.tsx";
-import * as $$1 from "./islands/Bills.tsx";
-import * as $$2 from "./islands/BillsNav.tsx";
-import * as $$3 from "./islands/index.ts";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $api_bills_congress_billType_number_ from "./routes/api/bills/[congress]/[billType]/[number].ts";
+import * as $api_bills_fromDate_ from "./routes/api/bills/[fromDate].ts";
+import * as $api_bills_download_packageId_ from "./routes/api/bills/download/[packageId].ts";
+import * as $api_bills_summary_packageId_ from "./routes/api/bills/summary/[packageId].ts";
+import * as $index from "./routes/index.tsx";
+import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
+import * as $Bills from "./islands/Bills.tsx";
+import * as $BillsNav from "./islands/BillsNav.tsx";
+import * as $index_1 from "./islands/index.ts";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
 	routes: {
-		"./routes/_404.tsx": $0,
-		"./routes/_app.tsx": $1,
-		"./routes/api/bills/[congress]/[billType]/[number].ts": $2,
-		"./routes/api/bills/[fromDate].ts": $3,
-		"./routes/api/bills/download/[packageId].ts": $4,
-		"./routes/api/bills/summary/[packageId].ts": $5,
-		"./routes/index.tsx": $6,
+		"./routes/_404.tsx": $_404,
+		"./routes/_app.tsx": $_app,
+		"./routes/api/bills/[congress]/[billType]/[number].ts":
+			$api_bills_congress_billType_number_,
+		"./routes/api/bills/[fromDate].ts": $api_bills_fromDate_,
+		"./routes/api/bills/download/[packageId].ts": $api_bills_download_packageId_,
+		"./routes/api/bills/summary/[packageId].ts": $api_bills_summary_packageId_,
+		"./routes/index.tsx": $index,
 	},
 	islands: {
-		"./islands/BillSummaryAccordion.tsx": $$0,
-		"./islands/Bills.tsx": $$1,
-		"./islands/BillsNav.tsx": $$2,
-		"./islands/index.ts": $$3,
+		"./islands/BillSummaryAccordion.tsx": $BillSummaryAccordion,
+		"./islands/Bills.tsx": $Bills,
+		"./islands/BillsNav.tsx": $BillsNav,
+		"./islands/index.ts": $index_1,
 	},
 	baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
