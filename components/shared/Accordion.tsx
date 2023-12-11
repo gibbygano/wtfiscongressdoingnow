@@ -1,5 +1,5 @@
 import { JSX } from "preact/jsx-runtime";
-import { cx } from "twind";
+import { clsx } from "clsx";
 
 type Props = {
 	title: string;
@@ -35,7 +35,7 @@ export default ({ title, id, children, isOpen, onExpand }: Props) => {
 				</div>
 				<div
 					id={id}
-					class={cx(
+					class={clsx(
 						"ease-out duration-300 w-full",
 						{
 							"border-t border-gray-200 max-h-[65vh] overflow-auto p-4": isOpen,

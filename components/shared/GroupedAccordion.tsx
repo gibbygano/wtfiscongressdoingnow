@@ -1,5 +1,5 @@
 import { Signal } from "@preact/signals";
-import { cx } from "twind";
+import { clsx } from "clsx";
 import { JSX } from "preact/jsx-runtime";
 
 type Props = {
@@ -26,7 +26,7 @@ export default ({ sections, openSectionId }: Props) => {
 							<button
 								onClick={onExpand}
 								type="button"
-								class={cx(
+								class={clsx(
 									`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border 
                                             border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 
                                             dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3`,
@@ -42,7 +42,7 @@ export default ({ sections, openSectionId }: Props) => {
 									{icon}&nbsp;{title}
 								</span>
 								<svg
-									class={cx("w-3 h-3 shrink-0", {
+									class={clsx("w-3 h-3 shrink-0", {
 										"rotate-180": openSectionId.value === sectionId,
 									})}
 									xmlns="http://www.w3.org/2000/svg"
@@ -60,12 +60,12 @@ export default ({ sections, openSectionId }: Props) => {
 							</button>
 						</h2>
 						<div
-							class={cx("w-full md:max-h-[40vh] max-h-[50vh] overflow-auto", {
+							class={clsx("w-full md:max-h-[40vh] max-h-[50vh] overflow-auto", {
 								"hidden": !isOpen,
 							})}
 						>
 							<div
-								class={cx(
+								class={clsx(
 									"p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900",
 									{
 										"border-b-0": i !== lastSectionIndex,

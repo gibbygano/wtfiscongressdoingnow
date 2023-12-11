@@ -25,6 +25,7 @@ export default function App({ Component }: AppProps) {
 				/>
 				<meta property="og:locale" content="en_US" />
 				<meta property="og:locale:alternate" content="en_GB" />
+				<link rel="stylesheet" href="/styles.css" />
 			</Head>
 			<body class="min-h-screen flex flex-col">
 				<Header />

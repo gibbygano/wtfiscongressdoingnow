@@ -1,7 +1,7 @@
 import { Select } from "components";
 import { onEvent } from "DOMEventHandlers";
 import { Signal } from "@preact/signals";
-import { cx } from "twind";
+import { clsx } from "clsx";
 
 type Props = {
 	nextPage?: string;
@@ -25,7 +25,7 @@ export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
 							));
 					})}
 				title="Previous Page"
-				class={cx("cursor-pointer hover:underline", {
+				class={clsx("cursor-pointer hover:underline", {
 					"collapse": !previousPage,
 				})}
 				disabled={!previousPage}
@@ -71,7 +71,7 @@ export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
 							));
 					})}
 				disabled={!nextPage}
-				class={cx("cursor-pointer hover:underline col-start-3 justify-self-end", {
+				class={clsx("cursor-pointer hover:underline col-start-3 justify-self-end", {
 					"collapse": !nextPage,
 				})}
 			>

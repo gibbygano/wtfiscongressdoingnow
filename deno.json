@@ -7,8 +7,18 @@
 		"preview": "deno run -A main.ts",
 		"update": "deno run -A -r https://fresh.deno.dev/update ."
 	},
-	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
-	"exclude": ["**/_fresh/*"],
+	"lint": {
+		"rules": {
+			"tags": [
+				"fresh",
+				"recommended"
+			]
+		}
+	},
+	"exclude": [
+		"**/_fresh/*"
+	],
+	"nodeModulesDir": true,
 	"imports": {
 		"$fresh/": "https://deno.land/x/fresh@1.6.1/",
 		"preact": "https://esm.sh/preact@10.19.2",
@@ -16,13 +26,10 @@
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-		"twind": "https://esm.sh/v128/@twind/core@1.1.3",
-		"twind/": "https://esm.sh/v128/@twind/core@1.1.3/",
-		"twind-preset-autoprefix": "https://esm.sh/v128/@twind/preset-autoprefix@1.0.7",
-		"twind-preset-tailwind": "https://esm.sh/v128/@twind/preset-tailwind@1.1.4",
-		"twind-preset-typography": "https://esm.sh/v128/@twind/preset-typography@1.0.7",
-		"twind_fresh_plugin/": "https://deno.land/x/fresh_twindv1_plugin@v1.3.0/",
-		"twind-preset-line-clamp": "https://esm.sh/v128/@twind/preset-line-clamp@1.0.7",
+		"tailwindcss": "npm:tailwindcss@3.3.5",
+		"tailwindcss/": "npm:/tailwindcss@3.3.5/",
+		"tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
+		"clsx": "npm:clsx",
 		"$std/": "https://deno.land/std@0.193.0/",
 		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts",
 		"dayjs": "https://deno.land/x/deno_dayjs@v0.5.0/mod.ts",
@@ -33,6 +40,14 @@
 		"appConfig": "./config.ts",
 		"hooks": "./hooks/index.ts"
 	},
-	"compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
-	"fmt": { "useTabs": true, "lineWidth": 100, "indentWidth": 4, "semiColons": true }
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 100,
+		"indentWidth": 4,
+		"semiColons": true
+	}
 }

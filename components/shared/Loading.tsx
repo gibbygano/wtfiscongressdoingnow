@@ -1,5 +1,5 @@
 import { JSX } from "preact/jsx-runtime";
-import { cx } from "twind";
+import { clsx } from "clsx";
 
 type Props = {
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
@@ -9,7 +9,7 @@ type Props = {
 export default ({ children, fullscreen = false }: Props) => (
 	<div
 		role="status"
-		class={cx("flex items-center justify-center", { "h-screen": fullscreen })}
+		class={clsx("flex items-center justify-center", { "h-screen": fullscreen })}
 	>
 		<svg
 			aria-hidden="true"
