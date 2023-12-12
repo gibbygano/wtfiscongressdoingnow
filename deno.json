@@ -26,7 +26,7 @@
 		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-		"clsx": "npm:clsx@2.0.0",
+		"clsx": "https://esm.sh/clsx@2.0.0",
 		"tailwindcss": "npm:tailwindcss@3.3.5",
 		"tailwindcss/": "npm:/tailwindcss@3.3.5/",
 		"tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
