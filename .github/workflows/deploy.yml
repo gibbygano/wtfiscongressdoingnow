@@ -33,4 +33,4 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "gibbygano/wtfiscongressdoingnow" # 📝 Update the deploy project name if necessary
-          entrypoint: "./wtfiscongressdoingnow/main.ts" # 📝 Update the entrypoint if necessary
+          entrypoint: "./main.ts" # 📝 Update the entrypoint if necessary
