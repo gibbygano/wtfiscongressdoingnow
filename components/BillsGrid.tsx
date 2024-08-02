@@ -12,7 +12,7 @@ export default (
 		<>
 			<div class="pb-10 flex-1">
 				<div
-					class="lg:columns-3 xl:columns-6 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
+					class="lg:columns-3 2xl:columns-5 xl:columns-4 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
 					id="bills"
 				>
 					{packages.map((
