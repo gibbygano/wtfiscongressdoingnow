@@ -19,9 +19,8 @@ export default ({ children, label, inputId, value, onChange }: Props) => {
 				id={inputId}
 				value={value}
 				onChange={onChange}
-				class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                       focus:border-blue-500 p-1 dark:bg-gray-700 dark:border-gray-600
-                       dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 max-w-[75px] ml-2"
+				class="transition ease-in-out bg-gray-50 border-gray-300 text-gray-900 rounded-full ml-2 appearance-none
+                       dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white max-w-[75px]"
 			>
 				{children}
 			</select>

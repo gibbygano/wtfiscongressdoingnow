@@ -22,7 +22,7 @@ export default ({ packageId }: Props) => {
 	const actionSectionId = `${packageId}-actions`;
 	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
 
-	const { billSummary: { members, references, billNumber, congress, billType }, loading, error } =
+	const { billSummary: { members, references }, loading, error } =
 		useFetchBillSummary(
 			packageId,
 			openSectionId.value !== null,

@@ -2,14 +2,24 @@
 	"lock": false,
 	"tasks": {
 		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+		"cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
+		"manifest": "deno task cli manifest $(pwd)",
 		"start": "deno run -A --watch=static/,routes/ dev.ts",
 		"build": "deno run -A dev.ts build",
 		"preview": "deno run -A main.ts",
 		"update": "deno run -A -r https://fresh.deno.dev/update ."
 	},
-	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
-	"exclude": ["**/_fresh/*"],
-	"nodeModulesDir": true,
+	"lint": {
+		"rules": {
+			"tags": [
+				"fresh",
+				"recommended"
+			]
+		}
+	},
+	"exclude": [
+		"**/_fresh/*"
+	],
 	"imports": {
 		"$fresh/": "https://deno.land/x/fresh@1.6.8/",
 		"preact": "https://esm.sh/preact@10.19.6",
@@ -18,10 +28,12 @@
 		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
 		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
 		"clsx": "https://esm.sh/clsx@2.0.0",
-		"tailwindcss": "npm:tailwindcss@3.3.5",
-		"tailwindcss/": "npm:/tailwindcss@3.3.5/",
-		"tailwindcss/plugin": "npm:/tailwindcss@3.3.5/plugin.js",
-		"$std/": "https://deno.land/std@0.193.0/",
+		"tailwindcss": "npm:tailwindcss@3.4.1",
+		"tailwindcss/": "npm:/tailwindcss@3.4.1/",
+		"@tailwindcss/": "npm:/@tailwindcss/",
+		"tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js",
+		"typography": "https://esm.sh/@tailwindcss/typography",
+		"$std/": "https://deno.land/std@0.216.0/",
 		"humanizer": "https://deno.land/x/humanizer@1.1/ordinalize.ts",
 		"dayjs": "https://deno.land/x/deno_dayjs@v0.5.0/mod.ts",
 		"islands": "./islands/index.ts",
@@ -31,6 +43,15 @@
 		"appConfig": "./config.ts",
 		"hooks": "./hooks/index.ts"
 	},
-	"compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" },
-	"fmt": { "useTabs": true, "lineWidth": 100, "indentWidth": 4, "semiColons": true }
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+	},
+	"fmt": {
+		"useTabs": true,
+		"lineWidth": 100,
+		"indentWidth": 4,
+		"semiColons": true
+	},
+	"nodeModulesDir": true
 }
