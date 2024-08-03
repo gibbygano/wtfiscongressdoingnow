@@ -1,6 +1,6 @@
 import { computed, useSignal } from "@preact/signals";
 import "humanizer";
-import { BillsGrid, Error, Loading, Status } from "components";
+import { BillsGrid, Status } from "components";
 import { BillsNav } from "islands";
 import { useFetchBills, useRegisterServiceWorker } from "hooks";
 
