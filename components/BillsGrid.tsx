@@ -20,7 +20,8 @@ export default (
 					) => (
 						<Card
 							key={packageId}
-							headerText={title}
+							headerText={`${docClass.toUpperCase()} 
+							${packageId.split(docClass)[1].match("\\d+")}`}
 							actionChildren={[
 								<BillSummaryAccordion packageId={packageId} />,
 								<LinkButton
@@ -32,15 +33,16 @@ export default (
 								</LinkButton>,
 							]}
 						>
-							<p class="mt-1 text-lg text-gray-800 dark:text-gray-400 clear-left font-bold">
-								{docClass.toUpperCase()}{" "}
-								{packageId.split(docClass)[1].match("\\d+")} -{" "}
+							<blockquote>
+								{title}
+							</blockquote>
+							<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
 								{congress.ordinalize()} Congress
 							</p>
-							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
+							<p class="text-gray-800 dark:text-gray-400 clear-left">
 								Date Issued: {dayjs(dateIssued).format("dddd MMMM D, YYYY")}
 							</p>
-							<p class="mt-1 text-gray-800 dark:text-gray-400 clear-left">
+							<p class="text-gray-800 dark:text-gray-400 clear-left">
 								Last Change: {dayjs(lastModified).format("dddd MMMM D, YYYY")}
 							</p>
 						</Card>

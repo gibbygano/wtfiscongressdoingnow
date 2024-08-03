@@ -22,5 +22,8 @@
 	},
 	"[html]": {
 		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"[tailwindcss]": {
+		"editor.defaultFormatter": "numso.prettier-standard-vscode"
 	}
 }
