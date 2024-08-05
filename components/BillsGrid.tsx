@@ -10,7 +10,7 @@ export default (
 ) => {
 	return (
 		<>
-			<div class="pb-10 flex-1">
+			<div class="pb-10 flex-1 dark:backdrop-brightness-[.8]">
 				<div
 					class="lg:columns-3 2xl:columns-5 xl:columns-4 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
 					id="bills"
@@ -33,7 +33,7 @@ export default (
 								</LinkButton>,
 							]}
 						>
-							<blockquote>
+							<blockquote class="dark:prose-invert">
 								{title}
 							</blockquote>
 							<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
