@@ -3,7 +3,7 @@ import { Handlers } from "$fresh/server.ts";
 
 const fetchLatest = async () => {
     return await (await fetch(
-        "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=silladelphia.wtfiscongressdoingnow.us",
+        "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=silladelphia.wtfiscongressdoingnow.us&limit=10",
     )).json();
 };
 
@@ -19,7 +19,9 @@ export const handler: Handlers = {
     async GET(_req, ctx) {
         const listItems: Array<string> = [];
         const latest: { feed: Array<{ post: { uri: string } }> } = await fetchLatest();
-        for await (const item of latest.feed.map(({ post }) => fetchListItem(post.uri))) {
+        for await (
+            const item of latest.feed.slice(0, 4).map(({ post }) => fetchListItem(post.uri))
+        ) {
             if (item !== undefined) {
                 listItems.push(item);
             }
