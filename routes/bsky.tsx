@@ -1,22 +1,34 @@
-export default () => (
-    <div class="h-screen flex justify-center mt-10">
-        <blockquote
-            class="bluesky-embed"
-            data-bluesky-uri="at://did:plc:ru4uwws7zdxrncwr2a4jhask/app.bsky.feed.post/3l3orwsydyc24"
-            data-bluesky-cid="bafyreiagqlqhq5e7nydut4srwq6jghguyfk7ok4toshutdnurt2ckq5pza"
-        >
-            <p lang="en">
-                @bsky.app Making a grumpy face because even though every DNS server I checked showed
-                the proper TXT DNS record and the verify worked but I kept getting &quot;External
-                handle did not resolve to DID&quot;. Now I&#x27;m rate limited 😠
-            </p>&mdash; Silladelphia
-            (<a href="https://bsky.app/profile/did:plc:ru4uwws7zdxrncwr2a4jhask?ref_src=embed">
-                @silladelphia.wtfiscongressdoingnow.us
-            </a>){" "}
-            <a href="https://bsky.app/profile/did:plc:ru4uwws7zdxrncwr2a4jhask/post/3l3orwsydyc24?ref_src=embed">
-                Sep 8, 2024 at 9:50 PM
-            </a>
-        </blockquote>
-        <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-    </div>
+import { BlueSky } from "islands";
+import { Handlers } from "$fresh/server.ts";
+
+const fetchLatest = async () => {
+    return await (await fetch(
+        "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=silladelphia.wtfiscongressdoingnow.us",
+    )).json();
+};
+
+const fetchListItem = async (uri: string) => {
+    try {
+        return (await (await fetch(`https://embed.bsky.app/oembed?url=${uri}`)).json()).html;
+    } catch {
+        console.log("don't worry about it");
+    }
+};
+
+export const handler: Handlers = {
+    async GET(_req, ctx) {
+        const listItems: Array<string> = [];
+        const latest: { feed: Array<{ post: { uri: string } }> } = await fetchLatest();
+        for await (const item of latest.feed.map(({ post }) => fetchListItem(post.uri))) {
+            if (item !== undefined) {
+                listItems.push(item);
+            }
+        }
+        const resp = await ctx.render({ listItems });
+        return resp;
+    },
+};
+
+export default ({ data }: { data: { listItems: Array<string> } }) => (
+    <BlueSky feed={data.listItems} />
 );
