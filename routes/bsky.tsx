@@ -3,34 +3,23 @@ import { Handlers } from "$fresh/server.ts";
 
 const fetchLatest = async () => {
     return await (await fetch(
-        "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=silladelphia.wtfiscongressdoingnow.us&limit=10",
+        "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed?actor=silladelphia.wtfiscongressdoingnow.us",
     )).json();
-};
-
-const fetchListItem = async (uri: string) => {
-    try {
-        return (await (await fetch(`https://embed.bsky.app/oembed?url=${uri}`)).json()).html;
-    } catch {
-        console.log("don't worry about it");
-    }
 };
 
 export const handler: Handlers = {
     async GET(_req, ctx) {
-        const listItems: Array<string> = [];
         const latest: { feed: Array<{ post: { uri: string } }> } = await fetchLatest();
-        for await (
-            const item of latest.feed.slice(0, 4).map(({ post }) => fetchListItem(post.uri))
-        ) {
-            if (item !== undefined) {
-                listItems.push(item);
-            }
-        }
-        const resp = await ctx.render({ listItems });
+
+        const postCodes = latest.feed.slice(0, 4).map(({ post }) =>
+            post.uri.replace("at://did:plc:ru4uwws7zdxrncwr2a4jhask/app.bsky.feed.post/", "")
+        );
+
+        const resp = await ctx.render({ postCodes });
         return resp;
     },
 };
 
-export default ({ data }: { data: { listItems: Array<string> } }) => (
-    <BlueSky feed={data.listItems} />
+export default ({ data }: { data: { postCodes: Array<string> } }) => (
+    <BlueSky feed={data.postCodes} />
 );
