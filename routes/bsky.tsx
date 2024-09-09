@@ -11,7 +11,7 @@ export const handler: Handlers = {
     async GET(_req, ctx) {
         const latest: { feed: Array<{ post: { uri: string } }> } = await fetchLatest();
 
-        const postCodes = latest.feed.slice(0, 4).map(({ post }) =>
+        const postCodes = latest.feed.map(({ post }) =>
             post.uri.replace("at://did:plc:ru4uwws7zdxrncwr2a4jhask/app.bsky.feed.post/", "")
         );
 
