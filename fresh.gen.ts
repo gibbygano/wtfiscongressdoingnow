@@ -13,7 +13,7 @@ import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
 import * as $Bills from "./islands/Bills.tsx";
 import * as $BillsNav from "./islands/BillsNav.tsx";
 import * as $index_1 from "./islands/index.ts";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
 	routes: {
