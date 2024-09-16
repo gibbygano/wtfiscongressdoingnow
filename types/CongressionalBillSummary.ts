@@ -1,7 +1,7 @@
 import Member from "./Member.ts";
 import Reference from "./Reference.ts";
 
-export default interface CongressionalBillSummary {
+interface CongressionalBillSummary {
 	originChamber: string;
 	references: Array<Reference>;
 	congress: string;
@@ -53,3 +53,72 @@ export default interface CongressionalBillSummary {
 		"stock-number": string;
 	};
 }
+
+const defaultProps: CongressionalBillSummary = {
+	originChamber: "",
+	references: [{
+		contents: [{
+			label: "",
+			title: "",
+			sections: [],
+		}],
+	}],
+	congress: "",
+	session: "",
+	detailsLink: "",
+	shortTitle: [{
+		type: "",
+		title: "",
+	}],
+	isPrivate: "",
+	title: "",
+	branch: "",
+	isAppropriation: false,
+	collectionName: "",
+	download: {
+		premisLink: "",
+		xmlLink: "",
+		txtLink: "",
+		zipLing: "",
+		modsLink: "",
+		pdfLink: "",
+	},
+	pages: "",
+	related: {
+		billStatusLink: "",
+	},
+	relatedLink: "",
+	members: [{
+		role: "",
+		chamber: "",
+		congress: 118,
+		bioGuideId: "",
+		memberName: "",
+		state: "",
+		party: "",
+	}],
+	suDocClassNumber: "",
+	dateIssued: "",
+	currentChamber: "",
+	billVersion: "",
+	billType: "",
+	packageId: "",
+	collectionCode: "",
+	governmentAuthor2: "",
+	governmentAuthor1: "",
+	publisher: "",
+	docClass: "",
+	lastModified: "",
+	category: "",
+	billNumber: "",
+	otherIdentifier: {
+		"migrated-doc-id": "",
+		"parent-ils-system-id": "",
+		"child-ils-title": "",
+		"parent-ils-title": "",
+		"child-ils-system-id": "",
+		"stock-number": "",
+	},
+};
+
+export { type CongressionalBillSummary, defaultProps };

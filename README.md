@@ -1,7 +1,6 @@
 # WTFIsCongressDoingNow.us
 
-Visit @
-https://wtfiscongressdoingnow.us
+Visit @ https://wtfiscongressdoingnow.us
 
 # Huh?
 

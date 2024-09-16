@@ -1,5 +1,5 @@
 import { JSX } from "preact/jsx-runtime";
-import { useSignal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
 import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
@@ -8,7 +8,14 @@ import { Badge, Status } from "components";
 import { onEvent } from "DOMEventHandlers";
 import { useFetchActions, useFetchBillSummary } from "hooks";
 import GroupedAccordion from "../components/shared/GroupedAccordion.tsx";
-import { Action, Member, Reference } from "types";
+import {
+	Action,
+	CongressionalBillSummary,
+	CongressionalBillSummaryDefault,
+	Member,
+	Reference,
+} from "types";
+import _ from "npm:lodash";
 
 type Props = {
 	packageId: string;
@@ -16,22 +23,33 @@ type Props = {
 
 export default ({ packageId }: Props) => {
 	const openSectionId = useSignal<string | null>(null);
+	const billSummary = useSignal<CongressionalBillSummary>(CongressionalBillSummaryDefault);
+	const actions = useSignal<Array<Action>>([]);
+	const uniqueActions = useComputed<Array<Action>>(() =>
+		_.uniqWith(
+			actions.value,
+			(arrVal: Action, othVal: Action) =>
+				arrVal.text === othVal.text && arrVal.type === othVal.type &&
+				arrVal.actionDate === othVal.actionDate,
+		)
+	);
 
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
 	const actionSectionId = `${packageId}-actions`;
 	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
 
-	const { billSummary: { members, references }, loading, error } =
-		useFetchBillSummary(
-			packageId,
-			openSectionId.value !== null,
-		);
+	const { loading, error } = useFetchBillSummary(
+		packageId,
+		billSummary,
+		openSectionId.value !== null,
+	);
 
-	const { actions, error: actionsError, loading: actionsLoading } = useFetchActions(
+	const { error: actionsError, loading: actionsLoading } = useFetchActions(
 		billIds[1],
 		billIds[2],
 		billIds[3],
+		actions,
 		openSectionId.value === actionSectionId,
 	);
 
@@ -94,14 +112,13 @@ export default ({ packageId }: Props) => {
 	};
 
 	const actionsContent = (
-		data: Array<Action>,
 		actionsError: Error | null,
 		actionsLoading: boolean,
 	) => (
 		<Status error={actionsError} loading={actionsLoading}>
 			<div class="prose prose-slate dark:prose-invert mb-5">
-				{data
-					? data.map(({ actionDate, text }) => (
+				{uniqueActions.value
+					? uniqueActions.value.map(({ actionDate, text }: Action) => (
 						<>
 							<p class="border-b font-bold">
 								{dayjs(actionDate).format("dddd MMMM D, YYYY")}
@@ -117,7 +134,7 @@ export default ({ packageId }: Props) => {
 	const sections = [{
 		title: "Sponsors",
 		icon: <IconUsersGroup class="w-6 h-6" />,
-		contents: sponsorsContent(members, error, loading),
+		contents: sponsorsContent(billSummary.value.members, error, loading),
 		sectionId: sponsorSectionId,
 		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
 			onEvent(e, () => {
@@ -130,7 +147,7 @@ export default ({ packageId }: Props) => {
 	}, {
 		title: "References",
 		icon: <IconBook class="w-6 h-6" />,
-		contents: referencesContent(references, error, loading),
+		contents: referencesContent(billSummary.value.references, error, loading),
 		sectionId: referenceSectionId,
 		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
 			onEvent(e, () => {
@@ -143,7 +160,7 @@ export default ({ packageId }: Props) => {
 	}, {
 		title: "Actions",
 		icon: <IconFileStack class="w-6 h-6" />,
-		contents: actionsContent(actions, actionsError, actionsLoading),
+		contents: actionsContent(actionsError, actionsLoading),
 		sectionId: actionSectionId,
 		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
 			onEvent(e, () => {
