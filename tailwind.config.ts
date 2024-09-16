@@ -6,6 +6,13 @@ const tailwindsConfig: Config = {
   content: [
     "{routes,islands,components}/**/*.{ts,tsx}",
   ],
+  theme: {
+    extend: {
+      screens: {
+        "3xl": "2560px",
+      },
+    },
+  },
   plugins: [forms, typography],
 };
 
