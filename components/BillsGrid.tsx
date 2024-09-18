@@ -33,17 +33,31 @@ export default (
 								</LinkButton>,
 							]}
 						>
-							<blockquote class="dark:prose-invert">
+							<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
 								{title}
 							</blockquote>
+							<div
+								id="tooltip-default"
+								role="tooltip"
+								class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+							>
+								Tooltip content
+								<div class="tooltip-arrow" data-popper-arrow></div>
+							</div>
 							<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
 								{congress.ordinalize()} Congress
 							</p>
-							<p class="text-gray-800 dark:text-gray-400 clear-left">
-								Date Issued: {dayjs(dateIssued).format("dddd MMMM D, YYYY")}
+							<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
+								Date Issued:{" "}
+								<span class="text-nowrap">
+									{dayjs(dateIssued).format("dddd MMMM D, YYYY")}
+								</span>
 							</p>
-							<p class="text-gray-800 dark:text-gray-400 clear-left">
-								Last Change: {dayjs(lastModified).format("dddd MMMM D, YYYY")}
+							<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
+								Last Change:{" "}
+								<span class="text-nowrap">
+									{dayjs(lastModified).format("dddd MMMM D, YYYY")}
+								</span>
 							</p>
 						</Card>
 					))}
