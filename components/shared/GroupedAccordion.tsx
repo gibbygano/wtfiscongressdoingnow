@@ -1,5 +1,5 @@
 import { Signal } from "@preact/signals";
-import { useRef } from "preact/compat";
+import { TargetedEvent } from "preact/compat";
 import { clsx } from "clsx";
 import { JSX } from "preact/jsx-runtime";
 
@@ -19,47 +19,28 @@ export default ({ sections, packageId, openSection }: Props) => {
 		<div>
 			{sections.map(({ contents, title, sectionId, icon }, i) => {
 				const lastSectionIndex = sections.length - 1;
-				const detailsAccordion = useRef<HTMLDetailsElement>(null);
-				const ontoggle = () => {
-					if (detailsAccordion.current?.hasAttribute("open")) {
-						return openSection.value = detailsAccordion.current;
-					}
-
-					if (openSection.value === detailsAccordion.current) {
-						openSection.value = null;
-					}
-				};
+				const ontoggle = (e: TargetedEvent<HTMLDetailsElement, ToggleEvent>) =>
+					openSection.value = e.currentTarget.hasAttribute("open")
+						? e.currentTarget
+						: null;
 
 				return (
 					<details
-						ref={detailsAccordion}
+						class="group"
 						onToggle={ontoggle}
 						id={sectionId}
 						key={sectionId}
 						name={`${packageId}-sections`}
 					>
-						<summary
-							class={clsx(
-								`flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border 
+						<summary class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border 
                                             border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 cursor-pointer
-                                            dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3`,
-								{
-									"rounded-t-xl": i === 0,
-									"border-b-0": i !== lastSectionIndex,
-									"rounded-b-xl": i === lastSectionIndex &&
-										!detailsAccordion.current?.hasAttribute("open"),
-								},
-							)}
-						>
+                                            dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3
+											group-first:rounded-t-xl group-[&:not(:last-child)]:border-b-0 group-last:group-[&:not([open])]:rounded-b-xl">
 							<span class="flex items-center">
 								{icon}&nbsp;{title}
 							</span>
 							<svg
-								class={clsx("w-3 h-3 shrink-0", {
-									"rotate-180": detailsAccordion.current?.hasAttribute(
-										"open",
-									),
-								})}
+								class={`w-3 h-3 shrink-0 group-open:rotate-180 transform transition-all duration-200`}
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
 								viewBox="0 0 10 6"
@@ -73,7 +54,7 @@ export default ({ sections, packageId, openSection }: Props) => {
 								/>
 							</svg>
 						</summary>
-						<div class="w-full md:max-h-[40vh] max-h-[50vh] overflow-auto">
+						<div class="w-full md:max-h-[40vh] max-h-[50vh] overflow-auto ">
 							<div
 								class={clsx(
 									"p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900",

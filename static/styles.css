@@ -32,6 +32,10 @@
     position: relative;
   }
 
+  details>div {
+    scrollbar-width: thin;
+  }
+
   html {
     font-family: 'Montserrat', system-ui, sans-serif;
   }
