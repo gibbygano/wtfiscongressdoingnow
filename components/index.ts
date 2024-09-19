@@ -3,6 +3,7 @@ import BillsGrid from "./BillsGrid.tsx";
 import Card from "./shared/Card.tsx";
 import Error from "./shared/Error.tsx";
 import Footer from "./Footer.tsx";
+import GroupedAccordion from "./shared/GroupedAccordion.tsx";
 import LinkButton from "./shared/LinkButton.tsx";
 import Loading from "./shared/Loading.tsx";
 import Select from "./shared/Select.tsx";
@@ -18,6 +19,7 @@ export {
 	Card,
 	Error,
 	Footer,
+	GroupedAccordion,
 	Header,
 	LinkButton,
 	Loading,

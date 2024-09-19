@@ -1,13 +1,10 @@
-import { JSX } from "preact/jsx-runtime";
 import { useComputed, useSignal } from "@preact/signals";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
 import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
 import dayjs from "dayjs";
-import { Badge, Status } from "components";
-import { onEvent } from "DOMEventHandlers";
+import { Badge, GroupedAccordion, Status } from "components";
 import { useFetchActions, useFetchBillSummary } from "hooks";
-import GroupedAccordion from "../components/shared/GroupedAccordion.tsx";
 import {
 	Action,
 	CongressionalBillSummary,
@@ -22,7 +19,7 @@ type Props = {
 };
 
 export default ({ packageId }: Props) => {
-	const openSectionId = useSignal<string | null>(null);
+	const openSection = useSignal<HTMLDetailsElement | null>(null);
 	const billSummary = useSignal<CongressionalBillSummary>(CongressionalBillSummaryDefault);
 	const actions = useSignal<Array<Action>>([]);
 	const uniqueActions = useComputed<Array<Action>>(() =>
@@ -34,6 +31,8 @@ export default ({ packageId }: Props) => {
 		)
 	);
 
+	console.log(openSection.value);
+
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
 	const actionSectionId = `${packageId}-actions`;
@@ -42,7 +41,7 @@ export default ({ packageId }: Props) => {
 	const { loading, error } = useFetchBillSummary(
 		packageId,
 		billSummary,
-		openSectionId.value !== null,
+		openSection.value !== null,
 	);
 
 	const { error: actionsError, loading: actionsLoading } = useFetchActions(
@@ -50,7 +49,7 @@ export default ({ packageId }: Props) => {
 		billIds[2],
 		billIds[3],
 		actions,
-		openSectionId.value === actionSectionId,
+		openSection.value?.getAttribute("id") === actionSectionId,
 	);
 
 	const sponsorsContent = (data: Array<Member>, error: Error | null, loading: boolean) => {
@@ -136,41 +135,23 @@ export default ({ packageId }: Props) => {
 		icon: <IconUsersGroup class="w-6 h-6" />,
 		contents: sponsorsContent(billSummary.value.members, error, loading),
 		sectionId: sponsorSectionId,
-		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
-			onEvent(e, () => {
-				if (openSectionId.value !== sponsorSectionId) {
-					openSectionId.value = sponsorSectionId;
-				} else {
-					openSectionId.value = null;
-				}
-			}),
 	}, {
 		title: "References",
 		icon: <IconBook class="w-6 h-6" />,
 		contents: referencesContent(billSummary.value.references, error, loading),
 		sectionId: referenceSectionId,
-		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
-			onEvent(e, () => {
-				if (openSectionId.value !== referenceSectionId) {
-					openSectionId.value = referenceSectionId;
-				} else {
-					openSectionId.value = null;
-				}
-			}),
 	}, {
 		title: "Actions",
 		icon: <IconFileStack class="w-6 h-6" />,
 		contents: actionsContent(actionsError, actionsLoading),
 		sectionId: actionSectionId,
-		onExpand: (e: JSX.TargetedEvent<Element, Event>) =>
-			onEvent(e, () => {
-				if (openSectionId.value !== actionSectionId) {
-					openSectionId.value = actionSectionId;
-				} else {
-					openSectionId.value = null;
-				}
-			}),
 	}];
 
-	return <GroupedAccordion openSectionId={openSectionId} sections={sections} />;
+	return (
+		<GroupedAccordion
+			openSection={openSection}
+			packageId={packageId}
+			sections={sections}
+		/>
+	);
 };
