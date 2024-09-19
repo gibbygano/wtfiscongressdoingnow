@@ -36,14 +36,6 @@ export default (
 							<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
 								{title}
 							</blockquote>
-							<div
-								id="tooltip-default"
-								role="tooltip"
-								class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-							>
-								Tooltip content
-								<div class="tooltip-arrow" data-popper-arrow></div>
-							</div>
 							<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
 								{congress.ordinalize()} Congress
 							</p>
