@@ -17,8 +17,7 @@ type Props = {
 export default ({ sections, packageId, openSection }: Props) => {
 	return (
 		<div>
-			{sections.map(({ contents, title, sectionId, icon }, i) => {
-				const lastSectionIndex = sections.length - 1;
+			{sections.map(({ contents, title, sectionId, icon }) => {
 				const ontoggle = (e: TargetedEvent<HTMLDetailsElement, ToggleEvent>) =>
 					openSection.value = e.currentTarget.hasAttribute("open")
 						? e.currentTarget
@@ -54,16 +53,8 @@ export default ({ sections, packageId, openSection }: Props) => {
 								/>
 							</svg>
 						</summary>
-						<div class="w-full md:max-h-[40vh] max-h-[50vh] overflow-auto ">
-							<div
-								class={clsx(
-									"p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900",
-									{
-										"border-b-0": i !== lastSectionIndex,
-										"rounded-b-xl": i === lastSectionIndex,
-									},
-								)}
-							>
+						<div class="w-full md:max-h-[40vh] max-h-[50vh] overflow-auto group-[&:not(:last-child)]:border-b-0 group-last:rounded-b-xl">
+							<div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
 								{contents}
 							</div>
 						</div>

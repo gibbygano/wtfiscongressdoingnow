@@ -32,14 +32,15 @@
     position: relative;
   }
 
-  details > div {
+  details>div {
     scrollbar-width: thin;
   }
 
-  details > summary {
+  details>summary {
     list-style: none;
   }
-  details > summary::-webkit-details-marker {
+
+  details>summary::-webkit-details-marker {
     display: none;
   }
 

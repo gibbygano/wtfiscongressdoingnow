@@ -31,8 +31,6 @@ export default ({ packageId }: Props) => {
 		)
 	);
 
-	console.log(openSection.value);
-
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
 	const actionSectionId = `${packageId}-actions`;
