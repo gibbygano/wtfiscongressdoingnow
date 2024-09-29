@@ -1,5 +1,5 @@
 import { Signal } from "@preact/signals";
-import { CongressionalBills } from "types";
+import { CongressionalBill, CongressionalBills } from "types";
 import useFetch from "./useFetch.ts";
 
 const useFetchBills = (
@@ -16,8 +16,31 @@ const useFetchBills = (
 			})}`,
 			undefined,
 			bills,
+			reduce,
 		),
 	};
+};
+
+const reduce = (result: CongressionalBills, current: CongressionalBills) => {
+	const reducedPackages = result.packages.reduce(
+		(acc: Array<CongressionalBill>, resultItem: CongressionalBill) => {
+			if (!acc.some((currentItem) => currentItem.packageId === resultItem.packageId)) {
+				acc.push(resultItem);
+			}
+			return acc;
+		},
+		current.packages,
+	);
+
+	const bills: CongressionalBills = {
+		previousPage: result.previousPage,
+		nextPage: result.nextPage,
+		packages: reducedPackages,
+		count: result.count + current.count,
+		message: result.message,
+	};
+
+	return bills;
 };
 
 export default useFetchBills;

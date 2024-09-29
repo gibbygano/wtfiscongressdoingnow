@@ -15,6 +15,7 @@ export default <T>(
 		"Accpet": "application/json",
 	},
 	responseObjectSignal: Signal<T>,
+	reducer?: (updated: T, current: T) => T,
 ): Results => {
 	const loading = useSignal(false);
 	const status = useSignal(0);
@@ -38,7 +39,12 @@ export default <T>(
 			}
 
 			const object: T = await response.json();
-			responseObjectSignal.value = object;
+
+			if (reducer) {
+				responseObjectSignal.value = reducer(object, responseObjectSignal.value);
+			} else {
+				responseObjectSignal.value = object;
+			}
 		} catch (error) {
 			error.value = error;
 		} finally {
