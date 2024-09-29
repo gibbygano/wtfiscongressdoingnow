@@ -13,7 +13,8 @@ export default (
 		actionChildren,
 	}: Props,
 ) => (
-	<div class="flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]n shadow-xl break-inside-avoid mb-5 bottom-0 [&:has(*>details[open])]:static">
+	<div class="flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 
+				dark:shadow-slate-700/[.7]n shadow-xl break-inside-avoid mb-5 bottom-0 [&:has(*>details[open])]:absolute">
 		<div class="p-4 md:p-5 prose">
 			<h3 class="text-lg font-semibold text-gray-800 dark:text-white">
 				{headerText}
