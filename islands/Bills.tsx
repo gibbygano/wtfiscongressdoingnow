@@ -24,36 +24,46 @@ export default () => {
 		error,
 	} = useFetchBills(bills, fromDateISO, pageSize.value, offsetSafe.value);
 
-	useEffect(() => {
-		ioRef.current = new IntersectionObserver((entries, observer) => {
-			console.log(entries, observer);
+	const ioOptions: IntersectionObserverInit = {
+		root: billsRef.current,
+		rootMargin: "0px",
+		threshold: 1.0,
+	};
+	const ioCallback = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
+		const [entry] = entries;
+		if (entry.isIntersecting && bills.value.nextPage) {
+			console.log(entry, observer);
+			offsetUnsafe.value = new URL(bills.value.nextPage).searchParams.get("offset");
+		}
+	};
 
-			if (bills.value.nextPage) {
-				offsetUnsafe.value = new URL(bills.value.nextPage).searchParams
-					.get("offset");
-			}
-		}, {
-			root: null,
-			rootMargin: "0px",
-			threshold: .01,
-		});
+	useEffect(() => {
+		ioRef.current = new IntersectionObserver(ioCallback, ioOptions);
 
 		if (spanRef.current) {
 			ioRef.current.observe(spanRef.current);
 		}
-	}, []);
+
+		return () => {
+			if (spanRef.current) {
+				ioRef.current?.unobserve(spanRef.current);
+			}
+		};
+	}, [spanRef, ioOptions]);
 
 	return (
 		<Status error={error} loading={loading} fullscreen>
 			<div ref={billsRef} class="flex-1 flex flex-col">
 				<BillsGrid {...bills.value} />
 				<span ref={spanRef} class="h-full" />
-				<BillsNav
+				{
+					/*<BillsNav
 					offsetUnsafe={offsetUnsafe}
 					pageSize={pageSize}
 					nextPage={bills.value.nextPage}
 					previousPage={bills.value.previousPage}
-				/>
+				/>*/
+				}
 			</div>
 		</Status>
 	);
