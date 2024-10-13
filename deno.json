@@ -53,5 +53,5 @@
 		"indentWidth": 4,
 		"semiColons": true
 	},
-	"nodeModulesDir": "auto"
+	"nodeModulesDir": true
 }
