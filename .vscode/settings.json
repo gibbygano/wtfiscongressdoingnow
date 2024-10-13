@@ -25,5 +25,8 @@
 	},
 	"[tailwindcss]": {
 		"editor.defaultFormatter": "numso.prettier-standard-vscode"
+	},
+	"search.exclude": {
+		"**/node_modules": false
 	}
 }

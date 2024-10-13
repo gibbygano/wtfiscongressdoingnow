@@ -1,6 +1,6 @@
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
-import "humanizer";
+import "humanizer/ordinalize.ts";
 import { Card, LinkButton } from "components";
 import { BillSummaryAccordion } from "islands";
 import { CongressionalBills } from "types";
