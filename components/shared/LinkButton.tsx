@@ -7,9 +7,10 @@ type Props = {
 	className?: string;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 	partialId?: string;
+	onClick?: JSX.GenericEventHandler<HTMLAnchorElement>;
 };
 
-export default ({ href, target, className, children, partialId }: Props) => (
+export default ({ href, target, className, children, partialId, onClick }: Props) => (
 	<a
 		class={clsx(
 			"mt-3 py-3 px-4 inline-flex justify-center items-center gap-2 " +
@@ -21,6 +22,7 @@ export default ({ href, target, className, children, partialId }: Props) => (
 		href={href}
 		target={target}
 		f-partial={partialId}
+		onClick={onClick}
 	>
 		{children}
 	</a>

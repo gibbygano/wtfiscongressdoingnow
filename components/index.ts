@@ -7,10 +7,10 @@ import GroupedAccordion from "./shared/GroupedAccordion.tsx";
 import LinkButton from "./shared/LinkButton.tsx";
 import Loading from "./shared/Loading.tsx";
 import Select from "./shared/Select.tsx";
-import Sidebar from "./Sidebar.tsx";
 import Status from "./shared/Status.tsx";
 import Badge from "./shared/Badge.tsx";
 import Header from "./Header.tsx";
+import Modal from "./shared/Modal.tsx";
 
 export {
 	Accordion,
@@ -23,7 +23,7 @@ export {
 	Header,
 	LinkButton,
 	Loading,
+	Modal,
 	Select,
-	Sidebar,
 	Status,
 };
