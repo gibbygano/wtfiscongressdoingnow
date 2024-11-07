@@ -2,6 +2,8 @@ import { useComputed, useSignal } from "@preact/signals";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
 import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
+import IconNews from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/news.tsx";
+import { parseFeed } from "jsr:@mikaelporttila/rss@*";
 import dayjs from "dayjs";
 import { Badge, GroupedAccordion, Status } from "components";
 import { useFetchActions, useFetchBillSummary } from "hooks";
@@ -34,6 +36,7 @@ export default ({ packageId }: Props) => {
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
 	const actionSectionId = `${packageId}-actions`;
+	const newsSectionId = `${packageId}-news`;
 	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
 
 	const { loading, error } = useFetchBillSummary(
@@ -128,6 +131,15 @@ export default ({ packageId }: Props) => {
 		</Status>
 	);
 
+	const newsContent = () => (
+		<iframe
+			src={`//rss.bloople.net/?url=https%3A%2F%2Fnews.google.com%2Frss%2Fsearch%3Fq%3D%2522${
+				billIds[2]
+			}%2B${billIds[3]}%2522%26hl%3Den-US%26gl%3DUS%26ceid%3DUS%3Aen&showtitle=false&type=html`}
+		>
+		</iframe>
+	);
+
 	const sections = [{
 		title: "Sponsors",
 		icon: <IconUsersGroup class="w-6 h-6" />,
@@ -143,6 +155,11 @@ export default ({ packageId }: Props) => {
 		icon: <IconFileStack class="w-6 h-6" />,
 		contents: actionsContent(actionsError, actionsLoading),
 		sectionId: actionSectionId,
+	}, {
+		title: "News",
+		icon: <IconNews class="w-6 h-6" />,
+		contents: newsContent(),
+		newsSectionId: newsSectionId,
 	}];
 
 	return (
