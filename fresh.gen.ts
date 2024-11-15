@@ -8,6 +8,7 @@ import * as $api_bills_congress_billType_number_ from "./routes/api/bills/[congr
 import * as $api_bills_fromDate_ from "./routes/api/bills/[fromDate].ts";
 import * as $api_bills_download_packageId_ from "./routes/api/bills/download/[packageId].ts";
 import * as $api_bills_summary_packageId_ from "./routes/api/bills/summary/[packageId].ts";
+import * as $api_eo_index from "./routes/api/eo/index.ts";
 import * as $index from "./routes/index.tsx";
 import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
 import * as $Bills from "./islands/Bills.tsx";
@@ -24,6 +25,7 @@ const manifest = {
 		"./routes/api/bills/[fromDate].ts": $api_bills_fromDate_,
 		"./routes/api/bills/download/[packageId].ts": $api_bills_download_packageId_,
 		"./routes/api/bills/summary/[packageId].ts": $api_bills_summary_packageId_,
+		"./routes/api/eo/index.ts": $api_eo_index,
 		"./routes/index.tsx": $index,
 	},
 	islands: {

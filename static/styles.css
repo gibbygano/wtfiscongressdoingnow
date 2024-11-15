@@ -1,49 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  [data-title]:hover:after {
-    opacity: 1;
-    transition: all 0.1s ease 0.5s;
-    visibility: visible;
-  }
+	[data-title]:hover:after {
+		opacity: 1;
+		transition: all 0.1s ease 0.5s;
+		visibility: visible;
+	}
 
-  [data-title]:after {
-    content: attr(data-title);
-    background-color: #00ff00;
-    color: #111;
-    font-size: 150%;
-    position: absolute;
-    padding: 1px 5px 2px 5px;
-    bottom: -1.6em;
-    left: 100%;
-    white-space: nowrap;
-    box-shadow: 1px 1px 3px #222222;
-    opacity: 0;
-    border: 1px solid #111111;
-    z-index: 99999;
-    visibility: hidden;
-  }
+	[data-title]:after {
+		content: attr(data-title);
+		background-color: #00ff00;
+		color: #111;
+		font-size: 150%;
+		position: absolute;
+		padding: 1px 5px 2px 5px;
+		bottom: -1.6em;
+		left: 100%;
+		white-space: nowrap;
+		box-shadow: 1px 1px 3px #222222;
+		opacity: 0;
+		border: 1px solid #111111;
+		z-index: 99999;
+		visibility: hidden;
+	}
 
-  [data-title] {
-    position: relative;
-  }
+	[data-title] {
+		position: relative;
+	}
 
-  details > div {
-    scrollbar-width: thin;
-  }
+	details > div {
+		scrollbar-width: thin;
+	}
 
-  details > summary {
-    list-style: none;
-  }
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
+	details > summary {
+		list-style: none;
+	}
+	details > summary::-webkit-details-marker {
+		display: none;
+	}
 
-  html {
-    font-family: 'Montserrat', system-ui, sans-serif;
-  }
+	html {
+		font-family: "Montserrat", system-ui, sans-serif;
+	}
 }
