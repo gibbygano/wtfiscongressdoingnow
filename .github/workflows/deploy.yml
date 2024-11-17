@@ -25,8 +25,9 @@ jobs:
 
             - name: Build step
               env:
-                  APP_VERSION: "test"
-              run: "deno task build" # 📝 Update the build command(s) if necessary
+                  APP_VERSION: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
+              run: "echo Building $APP_VERSION \
+                  deno task build" # 📝 Update the build command(s) if necessary
 
             - name: Upload to Deno Deploy
               uses: denoland/deployctl@v1
