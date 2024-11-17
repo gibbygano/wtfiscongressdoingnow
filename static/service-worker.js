@@ -81,7 +81,7 @@ self.addEventListener("visibilitychange", () => {
 						cache.match(request).then((resp) => {
 							const cachedDate = new Date(resp.headers.get("Date"));
 							if (cachedDate < new Date().setDate(now.getDate() - 1)) {
-								window.location.reload();
+								globalThis.location.reload();
 							}
 						});
 					}
