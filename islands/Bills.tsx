@@ -1,12 +1,10 @@
 import { useComputed, useSignal } from "@preact/signals";
 import { BillsGrid, Status } from "components";
 import { BillsNav } from "islands";
-import { useFetchBills, useRegisterServiceWorker } from "hooks";
+import { useFetchBills } from "hooks";
 import { CongressionalBills, CongressionalBillsDefault } from "types";
 
 export default () => {
-	useRegisterServiceWorker();
-
 	const bills = useSignal<CongressionalBills>(CongressionalBillsDefault);
 	const pageSize = useSignal("12");
 	const offsetUnsafe = useSignal<string | null>("0");
