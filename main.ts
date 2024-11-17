@@ -9,5 +9,9 @@ import "@std/dotenv/load";
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import config from "./fresh.config.ts";
+import { getAppConfig } from "appConfig";
+
+const appVersion = getAppConfig().AppVersion;
+console.debug(`App Version: ${appVersion}`);
 
 await start(manifest, config);
