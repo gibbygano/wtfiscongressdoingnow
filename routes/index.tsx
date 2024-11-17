@@ -3,6 +3,7 @@ import { getAppConfig } from "appConfig";
 
 const BillsPage = () => {
 	const appVersion = getAppConfig().AppVersion;
+	console.log(appVersion);
 	return <Bills appVersion={appVersion} />;
 };
 
