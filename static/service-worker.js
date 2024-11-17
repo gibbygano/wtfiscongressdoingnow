@@ -1,4 +1,4 @@
-let version;
+let version = "0.0.0";
 const environment = self.location.port;
 
 // Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
