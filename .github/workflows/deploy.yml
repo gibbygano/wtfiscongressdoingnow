@@ -27,8 +27,8 @@ jobs:
               run: "deno task build" # 📝 Update the build command(s) if necessary
 
             - name: Upload to Deno Deploy
-              env: 
-                APP_VERSION: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
+              env:
+                  APP_VERSION: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
               uses: denoland/deployctl@v1
               with:
                   project: "wtfcongress" # 📝 Update the deploy project name if necessary
