@@ -52,28 +52,14 @@ const getFixedUrl = (req) => {
 };
 
 /**
- *  @Lifecycle Install
- *  Set version variable.
- */
-self.addEventListener("install", (event) => {
-	const pathToJson = new URL(location).searchParams.get("appVersion");
-	event.waitUntil(
-		fetch(pathToJson)
-			.then((response) => response.json())
-			.then((jsonData) => {
-				version = jsonData;
-				console.log(`App Version: ${version}`);
-			}),
-	);
-});
-
-/**
  *  @Lifecycle Activate
  *  New one activated when old isnt being used.
  *
  *  waitUntil(): activating ====> activated
  */
 self.addEventListener("activate", (event) => {
+	version = new URL(self.location).searchParams.get("appVersion");
+
 	event.waitUntil(
 		caches.keys().then((cacheNames) =>
 			Promise.all(
