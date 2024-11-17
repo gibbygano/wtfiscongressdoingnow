@@ -1,5 +1,6 @@
-let version = "0.0.0";
 const environment = self.location.port;
+const version = "1.1.5";
+const cacheId = `${environment}_${version}_wtf_cache`;
 
 // Based off of https://github.com/pwa-builder/PWABuilder/blob/main/docs/sw.js
 
@@ -25,9 +26,6 @@ const HOSTNAME_WHITELIST = [
 	"fonts.googleapis.com",
 	"cdn.jsdelivr.net",
 ];
-
-// Generate CachedId from environment and version variable
-const getCacheId = (environment, version) => `${environment}_${version}_wtf_cache`;
 
 // The Util Function to hack URLs of intercepted requests
 const getFixedUrl = (req) => {
@@ -58,13 +56,12 @@ const getFixedUrl = (req) => {
  *  waitUntil(): activating ====> activated
  */
 self.addEventListener("activate", (event) => {
-	version = new URL(self.location).searchParams.get("appVersion");
-
 	event.waitUntil(
 		caches.keys().then((cacheNames) =>
 			Promise.all(
-				cacheNames.filter((cacheName) => cacheName !== getCacheId(environment, version))
-					.map((cacheName) => caches.delete(cacheName)),
+				cacheNames.filter((cacheName) => cacheName !== cacheId).map((cacheName) =>
+					caches.delete(cacheName)
+				),
 			)
 		),
 		self.clients.claim(),
@@ -84,7 +81,7 @@ self.addEventListener("visibilitychange", () => {
 						cache.match(request).then((resp) => {
 							const cachedDate = new Date(resp.headers.get("Date"));
 							if (cachedDate < new Date().setDate(now.getDate() - 1)) {
-								globalThis.location.reload();
+								window.location.reload();
 							}
 						});
 					}
@@ -123,7 +120,7 @@ self.addEventListener("fetch", (event) => {
 
 		// Update the cache with the version we fetched (only for ok status)
 		event.waitUntil(
-			Promise.all([fetchedCopy, caches.open(getCacheId(environment, version))])
+			Promise.all([fetchedCopy, caches.open(cacheId)])
 				.then(([response, cache]) => response.ok && cache.put(event.request, response))
 				.catch((_) => {/* eat any errors */}),
 		);
