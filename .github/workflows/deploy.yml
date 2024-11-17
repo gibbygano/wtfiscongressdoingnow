@@ -10,6 +10,9 @@ jobs:
         name: Deploy
         runs-on: ubuntu-latest
 
+        env:
+            APP_VERSION: ${{ github.run_id }}.${{ github.run_number }}.${{ github.run_attempt }}
+
         permissions:
             id-token: write # Needed for auth with Deno Deploy
             contents: read # Needed to clone the repository

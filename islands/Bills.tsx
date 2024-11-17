@@ -4,8 +4,8 @@ import { BillsNav } from "islands";
 import { useFetchBills, useRegisterServiceWorker } from "hooks";
 import { CongressionalBills, CongressionalBillsDefault } from "types";
 
-export default () => {
-	useRegisterServiceWorker();
+export default ({ appVersion }: { appVersion: string }) => {
+	useRegisterServiceWorker(appVersion);
 
 	const bills = useSignal<CongressionalBills>(CongressionalBillsDefault);
 	const pageSize = useSignal("12");

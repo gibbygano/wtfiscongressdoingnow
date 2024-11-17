@@ -1,7 +1,9 @@
 import { Bills } from "islands";
+import { getAppConfig } from "appConfig";
 
 const BillsPage = () => {
-	return <Bills />;
+	const appVersion = getAppConfig().AppVersion;
+	return <Bills appVersion={appVersion} />;
 };
 
 export default BillsPage;

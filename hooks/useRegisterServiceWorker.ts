@@ -1,11 +1,11 @@
 import { useEffect } from "preact/hooks";
 
-export default () => {
+export default (appVersion: string) => {
 	const registerServiceWorker = async () => {
 		if ("serviceWorker" in navigator) {
 			try {
 				const registration = await navigator.serviceWorker.register(
-					"/service-worker.js",
+					`/service-worker.js?appVersion=${appVersion}`,
 					{
 						scope: "/",
 					},
