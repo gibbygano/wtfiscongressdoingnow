@@ -9,10 +9,12 @@ import * as $api_bills_fromDate_ from "./routes/api/bills/[fromDate].ts";
 import * as $api_bills_download_packageId_ from "./routes/api/bills/download/[packageId].ts";
 import * as $api_bills_summary_packageId_ from "./routes/api/bills/summary/[packageId].ts";
 import * as $api_eo_index from "./routes/api/eo/index.ts";
+import * as $executive_orders from "./routes/executive-orders.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
 import * as $Bills from "./islands/Bills.tsx";
 import * as $BillsNav from "./islands/BillsNav.tsx";
+import * as $ExecutiveOrders from "./islands/ExecutiveOrders.tsx";
 import * as $index_1 from "./islands/index.ts";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -26,12 +28,14 @@ const manifest = {
 		"./routes/api/bills/download/[packageId].ts": $api_bills_download_packageId_,
 		"./routes/api/bills/summary/[packageId].ts": $api_bills_summary_packageId_,
 		"./routes/api/eo/index.ts": $api_eo_index,
+		"./routes/executive-orders.tsx": $executive_orders,
 		"./routes/index.tsx": $index,
 	},
 	islands: {
 		"./islands/BillSummaryAccordion.tsx": $BillSummaryAccordion,
 		"./islands/Bills.tsx": $Bills,
 		"./islands/BillsNav.tsx": $BillsNav,
+		"./islands/ExecutiveOrders.tsx": $ExecutiveOrders,
 		"./islands/index.ts": $index_1,
 	},
 	baseUrl: import.meta.url,
