@@ -1,0 +1,1 @@
+self.globalThis.registration.unregister();

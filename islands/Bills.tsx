@@ -1,25 +1,10 @@
 import { useComputed, useSignal } from "@preact/signals";
-import { useEffect } from "preact/compat";
 import { BillsGrid, Status } from "components";
 import { BillsNav } from "islands";
 import { useFetchBills } from "hooks";
 import { CongressionalBills, CongressionalBillsDefault } from "types";
 
 export default () => {
-	useEffect(() => {
-		navigator
-			.serviceWorker
-			.getRegistration()
-			.then((serviceWorker) => {
-				if (serviceWorker) {
-					serviceWorker.unregister();
-				}
-			})
-			.catch((error) => {
-				console.error("There was an error: ", error);
-			});
-	}, []);
-
 	const bills = useSignal<CongressionalBills>(CongressionalBillsDefault);
 	const pageSize = useSignal("12");
 	const offsetUnsafe = useSignal<string | null>("0");
