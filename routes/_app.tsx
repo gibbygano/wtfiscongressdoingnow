@@ -11,7 +11,6 @@ export default function App({ Component }: PageProps) {
 					name="viewport"
 					content="width=device-width, initial-scale=1.0"
 				/>
-				<link crossOrigin="use-credentials" rel="manifest" href="manifest.json" />
 				<title>WTF Is Congress Doing Now?</title>
 				<meta property="og:title" content="WTF Is Congress Doing Now?" />
 				<meta property="og:url" content="https://wtfiscongressdoingnow.us" />

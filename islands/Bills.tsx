@@ -7,15 +7,17 @@ import { CongressionalBills, CongressionalBillsDefault } from "types";
 
 export default () => {
 	useEffect(() => {
-		if ("serviceWorker" in navigator) {
-			navigator.serviceWorker.getRegistrations().then(function (registrations) {
-				if (registrations.length) {
-					for (const registration of registrations) {
-						registration.unregister();
-					}
+		navigator
+			.serviceWorker
+			.getRegistration()
+			.then((serviceWorker) => {
+				if (serviceWorker) {
+					serviceWorker.unregister();
 				}
+			})
+			.catch((error) => {
+				console.error("There was an error: ", error);
 			});
-		}
 	}, []);
 
 	const bills = useSignal<CongressionalBills>(CongressionalBillsDefault);
