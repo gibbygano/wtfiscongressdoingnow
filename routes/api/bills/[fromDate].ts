@@ -1,12 +1,12 @@
-import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
-import { CongressionalBills } from "types";
+import { define } from "utils";
 
 const fetchBills = async (fromDate: string, pageSize: string, offset: string) => {
 	const { DataGovAPIKey } = getAppConfig();
+	const fromIsoDate = new Date(fromDate).toISOString().split(".")[0] + "Z";
 
 	const requestUrl = new URL(
-		`https://api.govinfo.gov/collections/BILLS/${fromDate}`,
+		`https://api.govinfo.gov/collections/BILLS/${fromIsoDate}`,
 	);
 	const queryParams = new URLSearchParams({
 		offset: offset,
@@ -24,8 +24,10 @@ const fetchBills = async (fromDate: string, pageSize: string, offset: string) =>
 	return await resp.json();
 };
 
-export const handler: Handlers<CongressionalBills> = {
-	async GET(req, ctx): Promise<Response> {
+export const handler = define.handlers({
+	async GET(ctx) {
+		const req = ctx.req;
+
 		try {
 			const url = new URL(req.url);
 			const pageSize = url.searchParams.get("pageSize");
@@ -37,4 +39,4 @@ export const handler: Handlers<CongressionalBills> = {
 			return new Response(null, { status: 500, statusText: (error as Error).message });
 		}
 	},
-};
+});

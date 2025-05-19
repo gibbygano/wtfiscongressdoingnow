@@ -15,6 +15,7 @@ export default <T>(
 		"Accpet": "application/json",
 	},
 	responseObjectSignal: Signal<T>,
+	isNoOp: boolean = false,
 ): Results => {
 	const loading = useSignal(false);
 	const status = useSignal(0);
@@ -47,8 +48,10 @@ export default <T>(
 	};
 
 	useEffect(() => {
-		internalFetch(url, headers, responseObjectSignal);
-	}, [url]);
+		if (!isNoOp) {
+			internalFetch(url, headers, responseObjectSignal);
+		}
+	}, [url, isNoOp]);
 
 	return {
 		loading: loading.value,

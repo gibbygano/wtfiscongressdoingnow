@@ -1,5 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
-import { type ExecutiveOrders } from "types";
+import { define } from "utils";
 
 const fetchExecutiveOrders = async (pageSize: number, page: number) => {
 	const requestUrl = new URL(
@@ -14,8 +13,10 @@ const fetchExecutiveOrders = async (pageSize: number, page: number) => {
 	return await resp.json();
 };
 
-export const handler: Handlers<ExecutiveOrders> = {
-	async GET(req, _): Promise<Response> {
+export const handler = define.handlers({
+	async GET(ctx) {
+		const req = ctx.req;
+
 		try {
 			const url = new URL(req.url);
 			const pageSize = url.searchParams.get("pageSize") as number | null;
@@ -34,4 +35,4 @@ export const handler: Handlers<ExecutiveOrders> = {
 			throw error;
 		}
 	},
-};
+});

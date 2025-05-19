@@ -1,13 +1,10 @@
 {
-	"lock": false,
 	"tasks": {
-		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-		"cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
-		"manifest": "deno task cli manifest $(pwd)",
-		"start": "deno run -A --watch=static/,routes/ dev.ts",
+		"check": "deno fmt --check . && deno lint . && deno check **/*.ts && deno check **/*.tsx",
+		"dev": "deno run -A --watch=static/,routes/ dev.ts",
 		"build": "deno run -A dev.ts build",
-		"preview": "deno run -A main.ts",
-		"update": "deno run -A -r https://fresh.deno.dev/update ."
+		"start": "deno run -A main.ts",
+		"update": "deno run -A -r jsr:@fresh/update ."
 	},
 	"lint": {
 		"rules": {
@@ -21,31 +18,44 @@
 		"**/_fresh/*"
 	],
 	"imports": {
-		"$fresh/": "https://deno.land/x/fresh@1.7.3/",
-		"@preact/signals": "https://esm.sh/*@preact/signals@1.3.0",
-		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.8.0",
-		"preact": "https://esm.sh/preact@10.24.2",
-		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.5.11",
-		"preact/": "https://esm.sh/preact@10.24.2/",
-		"@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+		"fresh": "jsr:@fresh/core@^2.0.0-alpha.34",
+		"@fresh/plugin-tailwind": "jsr:@fresh/plugin-tailwind@^0.0.1-alpha.7",
+		"preact": "npm:preact@^10.26.6",
+		"@preact/signals": "npm:@preact/signals@^2.0.4",
+		"tailwindcss": "npm:tailwindcss@3.4.3",
+		"@std/dotenv": "jsr:@std/dotenv@^0.225.4",
 		"DOMEventHandlers": "./utilities/DOMEventHandlers.tsx",
 		"appConfig": "./config.ts",
 		"clsx": "https://esm.sh/clsx@2.1.1",
 		"components": "./components/index.ts",
 		"dayjs": "npm:dayjs",
 		"hooks": "./hooks/index.ts",
+		"utils": "./utils.ts",
 		"humanizer/": "https://deno.land/x/humanizer@1.1/",
 		"islands": "./islands/index.ts",
-		"tailwindcss": "npm:tailwindcss@3.4.13",
 		"tailwindcss/": "npm:/tailwindcss@3.4.13/",
-		"tailwindcss/plugin": "npm:/tailwindcss@3.4.13/plugin.js",
 		"@tailwindcss/": "npm:/@tailwindcss/",
+		"tailwindcss/plugin": "npm:/tailwindcss@3.4.13/plugin.js",
 		"types": "./types/index.ts",
 		"typography": "https://esm.sh/@tailwindcss/typography"
 	},
 	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact"
+		"lib": [
+			"dom",
+			"dom.asynciterable",
+			"dom.iterable",
+			"deno.ns"
+		],
+		"jsx": "precompile",
+		"jsxImportSource": "preact",
+		"jsxPrecompileSkipElements": [
+			"a",
+			"img",
+			"source",
+			"body",
+			"html",
+			"head"
+		]
 	},
 	"fmt": {
 		"useTabs": true,

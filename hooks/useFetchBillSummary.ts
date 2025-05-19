@@ -7,17 +7,16 @@ const useFetchBillSummary = (
 	billSummary: Signal<CongressionalBillSummary>,
 	summaryAccordionIsOpen: boolean,
 ) => {
-	if (!summaryAccordionIsOpen) {
-		return { loading: false, error: null };
-	}
+	const emptyReturn = { loading: false, error: null };
 
-	return {
-		...useFetch(
-			`/api/bills/summary/${packageId}`,
-			undefined,
-			billSummary,
-		),
-	};
+	const result = useFetch(
+		`/api/bills/summary/${packageId}`,
+		undefined,
+		billSummary,
+		!summaryAccordionIsOpen,
+	);
+
+	return !summaryAccordionIsOpen ? emptyReturn : { ...result };
 };
 
 export default useFetchBillSummary;

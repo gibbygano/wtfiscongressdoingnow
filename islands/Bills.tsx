@@ -2,30 +2,26 @@ import { useComputed, useSignal } from "@preact/signals";
 import { BillsGrid, Status } from "components";
 import { BillsNav } from "islands";
 import { useFetchBills } from "hooks";
-import { CongressionalBills, CongressionalBillsDefault } from "types";
+import { type CongressionalBills, CongressionalBillsDefault } from "types";
 
-export default () => {
-	const bills = useSignal<CongressionalBills>(CongressionalBillsDefault);
-	const pageSize = useSignal("12");
-	const offsetUnsafe = useSignal<string | null>("0");
-	const offsetSafe = useComputed(() => offsetUnsafe.value ?? "0");
+interface BillsProps {
+	bills: CongressionalBills;
+	pageSize: string;
+	pageOffset: string;
+	isLoading: boolean;
+	error: Error;
+}
 
-	const fromDate = new Date("04/26/2023");
-	const fromDateISO = fromDate.toISOString().split(".")[0] + "Z";
-	const {
-		loading,
-		error,
-	} = useFetchBills(bills, fromDateISO, pageSize.value, offsetSafe.value);
-
+export default ({bills, pageSize, pageOffset, isLoading, error}: BillsProps) => {
 	return (
-		<Status error={error} loading={loading} fullscreen>
+		<Status error={error} loading={isLoading} fullscreen>
 			<div class="flex-1 flex flex-col">
-				<BillsGrid {...bills.value} />
+				<BillsGrid {...bills} />
 				<BillsNav
-					offsetUnsafe={offsetUnsafe}
+					offsetUnsafe={pageOffset}
 					pageSize={pageSize}
-					nextPage={bills.value.nextPage}
-					previousPage={bills.value.previousPage}
+					nextPage={bills.nextPage}
+					previousPage={bills.previousPage}
 				/>
 			</div>
 		</Status>

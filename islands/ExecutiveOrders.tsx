@@ -8,6 +8,7 @@ import { type ExecutiveOrders, ExecutiveOrdersDefault } from "types";
 export default () => {
 	const executiveOrders = useSignal<ExecutiveOrders>(ExecutiveOrdersDefault);
 	const { loading, error } = useFetchExecutiveOrders(executiveOrders);
+
 	return (
 		<Status loading={loading} error={error}>
 			<div class="pb-10 flex-1 dark:backdrop-brightness-[.8]">
@@ -31,6 +32,7 @@ export default () => {
 							headerText={`${agencies[0].name} | ${document_number}`}
 							actionChildren={[
 								<LinkButton
+									key={`linkbutton-${document_number}`}
 									className="mt-7"
 									href={pdf_url.toString()}
 									target="_blank"

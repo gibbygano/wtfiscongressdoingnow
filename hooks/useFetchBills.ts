@@ -4,7 +4,7 @@ import useFetch from "./useFetch.ts";
 
 const useFetchBills = (
 	bills: Signal<CongressionalBills>,
-	startDate: string,
+	startDate: Date,
 	pageSize: string,
 	offset: string,
 ) => {

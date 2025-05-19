@@ -1,11 +1,12 @@
 import { JSX } from "preact/jsx-runtime";
 import { clsx } from "clsx";
+import { ComponentChildren } from "preact";
 
 type Props = {
 	href?: string;
 	target?: string;
 	className?: string;
-	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	children: ComponentChildren;
 	partialId?: string;
 };
 

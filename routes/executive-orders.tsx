@@ -1,5 +1,4 @@
 import { ExecutiveOrders } from "islands";
+import { define } from "utils";
 
-const ExecutiveOrdersPage = () => <ExecutiveOrders />;
-
-export default ExecutiveOrdersPage;
+export default define.page(() => <ExecutiveOrders />);

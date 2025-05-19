@@ -1,8 +1,8 @@
-import { type Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
 import forms from "@tailwindcss/forms";
 
-const tailwindsConfig: Config = {
+export default {
 	content: [
 		"{routes,islands,components}/**/*.{ts,tsx}",
 	],
@@ -14,6 +14,4 @@ const tailwindsConfig: Config = {
 		},
 	},
 	plugins: [forms, typography],
-};
-
-export default tailwindsConfig;
+} satisfies Config;

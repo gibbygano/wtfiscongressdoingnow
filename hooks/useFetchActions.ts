@@ -9,17 +9,16 @@ const useFetchActions = (
 	actions: Signal<Array<Action>>,
 	actionsContainerOpen: boolean,
 ) => {
-	if (!actionsContainerOpen) {
-		return { error: null, loading: false };
-	}
+	const emptyReturn = { loading: false, error: null };
 
-	return {
-		...useFetch(
-			`/api/bills/${congress}/${billType}/${number}`,
-			undefined,
-			actions,
-		),
-	};
+	const result = useFetch(
+		`/api/bills/${congress}/${billType}/${number}`,
+		undefined,
+		actions,
+		!actionsContainerOpen,
+	);
+
+	return !actionsContainerOpen ? emptyReturn : { ...result };
 };
 
 export default useFetchActions;

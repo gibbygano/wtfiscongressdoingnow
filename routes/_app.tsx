@@ -1,11 +1,10 @@
-import { PageProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
+import { define } from "utils";
 
-export default function App({ Component }: PageProps) {
+export default define.page(({ Component }) => {
 	return (
-		<html>
-			<Head>
+		<html lang="en">
+			<head>
 				<meta charset="utf-8" />
 				<meta
 					name="viewport"
@@ -25,7 +24,7 @@ export default function App({ Component }: PageProps) {
 				<meta property="og:locale" content="en_US" />
 				<meta property="og:locale:alternate" content="en_GB" />
 				<link rel="stylesheet" href="/styles.css" />
-			</Head>
+			</head>
 			<body class="min-h-screen flex flex-col">
 				<Header />
 				<main class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
@@ -35,4 +34,4 @@ export default function App({ Component }: PageProps) {
 			</body>
 		</html>
 	);
-}
+});
