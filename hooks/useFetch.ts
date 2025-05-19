@@ -39,8 +39,8 @@ export default <T>(
 
 			const object: T = await response.json();
 			responseObjectSignal.value = object;
-		} catch (error) {
-			error.value = error;
+		} catch (e) {
+			error.value = e as Error;
 		} finally {
 			loading.value = false;
 		}

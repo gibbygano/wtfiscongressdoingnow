@@ -4,6 +4,7 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_error from "./routes/_error.tsx";
 import * as $api_bills_congress_billType_number_ from "./routes/api/bills/[congress]/[billType]/[number].ts";
 import * as $api_bills_fromDate_ from "./routes/api/bills/[fromDate].ts";
 import * as $api_bills_download_packageId_ from "./routes/api/bills/download/[packageId].ts";
@@ -23,6 +24,7 @@ const manifest = {
 	routes: {
 		"./routes/_404.tsx": $_404,
 		"./routes/_app.tsx": $_app,
+		"./routes/_error.tsx": $_error,
 		"./routes/api/bills/[congress]/[billType]/[number].ts":
 			$api_bills_congress_billType_number_,
 		"./routes/api/bills/[fromDate].ts": $api_bills_fromDate_,

@@ -33,7 +33,7 @@ export const handler: Handlers<Action[]> = {
 			);
 			return new Response(JSON.stringify(actions));
 		} catch (error) {
-			return new Response(null, { status: 500, statusText: error.message });
+			return new Response(null, { status: 500, statusText: (error as Error).message });
 		}
 	},
 };
