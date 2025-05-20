@@ -4,12 +4,12 @@ import { BillsNav } from "islands";
 import { useFetchBills } from "hooks";
 import { type CongressionalBills, CongressionalBillsDefault } from "types";
 
-interface BillsProps {
+export interface BillsProps {
 	bills: CongressionalBills;
 	pageSize: string;
 	pageOffset: string;
 	isLoading: boolean;
-	error: Error;
+	error: Error | undefined;
 }
 
 export default ({bills, pageSize, pageOffset, isLoading, error}: BillsProps) => {

@@ -3,7 +3,7 @@ import Error from "./Error.tsx";
 import Loading from "./Loading.tsx";
 
 type Props = {
-	error: Error | null;
+	error: Error | undefined;
 	loading: boolean;
 	fullscreen?: boolean;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);

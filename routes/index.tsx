@@ -3,28 +3,28 @@ import { define } from "utils";
 import { getAppConfig } from "appConfig";
 import { page } from "fresh";
 
+
+
 export const handler = define.handlers({
 	async GET(ctx) {
 		const { DataGovAPIKey } = getAppConfig();
 		const fromIsoDate = new Date("04/26/2023").toISOString().split(".")[0] + "Z";
-
 		const url = new URL(ctx.req.url);
-		const pageSize = parseInt(url.searchParams.get("pageSize") ?? "12");
-		const offset = parseInt(url.searchParams.get("offset") ?? "0");
-
-		ctx.state.billsLoading = true;
-		ctx.state.billsOffset = offset.toString();
-		ctx.state.billsPageSize = pageSize.toString();
+		const pageSize = parseInt(url.searchParams.get("pageSize") ?? "12").toString();
+		const offset = parseInt(url.searchParams.get("offset") ?? "0").toString();
 
 		const requestUrl = new URL(
 			`https://api.govinfo.gov/collections/BILLS/${fromIsoDate}`,
 		);
 		const queryParams = new URLSearchParams({
-			offset: ctx.state.billsOffset.toString(),
-			pageSize: ctx.state.billsPageSize.toString(),
+			offset: offset,
+			pageSize: pageSize,
 		});
 		requestUrl.search = queryParams.toString();
 
+		let isLoading = true;
+		let apiError;
+		let bills;
 		try {
 			const resp = await fetch(requestUrl, {
 				headers: { "X-Api-Key": DataGovAPIKey },
@@ -33,23 +33,23 @@ export const handler = define.handlers({
 				throw new Error(resp.statusText);
 			}
 
-			ctx.state.currentBills = await resp.json();
+			bills = await resp.json();
 		} catch (error) {
-			ctx.state.billsError = error as Error;
+			apiError = error as Error;
 		} finally {
-			ctx.state.billsLoading = false;
+			isLoading = false;
 		}
 
-		return page();
+		return page({pageSize, offset, bills, isLoading, apiError });
 	},
 });
 
-export default define.page<typeof handler>(({ state }) => (
+export default define.page<typeof handler>(({data}) => (
 	<Bills
-		bills={state.currentBills}
-		pageSize={state.billsPageSize}
-		pageOffset={state.billsOffset}
-		isLoading={state.billsLoading}
-		error={state.billsError}
+		bills={data.bills}
+		pageSize={data.pageSize}
+		pageOffset={data.offset}
+		isLoading={data.isLoading}
+		error={data.apiError}
 	/>
 ));
