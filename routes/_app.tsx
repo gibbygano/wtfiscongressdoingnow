@@ -1,5 +1,5 @@
 import { PageProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
+import { asset, Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
 
 export default function App({ Component }: PageProps) {
@@ -13,8 +13,14 @@ export default function App({ Component }: PageProps) {
 				/>
 				<meta name="description" content="List of congressional bills by date"></meta>
 				<title>WTF Is Congress Doing Now?</title>
-				<link rel="preload" as="image" href="images/congress.jpg" />
-				<link rel="stylesheet" href="styles.css" />
+				<link
+					async
+					rel="preload"
+					as="image"
+					href={asset("images/congress.jpg")}
+					fetchpriority="high"
+				/>
+				<link async rel="stylesheet" href={asset("styles.css")} fetchpriority="high" />
 			</Head>
 			<body class="min-h-screen flex flex-col">
 				<Header />
