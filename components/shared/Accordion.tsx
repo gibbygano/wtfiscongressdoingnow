@@ -15,6 +15,7 @@ export default ({ title, id, children, isOpen, onExpand }: Props) => {
 			<div class="border border-gray-200 rounded">
 				<div>
 					<button
+						type="button"
 						onClick={onExpand}
 						class="w-full p-4 text-center text-lg align-text-top inline-block focus:outline-none hover:bg-slate-400"
 					>

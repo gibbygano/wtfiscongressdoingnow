@@ -21,13 +21,13 @@ export default () => {
 						title="Open https://fresh.deno.dev/ in New Tab"
 					>
 						<img
+							loading="lazy"
 							width="160"
 							height="32"
 							class="scale-90 md:scale-100"
 							src="https://fresh.deno.dev/fresh-badge.svg"
 							alt="Made with Fresh"
-						>
-						</img>
+						/>
 					</a>
 				</li>
 				<li class="bg-white rounded md:my-2 mx-2 md:mx-6">
@@ -37,12 +37,12 @@ export default () => {
 						title="Open https://api.congress.gov/ in New Tab"
 					>
 						<img
+							loading="lazy"
 							class="rounded p-2 scale-90 md:scale-100"
 							width="130"
 							src="/images/congress-gov-logo.svg"
 							alt="Congress.gov API"
-						>
-						</img>
+						/>
 					</a>
 				</li>
 				<li>
@@ -52,12 +52,12 @@ export default () => {
 						title="Open https://api.govinfo.gov/docs/ in New Tab"
 					>
 						<img
+							loading="lazy"
 							class="rounded scale-90 md:scale-100"
 							width="87"
 							src="/images/GovInfo_logo_gray.png"
 							alt="GovInfo API"
-						>
-						</img>
+						/>
 					</a>
 				</li>
 			</ul>

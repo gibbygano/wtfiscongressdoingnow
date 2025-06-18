@@ -19,15 +19,20 @@ export default (
 						{ packageId, lastModified, dateIssued, title, docClass, congress },
 					) => (
 						<Card
-							key={packageId}
+							key={`${packageId}-card`}
 							headerText={`${docClass.toUpperCase()} 
 							${packageId.split(docClass)[1].match("\\d+")}`}
 							actionChildren={[
-								<BillSummaryAccordion packageId={packageId} />,
+								<BillSummaryAccordion
+									packageId={packageId}
+									key={`${packageId}-accordion`}
+								/>,
 								<LinkButton
+									key={`${packageId}-pdf`}
 									className="mt-7"
 									href={`/api/bills/download/${packageId}?docType=pdf`}
 									target="_blank"
+									label="Download PDF"
 								>
 									<IconFileTypePdf class="w-8 h-8" />
 								</LinkButton>,

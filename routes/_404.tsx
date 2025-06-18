@@ -9,6 +9,7 @@ export default function Error404() {
 			<div class="px-4 py-8 mx-auto">
 				<div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
 					<img
+						loading="lazy"
 						class="my-6"
 						src="/images/fine.gif"
 						width="128"

@@ -34,6 +34,7 @@ export default () => {
 									className="mt-7"
 									href={pdf_url.toString()}
 									target="_blank"
+									key={document_number}
 								>
 									<IconFileTypePdf class="w-8 h-8" />
 								</LinkButton>,

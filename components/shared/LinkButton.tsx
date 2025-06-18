@@ -7,9 +7,10 @@ type Props = {
 	className?: string;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 	partialId?: string;
+	label: string;
 };
 
-export default ({ href, target, className, children, partialId }: Props) => (
+export default ({ href, target, className, children, partialId, label }: Props) => (
 	<a
 		class={clsx(
 			"mt-3 py-3 px-4 inline-flex justify-center items-center gap-2 " +
@@ -21,6 +22,7 @@ export default ({ href, target, className, children, partialId }: Props) => (
 		href={href}
 		target={target}
 		f-partial={partialId}
+		aria-label={label}
 	>
 		{children}
 	</a>
