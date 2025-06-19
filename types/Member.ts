@@ -1,5 +1,10 @@
-export default interface Member {
-	role: string;
+enum Role {
+	NONE = -1,
+	SPONSOR,
+	COSPONSOR,
+}
+interface Member {
+	role: Role;
 	chamber: string;
 	congress: number;
 	bioGuideId: string;
@@ -7,3 +12,5 @@ export default interface Member {
 	state: string;
 	party: string;
 }
+
+export { type Member, Role };

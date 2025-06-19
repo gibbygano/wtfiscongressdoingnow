@@ -1,4 +1,4 @@
-import CongressionalBill from "./CongressionalBill.ts";
+import type CongressionalBill from "./CongressionalBill.ts";
 
 export interface CongressionalBills {
 	count: number;

@@ -31,6 +31,7 @@ export default () => {
 							headerText={`${agencies[0].name} | ${document_number}`}
 							actionChildren={[
 								<LinkButton
+									label="Download PDF"
 									className="mt-7"
 									href={pdf_url.toString()}
 									target="_blank"

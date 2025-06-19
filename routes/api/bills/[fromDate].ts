@@ -34,7 +34,7 @@ export const handler: Handlers<CongressionalBills> = {
 			const bills = await fetchBills(ctx.params.fromDate, pageSize ?? "10", offset ?? "0");
 			return new Response(JSON.stringify(bills));
 		} catch (error) {
-			return new Response(null, { status: 500, statusText: error.message });
+			return new Response(null, { status: 500, statusText: (error as Error).message });
 		}
 	},
 };

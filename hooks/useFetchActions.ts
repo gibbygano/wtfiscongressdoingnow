@@ -9,15 +9,12 @@ const useFetchActions = (
 	actions: Signal<Array<Action>>,
 	actionsContainerOpen: boolean,
 ) => {
-	if (!actionsContainerOpen) {
-		return { error: null, loading: false };
-	}
-
 	return {
 		...useFetch(
 			`/api/bills/${congress}/${billType}/${number}`,
 			undefined,
 			actions,
+			actionsContainerOpen,
 		),
 	};
 };

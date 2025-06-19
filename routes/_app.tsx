@@ -3,6 +3,9 @@ import { asset, Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
 
 export default function App({ Component }: PageProps) {
+	const headerImage = asset("/images/congress.jpg");
+	const styles = asset("/styles.css");
+
 	return (
 		<html lang="en">
 			<Head>
@@ -13,14 +16,14 @@ export default function App({ Component }: PageProps) {
 				/>
 				<meta name="description" content="List of congressional bills by date"></meta>
 				<title>WTF Is Congress Doing Now?</title>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" />
 				<link
-					async
-					rel="preload"
-					as="image"
-					href={asset("images/congress.jpg")}
-					fetchpriority="high"
+					defer
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
 				/>
-				<link async rel="stylesheet" href={asset("styles.css")} fetchpriority="high" />
+				<link defer rel="stylesheet" href={styles} />
 			</Head>
 			<body class="min-h-screen flex flex-col">
 				<Header />

@@ -1,8 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
 	[data-title]:hover:after {
@@ -32,14 +28,15 @@
 		position: relative;
 	}
 
-	details > div {
+	details>div {
 		scrollbar-width: thin;
 	}
 
-	details > summary {
+	details>summary {
 		list-style: none;
 	}
-	details > summary::-webkit-details-marker {
+
+	details>summary::-webkit-details-marker {
 		display: none;
 	}
 

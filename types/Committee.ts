@@ -1,4 +1,4 @@
-import Subcommittee from "./Subcommittee.ts";
+import type Subcommittee from "./Subcommittee.ts";
 
 export default interface Committee {
 	chamber: string;

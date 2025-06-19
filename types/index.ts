@@ -1,21 +1,21 @@
-import Action from "./Action.ts";
-import Agency from "./Agency.ts";
-import Committee from "./Committee.ts";
-import CommitteeDetails from "./CommitteeDetails.ts";
-import CongressionalBill from "./CongressionalBill.ts";
+import type Action from "./Action.ts";
+import type Agency from "./Agency.ts";
+import type Committee from "./Committee.ts";
+import type CommitteeDetails from "./CommitteeDetails.ts";
+import type CongressionalBill from "./CongressionalBill.ts";
 import {
-	CongressionalBills,
+	type CongressionalBills,
 	defaultProps as CongressionalBillsDefault,
 } from "./CongressionalBills.ts";
 import {
-	CongressionalBillSummary,
+	type CongressionalBillSummary,
 	defaultProps as CongressionalBillSummaryDefault,
 } from "./CongressionalBillSummary.ts";
-import { defaultProps as ExecutiveOrdersDefault, ExecutiveOrders } from "./ExecutiveOrders.ts";
-import ExecutiveOrder from "./ExecutiveOrder.ts";
-import Member from "./Member.ts";
-import Reference from "./Reference.ts";
-import Subcommittee from "./Subcommittee.ts";
+import { defaultProps as ExecutiveOrdersDefault, type ExecutiveOrders } from "./ExecutiveOrders.ts";
+import type ExecutiveOrder from "./ExecutiveOrder.ts";
+import { type Member, Role } from "./Member.ts";
+import type Reference from "./Reference.ts";
+import type Subcommittee from "./Subcommittee.ts";
 
 export type {
 	Action,
@@ -32,4 +32,4 @@ export type {
 	Subcommittee,
 };
 
-export { CongressionalBillsDefault, CongressionalBillSummaryDefault, ExecutiveOrdersDefault };
+export { CongressionalBillsDefault, CongressionalBillSummaryDefault, ExecutiveOrdersDefault, Role };

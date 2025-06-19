@@ -1,3 +1,4 @@
+import { asset } from "$fresh/runtime.ts";
 import IconBrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/brand-github.tsx";
 
 export default () => {
@@ -25,7 +26,7 @@ export default () => {
 							width="160"
 							height="32"
 							class="scale-90 md:scale-100"
-							src="https://fresh.deno.dev/fresh-badge.svg"
+							src={asset("https://fresh.deno.dev/fresh-badge.svg")}
 							alt="Made with Fresh"
 						/>
 					</a>
@@ -40,7 +41,7 @@ export default () => {
 							loading="lazy"
 							class="rounded p-2 scale-90 md:scale-100"
 							width="130"
-							src="/images/congress-gov-logo.svg"
+							src={asset("/images/congress-gov-logo.svg")}
 							alt="Congress.gov API"
 						/>
 					</a>
@@ -55,7 +56,7 @@ export default () => {
 							loading="lazy"
 							class="rounded scale-90 md:scale-100"
 							width="87"
-							src="/images/GovInfo_logo_gray.png"
+							src={asset("/images/GovInfo_logo_gray.png")}
 							alt="GovInfo API"
 						/>
 					</a>

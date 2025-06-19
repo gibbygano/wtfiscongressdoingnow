@@ -1,5 +1,5 @@
-import Member from "./Member.ts";
-import Reference from "./Reference.ts";
+import { type Member, Role } from "./Member.ts";
+import type Reference from "./Reference.ts";
 
 interface CongressionalBillSummary {
 	originChamber: string;
@@ -89,7 +89,7 @@ const defaultProps: CongressionalBillSummary = {
 	},
 	relatedLink: "",
 	members: [{
-		role: "",
+		role: Role.NONE,
 		chamber: "",
 		congress: 118,
 		bioGuideId: "",

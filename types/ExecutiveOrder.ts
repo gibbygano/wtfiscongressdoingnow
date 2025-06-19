@@ -1,4 +1,4 @@
-import Agency from "./Agency.ts";
+import type Agency from "./Agency.ts";
 
 export default interface ExecutiveOrder {
 	title: string;
