@@ -3,7 +3,6 @@ import { asset, Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
 
 export default function App({ Component }: PageProps) {
-	const headerImage = asset("/images/congress.jpg");
 	const styles = asset("/styles.css");
 
 	return (
@@ -23,7 +22,7 @@ export default function App({ Component }: PageProps) {
 					rel="stylesheet"
 					href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
 				/>
-				<link defer rel="stylesheet" href={styles} />
+				<link async rel="stylesheet" href={styles} />
 			</Head>
 			<body class="min-h-screen flex flex-col">
 				<Header />
