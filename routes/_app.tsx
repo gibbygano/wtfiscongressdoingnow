@@ -15,11 +15,10 @@ const App = ({ Component }: PageProps) => (
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
 			<link rel="preconnect" href="https://fonts.gstatic.com" />
 			<link
-				async
 				rel="stylesheet"
 				href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
 			/>
-			<link async rel="stylesheet" href={asset("/styles.css")} />
+			<link rel="stylesheet" href={asset("/styles.css")} />
 		</Head>
 		<body class="min-h-screen flex flex-col">
 			<Header />
