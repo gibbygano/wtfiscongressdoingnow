@@ -51,6 +51,6 @@
 
   body {
     overscroll-behavior: none;
-    touch-action: none;
+    touch-action: pan-y;
   }
 }
