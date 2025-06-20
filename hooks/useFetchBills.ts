@@ -1,12 +1,11 @@
-import { Signal } from "@preact/signals";
 import { CongressionalBills } from "types";
 import useFetch from "./useFetch.ts";
 
 const useFetchBills = (
-	bills: Signal<CongressionalBills>,
 	startDate: string,
 	pageSize: string,
 	offset: string,
+	callback: (bills: CongressionalBills) => void,
 ) => {
 	return {
 		...useFetch(
@@ -14,8 +13,7 @@ const useFetchBills = (
 				"pageSize": pageSize,
 				"offset": offset,
 			})}`,
-			undefined,
-			bills,
+			callback,
 		),
 	};
 };

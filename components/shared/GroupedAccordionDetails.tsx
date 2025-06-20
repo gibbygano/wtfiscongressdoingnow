@@ -1,5 +1,4 @@
-import { JSX, TargetedEvent } from "preact/compat";
-import { Signal } from "@preact/signals";
+import { JSX } from "preact/compat";
 
 interface DetailsProps {
 	sectionId: string;
@@ -7,27 +6,21 @@ interface DetailsProps {
 	title: string;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 	icon: JSX.Element;
-	openSection: Signal<HTMLDetailsElement | null>;
 }
 
 const GroupedAccordionDetails = (
-	{ sectionId, packageId, icon, title, children, openSection }: DetailsProps,
+	{ sectionId, packageId, icon, title, children }: DetailsProps,
 ) => {
-	const ontoggle = (e: TargetedEvent<HTMLDetailsElement, ToggleEvent>) =>
-		openSection.value = e.currentTarget.hasAttribute("open") ? e.currentTarget : null;
-
 	return (
-		<details
+		<details 
 			class="group"
-			onToggle={ontoggle}
-			id={sectionId}
 			key={sectionId}
 			name={`${packageId}-sections`}
 		>
 			<summary class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border 
                                                 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 cursor-pointer
                                                 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3
-                                                group-first:rounded-t-xl group-[&:not(:last-child)]:border-b-0 group-last:group-[&:not([open])]:rounded-b-xl">
+                                                group-open:border-b-0 group-[&:not(:last-child)]:border-b-0">
 				<span class="flex items-center">
 					{icon}&nbsp;{title}
 				</span>
@@ -46,8 +39,8 @@ const GroupedAccordionDetails = (
 					/>
 				</svg>
 			</summary>
-			<div class="w-full md:max-h-[40vh] max-h-[50vh] overflow-auto">
-				<div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900 group-[&:not(:last-child)]:border-b-0 group-last:rounded-b-xl">
+			<div class="content w-full md:max-h-[40vh] max-h-[50vh] overflow-auto">
+				<div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900 group-[&:not(:last-child)]:border-b-0">
 					{children}
 				</div>
 			</div>

@@ -1,35 +1,41 @@
-import { Signal, useSignal } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
 
 interface Results {
-	loading: boolean;
-	status: number;
-	statusText: string;
-	error: Error;
+	loading: boolean | undefined;
+	status: number | undefined;
+	statusText: string | undefined;
+	error: Error | undefined;
+}
+
+interface Options {
+	headers: Record<string, string>;
 }
 
 export default <T>(
 	url: string,
-	headers: Record<string, string> = {
-		"Content-Type": "application/json",
-		"Accpet": "application/json",
+	callback: (responseObject: T) => void,
+	enable = true,
+	options: Options = {
+		headers: {
+			"Content-Type": "application/json",
+			"Accept": "application/json",
+		},
 	},
-	responseObjectSignal: Signal<T>,
-	enable: boolean = true,
 ): Results => {
-	const loading = useSignal(false);
-	const status = useSignal(0);
-	const statusText = useSignal("");
-	const error = useSignal<Error>({ name: "", message: "" });
+	const loading = useSignal<boolean>();
+	const status = useSignal<number>(0);
+	const statusText = useSignal<string>();
+	const error = useSignal<Error>();
 
 	const internalFetch = async (
 		url: string,
-		headers: Record<string, string>,
-		responseObjectSignal: Signal<T>,
+		options: Options,
+		callback: (responseObject: T) => void,
 	) => {
 		loading.value = true;
 		try {
-			const response = await fetch(url, { headers: headers });
+			const response = await fetch(url, { headers: options.headers });
 			status.value = response.status;
 			statusText.value = response.statusText;
 
@@ -39,7 +45,7 @@ export default <T>(
 			}
 
 			const object: T = await response.json();
-			responseObjectSignal.value = object;
+			callback(object);
 		} catch (e) {
 			error.value = e as Error;
 		} finally {
@@ -49,7 +55,7 @@ export default <T>(
 
 	useEffect(() => {
 		if (enable) {
-			internalFetch(url, headers, responseObjectSignal);
+			internalFetch(url, options, callback);
 		}
 	}, [url, enable]);
 

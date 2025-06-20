@@ -7,7 +7,10 @@ import { type ExecutiveOrders, ExecutiveOrdersDefault } from "types";
 
 export default () => {
 	const executiveOrders = useSignal<ExecutiveOrders>(ExecutiveOrdersDefault);
-	const { loading, error } = useFetchExecutiveOrders(executiveOrders);
+	const { loading, error } = useFetchExecutiveOrders((responseObject) =>
+		executiveOrders.value = responseObject
+	);
+
 	return (
 		<Status loading={loading} error={error}>
 			<div class="pb-10 flex-1 dark:backdrop-brightness-[.8]">

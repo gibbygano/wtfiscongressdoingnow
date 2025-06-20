@@ -3,18 +3,19 @@ import Error from "./Error.tsx";
 import Loading from "./Loading.tsx";
 
 type Props = {
-	error: Error | null;
-	loading: boolean;
-	fullscreen?: boolean;
+	error: Error | undefined;
+	loading: boolean | undefined;
+	className?: string | undefined;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+	fullscreen?: boolean;
 };
 
-export default ({ error, loading, fullscreen = false, children }: Props) => {
+export default ({ error, loading, className, children, fullscreen = false }: Props) => {
 	if (error?.name) {
-		return <Error fullscreen={fullscreen}>{error.message}</Error>;
+		return <Error className={className} fullscreen={fullscreen}>{error.message}</Error>;
 	}
 	if (loading) {
-		return <Loading fullscreen={fullscreen}>Loading...</Loading>;
+		return <Loading className={className} fullscreen={fullscreen}>Loading...</Loading>;
 	}
 
 	return <>{children}</>;

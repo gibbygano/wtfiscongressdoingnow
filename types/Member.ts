@@ -1,7 +1,7 @@
 enum Role {
 	NONE = -1,
-	SPONSOR,
-	COSPONSOR,
+	SPONSOR = "SPONSOR",
+	COSPONSOR = "COSPONSOR",
 }
 interface Member {
 	role: Role;

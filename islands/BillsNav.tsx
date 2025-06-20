@@ -25,7 +25,7 @@ export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
 							));
 					})}
 				title="Previous Page"
-				class={clsx("cursor-pointer hover:underline", {
+				class={clsx("cursor-pointer hover:underline self-center", {
 					"collapse": !previousPage,
 				})}
 				disabled={!previousPage}
@@ -71,9 +71,12 @@ export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
 							));
 					})}
 				disabled={!nextPage}
-				class={clsx("cursor-pointer hover:underline col-start-3 justify-self-end", {
-					"collapse": !nextPage,
-				})}
+				class={clsx(
+					"cursor-pointer hover:underline col-start-3 justify-self-end self-center",
+					{
+						"collapse": !nextPage,
+					},
+				)}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
