@@ -1,5 +1,5 @@
 import { PageProps } from "$fresh/server.ts";
-import { asset, Head } from "$fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
 
 const App = ({ Component }: PageProps) => (
@@ -18,7 +18,7 @@ const App = ({ Component }: PageProps) => (
 				rel="stylesheet"
 				href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
 			/>
-			<link rel="stylesheet" href={asset("/styles.css")} />
+			<link rel="stylesheet" href="/styles.css" />
 		</Head>
 		<body class="min-h-screen flex flex-col">
 			<Header />
