@@ -23,9 +23,9 @@ export default ({ error, loading, children, fullscreen = false }: Props) => {
 				</Loading>
 			)}
 			<span
-				class={clsx("transition ease-in-out duration-1000", {
-					"opacity-0": loading && !fullscreen,
-					"pointer-events-none opacity-25": loading &&
+				class={clsx("will-change-transform transition ease-in-out duration-1000", {
+					"filter opacity-0": loading && !fullscreen,
+					"pointer-events-none filter opacity-25": loading &&
 						fullscreen,
 				})}
 			>
