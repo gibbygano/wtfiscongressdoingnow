@@ -6,8 +6,7 @@ import dayjs from "dayjs";
 import { Badge, GroupedAccordionDetails, Status } from "components";
 import { useFetchActions, useFetchBillSummary } from "hooks";
 import type { Action, Member, Reference } from "types";
-import _ from "npm:lodash";
-
+import { uniqWith } from "es-toolkit";
 type Props = {
 	packageId: string;
 };
@@ -37,7 +36,7 @@ export default ({ packageId }: Props) => {
 		billIds[2],
 		billIds[3],
 		(responseObject) =>
-			actions.value = _.uniqWith(
+			actions.value = uniqWith(
 				responseObject,
 				(arrVal: Action, othVal: Action) =>
 					arrVal.text === othVal.text && arrVal.type === othVal.type &&
@@ -56,7 +55,7 @@ export default ({ packageId }: Props) => {
 			>
 				<Status error={error} loading={loading}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						{sponsors.value
+						{sponsors.value && !loading
 							? sponsors.value.map(({ memberName, party, state, role }) => (
 								<p>
 									{memberName} - {party} {state}
@@ -76,7 +75,7 @@ export default ({ packageId }: Props) => {
 			>
 				<Status error={error} loading={loading}>
 					<div class="prose prose-slate dark:prose-invert mb-5 ml-7">
-						{references.value
+						{references.value && !loading
 							? references.value.map(({ contents }) => (
 								<ul class="pl-2.5">
 									{contents.map(({ title, label, sections }) => (

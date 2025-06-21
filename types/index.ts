@@ -11,7 +11,7 @@ import {
 	type CongressionalBillSummary,
 	defaultProps as CongressionalBillSummaryDefault,
 } from "./CongressionalBillSummary.ts";
-import { defaultProps as ExecutiveOrdersDefault, type ExecutiveOrders } from "./ExecutiveOrders.ts";
+import type { ExecutiveOrders } from "./ExecutiveOrders.ts";
 import type ExecutiveOrder from "./ExecutiveOrder.ts";
 import { type Member, Role } from "./Member.ts";
 import type Reference from "./Reference.ts";
@@ -32,4 +32,4 @@ export type {
 	Subcommittee,
 };
 
-export { CongressionalBillsDefault, CongressionalBillSummaryDefault, ExecutiveOrdersDefault, Role };
+export { CongressionalBillsDefault, CongressionalBillSummaryDefault, Role };

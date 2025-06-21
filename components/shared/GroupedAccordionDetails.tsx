@@ -12,7 +12,7 @@ const GroupedAccordionDetails = (
 	{ sectionId, packageId, icon, title, children }: DetailsProps,
 ) => {
 	return (
-		<details 
+		<details
 			class="group"
 			key={sectionId}
 			name={`${packageId}-sections`}
@@ -40,7 +40,7 @@ const GroupedAccordionDetails = (
 				</svg>
 			</summary>
 			<div class="content w-full md:max-h-[40vh] max-h-[50vh] overflow-auto">
-				<div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900 group-[&:not(:last-child)]:border-b-0">
+				<div class="p-5 border relative border-gray-200 dark:border-gray-700 dark:bg-gray-900 group-[&:not(:last-child)]:border-b-0">
 					{children}
 				</div>
 			</div>

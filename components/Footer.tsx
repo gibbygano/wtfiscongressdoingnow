@@ -3,7 +3,7 @@ import IconBrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/bran
 
 export default () => {
 	return (
-		<footer class="z-[1] w-full bg-white border-t border-gray-200 shadow flex items-center justify-between p-4 dark:bg-gray-800 dark:border-gray-600">
+		<footer class="z-20 fixed bottom-0 w-full bg-white border-t border-gray-200 shadow flex items-center justify-between p-4 dark:bg-gray-800 dark:border-gray-600">
 			<span class="text-sm text-gray-500 dark:text-gray-400 items-center">
 				<a
 					href="https://github.com/gibbygano/wtfiscongressdoingnow"

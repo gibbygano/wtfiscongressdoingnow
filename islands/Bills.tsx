@@ -1,8 +1,7 @@
 import { useComputed, useSignal } from "@preact/signals";
 import { BillsGrid, Status } from "components";
-import { BillsNav } from "islands";
-import { useFetchBills } from "hooks";
-import { type CongressionalBills } from "types";
+import { useFetchBills, useIntersectionObserver } from "hooks";
+import type { CongressionalBills } from "types";
 
 export default () => {
 	const bills = useSignal<CongressionalBills>();
@@ -19,8 +18,23 @@ export default () => {
 		fromDateISO,
 		pageSize.value,
 		offsetSafe.value,
-		(congressionalBills) => bills.value = congressionalBills,
+		(congressionalBills) =>
+			bills.value = {
+				packages: bills.value
+					? [...bills.value?.packages, ...congressionalBills.packages]
+					: congressionalBills.packages,
+				count: bills.value?.count ?? 0 + congressionalBills.count,
+				message: congressionalBills.message,
+				nextPage: congressionalBills.nextPage,
+			},
 	);
+
+	const { containerRef, isIntersecting } = useIntersectionObserver();
+	if (isIntersecting) {
+		if (bills.value?.nextPage) {
+			offsetUnsafe.value = new URL(bills.value?.nextPage).searchParams.get("offset");
+		}
+	}
 
 	return (
 		<Status error={error} loading={loading} fullscreen>
@@ -28,12 +42,13 @@ export default () => {
 				{bills.value && (
 					<>
 						<BillsGrid {...bills.value} />
-						<BillsNav
-							offsetUnsafe={offsetUnsafe}
-							pageSize={pageSize}
-							nextPage={bills.value.nextPage}
-							previousPage={bills.value.previousPage}
-						/>
+						{!loading &&
+							(
+								<span
+									class="h-0 w-0 overflow-hidden opacity-0 mb-1"
+									ref={containerRef}
+								/>
+							)}
 					</>
 				)}
 			</div>

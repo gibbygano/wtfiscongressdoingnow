@@ -3,21 +3,23 @@ import { clsx } from "clsx";
 
 type Props = {
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
-	className: string | undefined;
 	fullscreen?: boolean;
 };
 
-export default ({ children, className, fullscreen = false }: Props) => (
+export default ({ children, fullscreen = false }: Props) => (
 	<div
 		role="status"
-		class={clsx("flex items-center justify-center", {
-			"h-screen": fullscreen,
-			[className!]: className,
+		class={clsx("flex items-center top-0 left-0 w-full h-full justify-center", {
+			"z-10 fixed ": fullscreen,
+			"absolute": !fullscreen,
 		})}
 	>
 		<svg
 			aria-hidden="true"
-			class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+			class={clsx(
+				"w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600",
+				{ "w-14 h-14 lg:w-32 lg:h-32": fullscreen },
+			)}
 			viewBox="0 0 100 101"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
