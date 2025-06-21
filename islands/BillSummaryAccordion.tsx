@@ -14,8 +14,11 @@ type Props = {
 export default ({ packageId }: Props) => {
 	const sponsors = useSignal<Array<Member>>();
 	const references = useSignal<Array<Reference>>();
-	const cardHasInteraction = useSignal<boolean>(false);
 	const actions = useSignal<Array<Action>>();
+
+	const cardHasInteraction = useSignal(false);
+	const summaryHasInit = useSignal(false);
+	const actionsHasInit = useSignal(false);
 
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
@@ -26,6 +29,7 @@ export default ({ packageId }: Props) => {
 		(billSummary) => {
 			sponsors.value = billSummary.members;
 			references.value = billSummary.references;
+			summaryHasInit.value = true;
 		},
 		cardHasInteraction.value && (!references.value && !sponsors.value),
 	);
@@ -35,13 +39,15 @@ export default ({ packageId }: Props) => {
 		billIds[1],
 		billIds[2],
 		billIds[3],
-		(responseObject) =>
+		(responseObject) => {
 			actions.value = uniqWith(
 				responseObject,
 				(arrVal: Action, othVal: Action) =>
 					arrVal.text === othVal.text && arrVal.type === othVal.type &&
 					arrVal.actionDate === othVal.actionDate,
-			),
+			);
+			actionsHasInit.value = true;
+		},
 		cardHasInteraction.value && !actions.value,
 	);
 
@@ -53,7 +59,7 @@ export default ({ packageId }: Props) => {
 				icon={<IconUsersGroup class="w-6 h-6" />}
 				sectionId={sponsorSectionId}
 			>
-				<Status error={error} loading={loading}>
+				<Status error={error} loading={loading || !summaryHasInit.value}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
 						{sponsors.value && !loading
 							? sponsors.value.map(({ memberName, party, state, role }) => (
@@ -73,7 +79,7 @@ export default ({ packageId }: Props) => {
 				icon={<IconBook class="w-6 h-6" />}
 				sectionId={referenceSectionId}
 			>
-				<Status error={error} loading={loading}>
+				<Status error={error} loading={loading || !summaryHasInit.value}>
 					<div class="prose prose-slate dark:prose-invert mb-5 ml-7">
 						{references.value && !loading
 							? references.value.map(({ contents }) => (
@@ -111,7 +117,7 @@ export default ({ packageId }: Props) => {
 				icon={<IconFileStack class="w-6 h-6" />}
 				sectionId={actionSectionId}
 			>
-				<Status error={actionsError} loading={actionsLoading}>
+				<Status error={actionsError} loading={actionsLoading || !actionsHasInit.value}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
 						{actions.value
 							? actions.value.map(({ actionDate, text }: Action) => (

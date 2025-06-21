@@ -2,7 +2,6 @@ import { JSX } from "preact/jsx-runtime";
 import Error from "./Error.tsx";
 import Loading from "./Loading.tsx";
 import clsx from "clsx";
-import { load } from "@std/dotenv";
 
 type Props = {
 	error: Error | undefined;
