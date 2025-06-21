@@ -11,6 +11,7 @@ import Sidebar from "./Sidebar.tsx";
 import Status from "./shared/Status.tsx";
 import { Badge } from "./shared/Badge.tsx";
 import Header from "./Header.tsx";
+import { Modal } from "./shared/Modal/index.ts";
 
 export {
 	Accordion,
@@ -23,6 +24,7 @@ export {
 	Header,
 	LinkButton,
 	Loading,
+	Modal,
 	Select,
 	Sidebar,
 	Status,
