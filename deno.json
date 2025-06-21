@@ -38,6 +38,7 @@
 		"hooks": "./hooks/index.ts",
 		"humanizer/": "https://deno.land/x/humanizer@1.1/",
 		"islands": "./islands/index.ts",
+		"context": "./islands/context/index.ts",
 		"types": "./types/index.ts",
 		"tailwindcss": "npm:tailwindcss@^4.1.7",
 		"@tailwindcss/typography": "npm:@tailwindcss/typography"

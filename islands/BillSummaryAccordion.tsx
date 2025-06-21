@@ -1,68 +1,40 @@
-import { useSignal } from "@preact/signals";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
 import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
 import dayjs from "dayjs";
 import { Badge, GroupedAccordionDetails, Status } from "components";
-import { useFetchActions, useFetchBillSummary } from "hooks";
-import type { Action, Member, Reference } from "types";
-import { uniqWith } from "es-toolkit";
-type Props = {
-	packageId: string;
-};
+import type { Action } from "types";
+import { useBillSummaryContext } from "context";
 
-export default ({ packageId }: Props) => {
-	const sponsors = useSignal<Array<Member>>();
-	const references = useSignal<Array<Reference>>();
-	const actions = useSignal<Array<Action>>();
-
-	const cardHasInteraction = useSignal(false);
-	const summaryHasInit = useSignal(false);
-	const actionsHasInit = useSignal(false);
+export default () => {
+	const {
+		packageId,
+		sponsors,
+		references,
+		summaryLoading,
+		summaryError,
+		actions,
+		actionsLoading,
+		actionsError,
+		cardHasInteractionSignal,
+	} = useBillSummaryContext();
 
 	const sponsorSectionId = `${packageId}-sponsors`;
 	const referenceSectionId = `${packageId}-references`;
 	const actionSectionId = `${packageId}-actions`;
 
-	const { loading, error } = useFetchBillSummary(
-		packageId,
-		(billSummary) => {
-			sponsors.value = billSummary.members;
-			references.value = billSummary.references;
-			summaryHasInit.value = true;
-		},
-		cardHasInteraction.value && (!references.value && !sponsors.value),
-	);
-
-	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
-	const { error: actionsError, loading: actionsLoading } = useFetchActions(
-		billIds[1],
-		billIds[2],
-		billIds[3],
-		(responseObject) => {
-			actions.value = uniqWith(
-				responseObject,
-				(arrVal: Action, othVal: Action) =>
-					arrVal.text === othVal.text && arrVal.type === othVal.type &&
-					arrVal.actionDate === othVal.actionDate,
-			);
-			actionsHasInit.value = true;
-		},
-		cardHasInteraction.value && !actions.value,
-	);
-
 	return (
-		<div onFocusInCapture={() => cardHasInteraction.value = true}>
+		<div onFocusInCapture={() => cardHasInteractionSignal.value = true}>
 			<GroupedAccordionDetails
 				packageId={packageId}
 				title="Sponsors"
 				icon={<IconUsersGroup class="w-6 h-6" />}
 				sectionId={sponsorSectionId}
 			>
-				<Status error={error} loading={loading || !summaryHasInit.value}>
+				<Status error={summaryError} loading={summaryLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						{sponsors.value && !loading
-							? sponsors.value.map(({ memberName, party, state, role }) => (
+						{sponsors
+							? sponsors.map(({ memberName, party, state, role }) => (
 								<p>
 									{memberName} - {party} {state}
 									<br />
@@ -79,10 +51,10 @@ export default ({ packageId }: Props) => {
 				icon={<IconBook class="w-6 h-6" />}
 				sectionId={referenceSectionId}
 			>
-				<Status error={error} loading={loading || !summaryHasInit.value}>
+				<Status error={summaryError} loading={summaryLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5 ml-7">
-						{references.value && !loading
-							? references.value.map(({ contents }) => (
+						{references
+							? references.map(({ contents }) => (
 								<ul class="pl-2.5">
 									{contents.map(({ title, label, sections }) => (
 										<li>
@@ -117,10 +89,10 @@ export default ({ packageId }: Props) => {
 				icon={<IconFileStack class="w-6 h-6" />}
 				sectionId={actionSectionId}
 			>
-				<Status error={actionsError} loading={actionsLoading || !actionsHasInit.value}>
+				<Status error={actionsError} loading={actionsLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						{actions.value
-							? actions.value.map(({ actionDate, text }: Action) => (
+						{actions
+							? actions.map(({ actionDate, text }: Action) => (
 								<>
 									<p class="border-b font-bold">
 										{dayjs(actionDate).format("dddd MMMM D, YYYY")}

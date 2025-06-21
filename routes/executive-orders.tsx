@@ -1,5 +1,9 @@
 import { ExecutiveOrders } from "islands";
+import { ExecutiveOrderContextProvider } from "context";
 
-const ExecutiveOrdersPage = () => <ExecutiveOrders />;
-
+const ExecutiveOrdersPage = () => (
+	<ExecutiveOrderContextProvider>
+		<ExecutiveOrders />
+	</ExecutiveOrderContextProvider>
+);
 export default ExecutiveOrdersPage;

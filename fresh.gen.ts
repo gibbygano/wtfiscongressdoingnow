@@ -16,6 +16,10 @@ import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
 import * as $Bills from "./islands/Bills.tsx";
 import * as $BillsNav from "./islands/BillsNav.tsx";
 import * as $ExecutiveOrders from "./islands/ExecutiveOrders.tsx";
+import * as $context_BillSummaryContext from "./islands/context/BillSummaryContext.tsx";
+import * as $context_BillsContext from "./islands/context/BillsContext.tsx";
+import * as $context_ExecutiveOrderContext from "./islands/context/ExecutiveOrderContext.tsx";
+import * as $context_index from "./islands/context/index.ts";
 import * as $index_1 from "./islands/index.ts";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -38,6 +42,10 @@ const manifest = {
 		"./islands/Bills.tsx": $Bills,
 		"./islands/BillsNav.tsx": $BillsNav,
 		"./islands/ExecutiveOrders.tsx": $ExecutiveOrders,
+		"./islands/context/BillSummaryContext.tsx": $context_BillSummaryContext,
+		"./islands/context/BillsContext.tsx": $context_BillsContext,
+		"./islands/context/ExecutiveOrderContext.tsx": $context_ExecutiveOrderContext,
+		"./islands/context/index.ts": $context_index,
 		"./islands/index.ts": $index_1,
 	},
 	baseUrl: import.meta.url,

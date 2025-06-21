@@ -1,7 +1,12 @@
 import { Bills } from "islands";
+import { BillsContextProvider } from "context";
 
 const BillsPage = () => {
-	return <Bills />;
+	return (
+		<BillsContextProvider>
+			<Bills />
+		</BillsContextProvider>
+	);
 };
 
 export default BillsPage;

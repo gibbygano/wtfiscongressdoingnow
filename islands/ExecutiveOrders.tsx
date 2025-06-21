@@ -1,33 +1,15 @@
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
-import { useSignal } from "@preact/signals";
 import { Card, LinkButton, Status } from "components";
-import { useFetchExecutiveOrders, useIntersectionObserver } from "hooks";
-import type { ExecutiveOrders } from "types";
+import { useIntersectionObserver } from "hooks";
+import { useExecutiveOrderContext } from "context";
 
 export default () => {
-	const executiveOrders = useSignal<ExecutiveOrders>();
-	const page = useSignal("1");
-
+	const { executiveOrders, loading, error, pageSignal } = useExecutiveOrderContext();
 	const { containerRef, isIntersecting } = useIntersectionObserver();
-	const { loading, error } = useFetchExecutiveOrders(
-		(responseObject) => {
-			executiveOrders.value = {
-				results: executiveOrders.value
-					? [...executiveOrders.value?.results, ...responseObject.results]
-					: responseObject.results,
-				description: responseObject.description,
-				next_page_url: responseObject.next_page_url,
-				count: responseObject.count,
-				total_pages: responseObject.total_pages,
-			};
-		},
-		page.value,
-	);
-
-	if (isIntersecting && executiveOrders.value?.next_page_url) {
-		page.value = new URL(executiveOrders.value.next_page_url).searchParams.get("page") ??
-			page.value;
+	if (isIntersecting && executiveOrders?.next_page_url) {
+		pageSignal.value = new URL(executiveOrders.next_page_url).searchParams.get("page") ??
+			pageSignal.value;
 	}
 
 	return (
@@ -37,12 +19,10 @@ export default () => {
 					class="lg:columns-3 2xl:columns-4 3xl:columns-5 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
 					id="bills"
 				>
-					{executiveOrders.value?.results.map((
+					{executiveOrders?.results.map((
 						{
 							title,
 							agencies,
-							type,
-							html_url,
 							pdf_url,
 							publication_date,
 							document_number,

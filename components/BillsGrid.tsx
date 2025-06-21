@@ -4,6 +4,7 @@ import "humanizer/ordinalize.ts";
 import { Card, LinkButton } from "components";
 import { BillSummaryAccordion } from "islands";
 import { CongressionalBills } from "types";
+import { BillSummaryContextProvider } from "context";
 
 export default (
 	{ packages }: CongressionalBills,
@@ -18,45 +19,46 @@ export default (
 					{packages.map((
 						{ packageId, lastModified, dateIssued, title, docClass, congress },
 					) => (
-						<Card
-							key={`${packageId}-card`}
-							headerText={`${docClass.toUpperCase()} 
+						<BillSummaryContextProvider packageId={packageId}>
+							<Card
+								key={`${packageId}-card`}
+								headerText={`${docClass.toUpperCase()} 
 							${packageId.split(docClass)[1].match("\\d+")}`}
-							actionChildren={[
-								<BillSummaryAccordion
-									packageId={packageId}
-									key={`${packageId}-accordion`}
-								/>,
-								<LinkButton
-									key={`${packageId}-pdf`}
-									className="mt-7"
-									href={`/api/bills/download/${packageId}?docType=pdf`}
-									target="_blank"
-									label="Download PDF"
-								>
-									<IconFileTypePdf class="w-8 h-8" />
-								</LinkButton>,
-							]}
-						>
-							<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
-								{title}
-							</blockquote>
-							<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
-								{congress.ordinalize()} Congress
-							</p>
-							<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
-								Date Issued:{" "}
-								<span class="text-nowrap">
-									{dayjs(dateIssued).format("dddd MMMM D, YYYY")}
-								</span>
-							</p>
-							<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
-								Last Change:{" "}
-								<span class="text-nowrap">
-									{dayjs(lastModified).format("dddd MMMM D, YYYY")}
-								</span>
-							</p>
-						</Card>
+								actionChildren={[
+									<BillSummaryAccordion
+										key={`${packageId}-accordion`}
+									/>,
+									<LinkButton
+										key={`${packageId}-pdf`}
+										className="mt-7"
+										href={`/api/bills/download/${packageId}?docType=pdf`}
+										target="_blank"
+										label="Download PDF"
+									>
+										<IconFileTypePdf class="w-8 h-8" />
+									</LinkButton>,
+								]}
+							>
+								<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
+									{title}
+								</blockquote>
+								<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
+									{congress.ordinalize()} Congress
+								</p>
+								<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
+									Date Issued:{" "}
+									<span class="text-nowrap">
+										{dayjs(dateIssued).format("dddd MMMM D, YYYY")}
+									</span>
+								</p>
+								<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
+									Last Change:{" "}
+									<span class="text-nowrap">
+										{dayjs(lastModified).format("dddd MMMM D, YYYY")}
+									</span>
+								</p>
+							</Card>
+						</BillSummaryContextProvider>
 					))}
 				</div>
 			</div>
