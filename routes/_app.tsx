@@ -14,7 +14,7 @@ const App = ({ Component }: PageProps) => (
 			<meta property="og:image" content="https://wtfiscongressdoingnow.us/images/seal.png" />
 			<meta
 				property="og:description"
-				content="Keep up with what congress is doing. Powered by Congress.gov and GovInfo."
+				content="Keep up with what congress is doing. Now fortified with v orders! Powered by Congress.gov and GovInfo."
 			/>
 			<title>WTF Is Congress Doing Now?</title>
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
