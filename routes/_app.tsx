@@ -10,7 +10,7 @@ const App = ({ Component }: PageProps) => (
 				name="viewport"
 				content="width=device-width, initial-scale=1.0"
 			/>
-			<meta name="og:image" content="/images/seal.png" />
+			<meta name="og:image" content="https://wtfiscongressdoingnow.us/images/seal.png" />
 			<meta name="og:description" content="List of congressional bills by date"></meta>
 			<title>WTF Is Congress Doing Now?</title>
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
