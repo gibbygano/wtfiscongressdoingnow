@@ -10,9 +10,12 @@ const App = ({ Component }: PageProps) => (
 				name="viewport"
 				content="width=device-width, initial-scale=1.0"
 			/>
-			<meta property="og:site_name" content="WTF Is Congress Doing Now?" />
+			<meta property="og:title" content="WTF Is Congress Doing Now?" />
 			<meta property="og:image" content="https://wtfiscongressdoingnow.us/images/seal.png" />
-			<meta property="og:description" content="List of congressional bills by date"></meta>
+			<meta
+				property="og:description"
+				content="Keep up with what congress is doing. Powered by Congress.gov and GovInfo."
+			/>
 			<title>WTF Is Congress Doing Now?</title>
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
 			<link rel="preconnect" href="https://fonts.gstatic.com" />
