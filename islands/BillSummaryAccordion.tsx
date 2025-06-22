@@ -33,8 +33,8 @@ export default () => {
 			>
 				<Status error={summaryError} loading={summaryLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						{sponsors
-							? sponsors.map(({ memberName, party, state, role }) => (
+						{sponsors || summaryLoading
+							? sponsors?.map(({ memberName, party, state, role }) => (
 								<p>
 									{memberName} - {party} {state}
 									<br />
@@ -53,8 +53,8 @@ export default () => {
 			>
 				<Status error={summaryError} loading={summaryLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5 ml-7">
-						{references
-							? references.map(({ contents }) => (
+						{references || summaryLoading
+							? references?.map(({ contents }) => (
 								<ul class="pl-2.5">
 									{contents.map(({ title, label, sections }) => (
 										<li>
@@ -91,8 +91,8 @@ export default () => {
 			>
 				<Status error={actionsError} loading={actionsLoading}>
 					<div class="prose prose-slate dark:prose-invert mb-5">
-						{actions
-							? actions.map(({ actionDate, text }: Action) => (
+						{actions || actionsLoading
+							? actions?.map(({ actionDate, text }: Action) => (
 								<>
 									<p class="border-b font-bold">
 										{dayjs(actionDate).format("dddd MMMM D, YYYY")}
