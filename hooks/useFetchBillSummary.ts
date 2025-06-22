@@ -1,5 +1,5 @@
-import useFetch from "./useFetch.ts";
 import { CongressionalBillSummary } from "types";
+import useFetch from "./useFetch.ts";
 
 const useFetchBillSummary = (
 	packageId: string,

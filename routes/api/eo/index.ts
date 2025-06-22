@@ -1,5 +1,5 @@
+import type { ExecutiveOrders } from "types";
 import { Handlers } from "$fresh/server.ts";
-import { type ExecutiveOrders } from "types";
 
 const fetchExecutiveOrders = async (pageSize: number, page: number) => {
 	const requestUrl = new URL(

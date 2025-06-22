@@ -1,10 +1,11 @@
-import { useSignal } from "@preact/signals";
-import type { Signal } from "@preact/signals";
-import { createContext, JSX } from "preact";
-import { useContext } from "preact/hooks";
 import type { Action, Member, Reference } from "types";
+import { JSX, createContext } from "preact";
 import { useFetchActions, useFetchBillSummary } from "hooks";
+
+import type { Signal } from "@preact/signals";
 import { uniqWith } from "es-toolkit";
+import { useContext } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 
 interface BillSummaryContextValue {
 	packageId: string;
@@ -85,3 +86,4 @@ const useBillSummaryContext = (): BillSummaryContextValue => {
 };
 
 export { BillSummaryContextProvider, useBillSummaryContext };
+

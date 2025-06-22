@@ -1,8 +1,9 @@
+import { Card, LinkButton, Status } from "components";
+
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
-import { Card, LinkButton, Status } from "components";
-import { useIntersectionObserver } from "hooks";
 import { useExecutiveOrderContext } from "context";
+import { useIntersectionObserver } from "hooks";
 
 export default () => {
 	const { executiveOrders, loading, error, pageSignal } = useExecutiveOrderContext();
@@ -14,7 +15,7 @@ export default () => {
 
 	return (
 		<Status loading={loading} error={error} fullscreen>
-			<div class="flex-1 pb-16 dark:backdrop-brightness-[.8]">
+			<div class="flex-1 pb-16">
 				<div
 					class="lg:columns-3 2xl:columns-4 3xl:columns-5 md:columns-2 sm:columns-1 md:text-sm lg:text-base text-xs gap-5 px-7 pt-10"
 					id="bills"

@@ -1,6 +1,6 @@
+import { CongressionalBillSummary } from "types";
 import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
-import { CongressionalBillSummary } from "types";
 
 const fetchRelatedInfo = async (packageId: string) => {
 	const { DataGovAPIKey } = getAppConfig();

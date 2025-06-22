@@ -1,5 +1,5 @@
-import { JSX } from "preact/jsx-runtime";
 import Error from "./Error.tsx";
+import { JSX } from "preact/jsx-runtime";
 import Loading from "./Loading.tsx";
 import clsx from "clsx";
 

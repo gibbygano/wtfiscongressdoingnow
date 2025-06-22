@@ -1,9 +1,10 @@
-import { useSignal } from "@preact/signals";
-import type { Signal } from "@preact/signals";
-import { createContext, JSX } from "preact";
-import { useContext } from "preact/hooks";
+import { JSX, createContext } from "preact";
+
 import type { ExecutiveOrders } from "types";
+import type { Signal } from "@preact/signals";
+import { useContext } from "preact/hooks";
 import { useFetchExecutiveOrders } from "hooks";
+import { useSignal } from "@preact/signals";
 
 interface ExecutiveOrderContextValue {
 	executiveOrders: ExecutiveOrders | null;

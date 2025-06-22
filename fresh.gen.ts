@@ -6,7 +6,6 @@ import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $api_bills_congress_billType_number_ from "./routes/api/bills/[congress]/[billType]/[number].ts";
 import * as $api_bills_fromDate_ from "./routes/api/bills/[fromDate].ts";
-import * as $api_bills_search_ from "./routes/api/bills/[search].ts";
 import * as $api_bills_download_packageId_ from "./routes/api/bills/download/[packageId].ts";
 import * as $api_bills_search_query_ from "./routes/api/bills/search/[query].ts";
 import * as $api_bills_summary_packageId_ from "./routes/api/bills/summary/[packageId].ts";
@@ -31,7 +30,6 @@ const manifest = {
 		"./routes/api/bills/[congress]/[billType]/[number].ts":
 			$api_bills_congress_billType_number_,
 		"./routes/api/bills/[fromDate].ts": $api_bills_fromDate_,
-		"./routes/api/bills/[search].ts": $api_bills_search_,
 		"./routes/api/bills/download/[packageId].ts": $api_bills_download_packageId_,
 		"./routes/api/bills/search/[query].ts": $api_bills_search_query_,
 		"./routes/api/bills/summary/[packageId].ts": $api_bills_summary_packageId_,

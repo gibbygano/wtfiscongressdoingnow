@@ -1,5 +1,5 @@
-import { useSignal } from "@preact/signals";
 import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 
 interface Results {
 	loading: boolean | undefined;

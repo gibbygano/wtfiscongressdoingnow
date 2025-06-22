@@ -1,5 +1,6 @@
-import { useSignal } from "@preact/signals";
 import { useEffect, useRef } from "preact/hooks";
+
+import { useSignal } from "@preact/signals";
 
 const useIntersectionObserver = (
 	options: IntersectionObserverInit = { root: null, rootMargin: "0px", threshold: 1.0 },

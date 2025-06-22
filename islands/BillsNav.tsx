@@ -1,7 +1,7 @@
 import { Select } from "components";
-import { onEvent } from "DOMEventHandlers";
 import { Signal } from "@preact/signals";
 import { clsx } from "clsx";
+import { onEvent } from "DOMEventHandlers";
 
 type Props = {
 	nextPage?: string;

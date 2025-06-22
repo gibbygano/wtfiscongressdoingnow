@@ -1,5 +1,5 @@
+import type { ExecutiveOrders } from "types";
 import useFetch from "./useFetch.ts";
-import { type ExecutiveOrders } from "types";
 
 const useFetchExecutiveOrders = (
 	callback: (responseObject: ExecutiveOrders) => void,

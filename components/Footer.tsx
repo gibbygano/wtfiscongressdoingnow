@@ -1,5 +1,5 @@
-import { asset } from "$fresh/runtime.ts";
 import IconBrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/brand-github.tsx";
+import { asset } from "$fresh/runtime.ts";
 
 export default () => {
 	return (

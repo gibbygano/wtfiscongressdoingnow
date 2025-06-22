@@ -1,6 +1,7 @@
-import { PageProps } from "$fresh/server.ts";
-import { asset, Head } from "$fresh/runtime.ts";
 import { Footer, Header } from "components";
+import { Head, asset } from "$fresh/runtime.ts";
+
+import { PageProps } from "$fresh/server.ts";
 
 const App = ({ Component }: PageProps) => (
 	<html lang="en">
@@ -35,7 +36,7 @@ const App = ({ Component }: PageProps) => (
 		</Head>
 		<body class="min-h-screen flex flex-col">
 			<Header />
-			<main class="w-full h-full flex flex-col flex-grow bg-gradient-to-tr from-red-200 via-slate-100 to-blue-200">
+			<main class="w-full h-full flex flex-col flex-grow bg-linear-to-tr from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
 				<Component />
 			</main>
 			<Footer />

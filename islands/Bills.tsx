@@ -1,32 +1,43 @@
 import { BillsGrid, Status } from "components";
-import { useIntersectionObserver } from "hooks";
+
+import { Search } from "components";
+import { SearchResultsGrid } from "../components/SearchResultsGrid.tsx";
 import { useBillsContext } from "context";
+import { useIntersectionObserver } from "hooks";
 
 export default () => {
-	const { bills, offsetUnsafeSignal, loading, error } = useBillsContext();
+	const { bills, loading, error, searchResults, isSearching, handleIntersection } =
+		useBillsContext();
 	const { containerRef, isIntersecting } = useIntersectionObserver();
-	if (isIntersecting) {
-		if (bills?.nextPage) {
-			offsetUnsafeSignal.value = new URL(bills?.nextPage).searchParams.get("offset");
+	handleIntersection(isIntersecting);
+
+	const BillsContainer = () => {
+		if (isSearching && searchResults) {
+			return <SearchResultsGrid packages={searchResults.results} />;
 		}
-	}
+
+		if (bills) {
+			return <BillsGrid packages={bills.packages} />;
+		}
+
+		return null;
+	};
 
 	return (
-		<Status error={error} loading={loading} fullscreen>
-			<div class="flex-1 flex flex-col">
-				{bills && (
-					<>
-						<BillsGrid {...bills} />
-						{!loading &&
-							(
-								<span
-									class="h-0 w-0 overflow-hidden opacity-0 mb-1"
-									ref={containerRef}
-								/>
-							)}
-					</>
-				)}
-			</div>
-		</Status>
+		<>
+			<Search />
+			<Status error={error} loading={loading} fullscreen>
+				<div class="flex-1 flex flex-col">
+					<BillsContainer />
+					{!loading &&
+						(
+							<span
+								class="h-0 w-0 overflow-hidden opacity-0 mb-1"
+								ref={containerRef}
+							/>
+						)}
+				</div>
+			</Status>
+		</>
 	);
 };

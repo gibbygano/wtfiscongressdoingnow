@@ -4,15 +4,15 @@ import { Card, LinkButton } from "components";
 
 import { BillSummaryAccordion } from "islands";
 import { BillSummaryContextProvider } from "context";
-import type { CongressionalBill } from "types";
+import type { CongressionalBillSearchResult } from "types";
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
 
-interface BillsGridProps {
-	packages: Array<CongressionalBill>;
+interface SearchResultsGridProps {
+	packages: Array<CongressionalBillSearchResult>;
 }
 
-const BillsGrid = ({ packages }: BillsGridProps) => {
+const SearchResultsGrid = ({ packages }: SearchResultsGridProps) => {
 	return (
 		<>
 			<div class="pb-16 flex-1">
@@ -21,13 +21,12 @@ const BillsGrid = ({ packages }: BillsGridProps) => {
 					id="bills"
 				>
 					{packages.map((
-						{ packageId, lastModified, dateIssued, title, docClass, congress },
+						{ packageId, lastModified, dateIssued, title },
 					) => (
 						<BillSummaryContextProvider packageId={packageId}>
 							<Card
 								key={`${packageId}-card`}
-								headerText={`${docClass.toUpperCase()} 
-							${packageId.split(docClass)[1].match("\\d+")}`}
+								headerText={packageId}
 								actionChildren={[
 									<BillSummaryAccordion
 										key={`${packageId}-accordion`}
@@ -46,9 +45,6 @@ const BillsGrid = ({ packages }: BillsGridProps) => {
 								<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
 									{title}
 								</blockquote>
-								<p class="text-gray-800 dark:text-gray-400 clear-left font-semibold">
-									{congress.ordinalize()} Congress
-								</p>
 								<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
 									Date Issued:{" "}
 									<span class="text-nowrap">
@@ -70,4 +66,4 @@ const BillsGrid = ({ packages }: BillsGridProps) => {
 	);
 };
 
-export { BillsGrid };
+export { SearchResultsGrid };
