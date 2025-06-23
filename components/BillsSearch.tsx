@@ -8,24 +8,22 @@ const BillsSearch = () => {
 		useBillsContext();
 	const searchRef = useRef<HTMLInputElement>(null);
 
-	const handleTextEntry = debounce(
-		() => {
-			const currentQueryLength = searchRef.current?.value.length ?? 0;
-			const newValue = searchRef.current?.value.trim() ?? null;
-			if (
-				(currentQueryLength >= 3 ||
-					currentQueryLength === 0) && newValue != querySignal.value
-			) {
-				clearSearchResults();
-				querySignal.value = newValue;
-			}
-		},
-		300,
-		{ trailing: true },
-	);
+	const handleSearch = () => {
+		const currentQueryLength = searchRef.current?.value.length ?? 0;
+		const newValue = searchRef.current?.value.trim() ?? null;
+		if (
+			(currentQueryLength >= 3 ||
+				currentQueryLength === 0) && newValue != querySignal.value
+		) {
+			clearSearchResults();
+			querySignal.value = newValue;
+		}
+	};
+
+	const handleSearchDebounced = debounce(() => handleSearch(), 300, { trailing: true });
 
 	useEffect(() => {
-		handleTextEntry.cancel();
+		handleSearchDebounced.cancel();
 	});
 
 	const label = isSearching
@@ -43,8 +41,8 @@ const BillsSearch = () => {
 					showLoading={loading && isSearching}
 					type="search"
 					pattern="search"
-					onSearch={handleTextEntry}
-					onKeyUp={handleTextEntry}
+					onSearch={handleSearch}
+					onKeyUp={handleSearchDebounced}
 				/>
 			</div>
 		</div>

@@ -26,7 +26,12 @@ const searchBills = async (query: string, pageSize: number, offsetMark: string) 
 	});
 	if (!resp.ok) {
 		throw new Error(
-			JSON.stringify({ url: resp.url, statusCode: resp.status, message: resp.statusText }),
+			JSON.stringify({
+				url: resp.url,
+				statusCode: resp.status,
+				message: resp.statusText,
+				requestBody,
+			}),
 		);
 	}
 

@@ -6,9 +6,15 @@ import type { Signal } from "@preact/signals";
 import { uniqWith } from "es-toolkit";
 import { useContext } from "preact/hooks";
 import { useSignal } from "@preact/signals";
+import { mapBillStatus } from "../../utilities/billStatusMapper.ts";
 
 interface BillSummaryContextValue {
 	packageId: string;
+	congress: string;
+	docClass: string;
+	docId: string;
+	docStatus: string;
+	versionNumber?: string;
 	sponsors: Array<Member> | null;
 	references: Array<Reference> | null;
 	actions: Array<Action> | null;
@@ -41,17 +47,25 @@ const BillSummaryContextProvider = ({ packageId, children }: BillsSummaryContext
 		cardHasInteraction.value && (!references.value && !sponsors.value),
 	);
 
-	const billIds = packageId.match("(\\d+)([a-z]+)(\\d+)([a-z]+)$") as RegExpMatchArray;
+	const packageGroups = packageId.split("BILLS-")[1].match(
+		/([\d]+)([a-zA-Z]+)([\d]+)([a-zA-Z]+)([\d]+)?/,
+	) as RegExpMatchArray;
+
+	const congress = packageGroups[1];
+	const docClass = packageGroups[2];
+	const docId = packageGroups[3];
+	const docStatus = mapBillStatus(packageGroups[4]);
+	const versionNumber = packageGroups[5];
+
 	const { error: actionsError, loading: actionsLoading } = useFetchActions(
-		billIds[1],
-		billIds[2],
-		billIds[3],
+		congress,
+		docClass,
+		docId,
 		(responseObject) => {
 			actions.value = uniqWith(
 				responseObject,
 				(arrVal: Action, othVal: Action) =>
-					arrVal.text === othVal.text && arrVal.type === othVal.type &&
-					arrVal.actionDate === othVal.actionDate,
+					arrVal.text === othVal.text && arrVal.actionDate === othVal.actionDate,
 			);
 		},
 		cardHasInteraction.value && !actions.value,
@@ -61,6 +75,11 @@ const BillSummaryContextProvider = ({ packageId, children }: BillsSummaryContext
 		<BillSummaryContext.Provider
 			value={{
 				packageId,
+				congress,
+				docClass: docClass.toUpperCase(),
+				docId,
+				docStatus,
+				versionNumber,
 				sponsors: sponsors.value,
 				references: references.value,
 				summaryLoading: loading ?? true,

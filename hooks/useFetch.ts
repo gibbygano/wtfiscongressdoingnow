@@ -40,7 +40,6 @@ export default <T>(
 			statusText.value = response.statusText;
 
 			if (!response.ok) {
-				console.log(response.statusText);
 				throw new Error(response.statusText);
 			}
 
