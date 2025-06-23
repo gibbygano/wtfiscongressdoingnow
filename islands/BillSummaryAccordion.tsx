@@ -1,4 +1,4 @@
-import { Badge, GroupedAccordionDetails, Status } from "components";
+import { GroupedAccordionDetails, MemberRoleBadge, Status } from "components";
 
 import type { Action } from "types";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
@@ -39,7 +39,7 @@ export default () => {
 								<p>
 									{memberName} - {party} {state}
 									<br />
-									<Badge role={role} />
+									<MemberRoleBadge role={role} />
 								</p>
 							))
 							: <p>No sponsers, check back later.</p>}

@@ -1,5 +1,5 @@
 import type { BillsCollectionSearchResults, CongressionalBills } from "types";
-import { JSX, createContext } from "preact";
+import { createContext, JSX } from "preact";
 import { useComputed, useSignal } from "@preact/signals";
 import { useFetchBills, useFetchSearchResults } from "hooks";
 
@@ -26,7 +26,7 @@ const BillsContext = createContext<BillsContextValue | null>(null);
 
 const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 	const bills = useSignal<CongressionalBills | null>(null);
-	const pageSize = useSignal("12");
+	const pageSize = useSignal(12);
 	const offsetUnsafe = useSignal<string | null>("0");
 	const offsetSafe = useComputed(() => offsetUnsafe.value ?? "0");
 
@@ -72,10 +72,13 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 
 	const handleIntersection = (isIntersecting: boolean) => {
 		if (isIntersecting) {
-			if (isSearching.value && searchResults.value?.offsetMark) {
+			if (
+				isSearching.value && searchResults.value?.offsetMark &&
+				searchResults.value.count > pageSize.value
+			) {
 				offsetMark.value = searchResults.value.offsetMark;
 			}
-			if (!isSearching.value && bills.value?.nextPage) {
+			if (!isSearching.value && bills.value?.nextPage && bills.value.count > pageSize.value) {
 				offsetUnsafe.value = new URL(bills.value.nextPage).searchParams.get("offset");
 			}
 		}

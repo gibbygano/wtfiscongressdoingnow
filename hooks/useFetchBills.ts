@@ -3,14 +3,14 @@ import useFetch from "./useFetch.ts";
 
 const useFetchBills = (
 	startDate: string,
-	pageSize: string,
+	pageSize: number,
 	offset: string,
 	callback: (bills: CongressionalBills) => void,
 ) => {
 	return {
 		...useFetch(
 			`/api/bills/${startDate}?${new URLSearchParams({
-				"pageSize": pageSize,
+				"pageSize": pageSize.toString(),
 				"offset": offset,
 			})}`,
 			callback,

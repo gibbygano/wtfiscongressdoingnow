@@ -8,7 +8,6 @@ import {
 	type CongressionalBills,
 	defaultProps as CongressionalBillsDefault,
 } from "./CongressionalBills.ts";
-import type { CongressionalBillSearchResult } from "./CongressionalBillSearchResults.ts";
 import {
 	type CongressionalBillSummary,
 	defaultProps as CongressionalBillSummaryDefault,
@@ -27,7 +26,6 @@ export type {
 	CommitteeDetails,
 	CongressionalBill,
 	CongressionalBills,
-	CongressionalBillSearchResult,
 	CongressionalBillSummary,
 	ExecutiveOrder,
 	ExecutiveOrders,

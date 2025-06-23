@@ -1,9 +1,9 @@
-import type { CongressionalBillSearchResult } from "./CongressionalBillSearchResults.ts";
+import CongressionalBill from "./CongressionalBill.ts";
 
 interface BillsCollectionSearchResults {
 	offsetMark: string;
 	count: number;
-	results: Array<CongressionalBillSearchResult>;
+	results: Array<CongressionalBill>;
 }
 
 export type { BillsCollectionSearchResults };

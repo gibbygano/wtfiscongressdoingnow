@@ -4,6 +4,8 @@ interface CongressionalBillSearchResult {
 	lastModified: Date;
 	packageId: string;
 	title: string;
+	docClass: string;
+	congress: number;
 }
 
 export type { CongressionalBillSearchResult };

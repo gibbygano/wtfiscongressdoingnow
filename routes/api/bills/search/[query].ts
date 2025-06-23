@@ -1,4 +1,4 @@
-import { CongressionalBills } from "types";
+import { BillsCollectionSearchResults } from "types";
 import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
 
@@ -16,6 +16,7 @@ const searchBills = async (query: string, pageSize: number, offsetMark: string) 
 			},
 		],
 		resultLevel: "package",
+		historical: false,
 	});
 
 	const resp = await fetch("https://api.govinfo.gov/search", {
@@ -24,13 +25,15 @@ const searchBills = async (query: string, pageSize: number, offsetMark: string) 
 		body: requestBody,
 	});
 	if (!resp.ok) {
-		throw new Error(resp.statusText);
+		throw new Error(
+			JSON.stringify({ url: resp.url, statusCode: resp.status, message: resp.statusText }),
+		);
 	}
 
 	return await resp.json();
 };
 
-export const handler: Handlers<CongressionalBills> = {
+export const handler: Handlers<BillsCollectionSearchResults> = {
 	async GET(req, ctx): Promise<Response> {
 		try {
 			const url = new URL(req.url);
@@ -44,7 +47,8 @@ export const handler: Handlers<CongressionalBills> = {
 			);
 			return new Response(JSON.stringify(bills));
 		} catch (error) {
-			return new Response(null, { status: 500, statusText: (error as Error).message });
+			console.error("[Search API Error]", (error as Error).message);
+			return new Response(JSON.stringify({ count: 0, results: null }));
 		}
 	},
 };

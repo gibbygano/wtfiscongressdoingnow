@@ -4,7 +4,7 @@ import useFetch from "./useFetch.ts";
 const useFetchSearchResults = (
 	search: string | null,
 	offsetMark: string,
-	pageSize: string,
+	pageSize: number,
 	callback: (responseObject: BillsCollectionSearchResults) => void,
 	enable: boolean,
 ) => {
@@ -12,7 +12,7 @@ const useFetchSearchResults = (
 		...useFetch(
 			`/api/bills/search/collection:(BILLS) and ${search}?${new URLSearchParams({
 				"offsetMark": offsetMark,
-				"pageSize": pageSize,
+				"pageSize": pageSize.toString(),
 			})}`,
 			callback,
 			enable,

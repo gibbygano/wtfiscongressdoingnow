@@ -1,5 +1,5 @@
 import { Footer, Header } from "components";
-import { Head, asset } from "$fresh/runtime.ts";
+import { asset, Head } from "$fresh/runtime.ts";
 
 import { PageProps } from "$fresh/server.ts";
 

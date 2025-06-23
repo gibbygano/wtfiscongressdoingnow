@@ -14,7 +14,7 @@ export default (
 	}: Props,
 ) => (
 	<div class="flex flex-col bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]n shadow-xl break-inside-avoid mb-5 bottom-0">
-		<div class="p-4 md:p-5 prose">
+		<div class="p-4 md:p-5 prose leading-6">
 			<h3 class="text-lg font-semibold text-gray-800 dark:text-white">
 				{headerText}
 			</h3>

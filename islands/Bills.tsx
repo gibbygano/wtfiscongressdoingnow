@@ -1,7 +1,6 @@
 import { BillsGrid, Status } from "components";
 
-import { Search } from "components";
-import { SearchResultsGrid } from "../components/SearchResultsGrid.tsx";
+import { BillsSearch } from "components";
 import { useBillsContext } from "context";
 import { useIntersectionObserver } from "hooks";
 
@@ -11,24 +10,14 @@ export default () => {
 	const { containerRef, isIntersecting } = useIntersectionObserver();
 	handleIntersection(isIntersecting);
 
-	const BillsContainer = () => {
-		if (isSearching && searchResults) {
-			return <SearchResultsGrid packages={searchResults.results} />;
-		}
-
-		if (bills) {
-			return <BillsGrid packages={bills.packages} />;
-		}
-
-		return null;
-	};
+	const packages = isSearching ? searchResults?.results : bills?.packages;
 
 	return (
 		<>
-			<Search />
+			<BillsSearch />
 			<Status error={error} loading={loading} fullscreen>
 				<div class="flex-1 flex flex-col">
-					<BillsContainer />
+					{packages && <BillsGrid packages={packages} />}
 					{!loading &&
 						(
 							<span

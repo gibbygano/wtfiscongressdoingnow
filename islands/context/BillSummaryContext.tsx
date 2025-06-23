@@ -1,5 +1,5 @@
 import type { Action, Member, Reference } from "types";
-import { JSX, createContext } from "preact";
+import { createContext, JSX } from "preact";
 import { useFetchActions, useFetchBillSummary } from "hooks";
 
 import type { Signal } from "@preact/signals";
@@ -86,4 +86,3 @@ const useBillSummaryContext = (): BillSummaryContextValue => {
 };
 
 export { BillSummaryContextProvider, useBillSummaryContext };
-
