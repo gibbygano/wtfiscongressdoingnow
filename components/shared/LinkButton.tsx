@@ -1,5 +1,5 @@
-import { JSX } from "preact/jsx-runtime";
 import { clsx } from "clsx";
+import { JSX } from "preact/jsx-runtime";
 
 interface Props extends JSX.HTMLAttributes<HTMLAnchorElement> {
 	href?: string;

@@ -1,16 +1,19 @@
-import { JSX, createContext } from "preact";
-
-import type { ExecutiveOrders } from "types";
 import type { Signal } from "@preact/signals";
-import { useContext } from "preact/hooks";
+import { useComputed, useSignal } from "@preact/signals";
 import { useFetchExecutiveOrders } from "hooks";
-import { useSignal } from "@preact/signals";
+import { createContext, JSX } from "preact";
+import { useContext } from "preact/hooks";
+import type { ExecutiveOrders } from "types";
 
 interface ExecutiveOrderContextValue {
 	executiveOrders: ExecutiveOrders | null;
+	count: number;
 	pageSignal: Signal<string>;
+	querySignal: Signal<string | null>;
 	loading: boolean;
-	error: Error | undefined;
+	isSearching: boolean;
+	clearSearchResults: () => void;
+	error: Error | null;
 }
 
 interface ExecutiveOrderContextProviderProps {
@@ -21,13 +24,17 @@ const ExecutiveOrderContext = createContext<ExecutiveOrderContextValue | null>(n
 
 const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProviderProps) => {
 	const executiveOrders = useSignal<ExecutiveOrders | null>(null);
+	const executiveOrdersResults = useSignal<ExecutiveOrders | null>(null);
 	const page = useSignal("1");
+	const query = useSignal<string | null>(null);
+	const isSearching = useComputed(() => (query.value?.length ?? 0) > 0);
+	const currentTarget = useComputed(() => isSearching ? executiveOrdersResults : executiveOrders);
 
 	const { loading, error } = useFetchExecutiveOrders(
 		(responseObject) => {
-			executiveOrders.value = {
-				results: executiveOrders.value
-					? [...executiveOrders.value?.results, ...responseObject.results]
+			currentTarget.value.value = {
+				results: currentTarget.value.value
+					? [...currentTarget.value.value?.results, ...responseObject.results]
 					: responseObject.results,
 				description: responseObject.description,
 				next_page_url: responseObject.next_page_url,
@@ -36,14 +43,24 @@ const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProvid
 			};
 		},
 		page.value,
+		query.value,
 	);
+
+	const clearSearchResults = () => {
+		query.value = null;
+		executiveOrdersResults.value = null;
+	};
 
 	return (
 		<ExecutiveOrderContext.Provider
 			value={{
-				executiveOrders: executiveOrders.value,
+				executiveOrders: currentTarget.value.value,
+				count: currentTarget.value.value?.count ?? 0,
 				pageSignal: page,
-				loading: loading ?? true,
+				clearSearchResults,
+				isSearching: isSearching.value,
+				querySignal: query,
+				loading: loading,
 				error,
 			}}
 		>
@@ -64,3 +81,4 @@ const useExecutiveOrderContext = (): ExecutiveOrderContextValue => {
 };
 
 export { ExecutiveOrderContextProvider, useExecutiveOrderContext };
+

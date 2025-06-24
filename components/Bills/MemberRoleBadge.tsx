@@ -1,5 +1,5 @@
+import { Badge } from "components/shared";
 import { Role } from "types";
-import { Badge } from "./shared/Badge.tsx";
 
 interface MemberRoleBadgeProps {
 	role: Role;
@@ -23,3 +23,4 @@ const MemberRoleBadge = ({ role }: MemberRoleBadgeProps) => {
 };
 
 export { MemberRoleBadge };
+

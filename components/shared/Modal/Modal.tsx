@@ -1,6 +1,6 @@
 import { JSX } from "preact";
-import { ModalButton } from "../Modal/ModalButton.tsx";
 import { useRef } from "preact/hooks";
+import { ModalButton } from "../Modal/ModalButton.tsx";
 
 interface ModalProps {
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);

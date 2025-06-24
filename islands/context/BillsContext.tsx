@@ -1,10 +1,9 @@
-import type { BillsCollectionSearchResults, CongressionalBills } from "types";
-import { createContext, JSX } from "preact";
-import { useComputed, useSignal } from "@preact/signals";
-import { useFetchBills, useFetchSearchResults } from "hooks";
-
 import type { Signal } from "@preact/signals";
+import { useComputed, useSignal } from "@preact/signals";
+import { useFetchBills, useFetchBillsSearchResults } from "hooks";
+import { createContext, JSX } from "preact";
 import { useContext } from "preact/hooks";
+import type { BillsCollectionSearchResults, CongressionalBills } from "types";
 
 interface BillsContextValue {
 	bills: CongressionalBills | null;
@@ -15,7 +14,7 @@ interface BillsContextValue {
 	resultsCount: number;
 	querySignal: Signal<string | null>;
 	loading: boolean;
-	error: Error | undefined;
+	error: Error | null;
 }
 
 interface BillsContextProviderProps {
@@ -55,7 +54,7 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 			},
 	);
 
-	const { loading: searchResultsLoading, error: searchError } = useFetchSearchResults(
+	const { loading: searchResultsLoading, error: searchError } = useFetchBillsSearchResults(
 		query.value,
 		offsetMark.value,
 		pageSize.value,
@@ -99,7 +98,7 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 				clearSearchResults: clearSearchResults,
 				handleIntersection: handleIntersection,
 				isSearching: isSearching.value,
-				loading: (loading ?? false) || (searchResultsLoading ?? false),
+				loading: loading || searchResultsLoading,
 				error: error || searchError,
 			}}
 		>
@@ -118,3 +117,4 @@ const useBillsContext = (): BillsContextValue => {
 };
 
 export { BillsContextProvider, useBillsContext };
+

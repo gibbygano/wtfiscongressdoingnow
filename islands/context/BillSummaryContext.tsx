@@ -1,11 +1,10 @@
-import type { Action, Member, Reference } from "types";
-import { createContext, JSX } from "preact";
-import { useFetchActions, useFetchBillSummary } from "hooks";
-
 import type { Signal } from "@preact/signals";
-import { uniqWith } from "es-toolkit";
-import { useContext } from "preact/hooks";
 import { useSignal } from "@preact/signals";
+import { uniqWith } from "es-toolkit";
+import { useFetchActions, useFetchBillSummary } from "hooks";
+import { createContext, JSX } from "preact";
+import { useContext } from "preact/hooks";
+import type { Action, Member, Reference } from "types";
 import { mapBillStatus } from "../../utilities/billStatusMapper.ts";
 
 interface BillSummaryContextValue {
@@ -19,9 +18,9 @@ interface BillSummaryContextValue {
 	references: Array<Reference> | null;
 	actions: Array<Action> | null;
 	summaryLoading: boolean;
-	summaryError: Error | undefined;
+	summaryError: Error | null;
 	actionsLoading: boolean;
-	actionsError: Error | undefined;
+	actionsError: Error | null;
 	cardHasInteractionSignal: Signal<boolean>;
 }
 
@@ -105,3 +104,4 @@ const useBillSummaryContext = (): BillSummaryContextValue => {
 };
 
 export { BillSummaryContextProvider, useBillSummaryContext };
+

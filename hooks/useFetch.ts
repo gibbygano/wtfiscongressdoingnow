@@ -2,10 +2,10 @@ import { useEffect } from "preact/hooks";
 import { useSignal } from "@preact/signals";
 
 interface Results {
-	loading: boolean | undefined;
+	loading: boolean;
 	status: number | undefined;
 	statusText: string | undefined;
-	error: Error | undefined;
+	error: Error | null;
 }
 
 interface Options {
@@ -23,10 +23,10 @@ export default <T>(
 		},
 	},
 ): Results => {
-	const loading = useSignal<boolean>();
-	const status = useSignal<number>(0);
+	const loading = useSignal(false);
+	const status = useSignal<number>();
 	const statusText = useSignal<string>();
-	const error = useSignal<Error>();
+	const error = useSignal<Error | null>(null);
 
 	const internalFetch = async (
 		url: string,

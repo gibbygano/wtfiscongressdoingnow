@@ -1,11 +1,11 @@
-import { RefObject } from "preact/src/index.d.ts";
-import { JSX } from "preact";
 import clsx from "clsx";
+import { JSX } from "preact";
+import { RefObject } from "preact/src/index.d.ts";
 
 interface TextInputProps extends JSX.HTMLAttributes<HTMLInputElement> {
 	label: string;
-	inputRef: RefObject<HTMLInputElement>;
 	showLoading?: boolean;
+	inputRef?: RefObject<HTMLInputElement>;
 }
 
 const TextInput = (
@@ -51,3 +51,4 @@ const TextInput = (
 };
 
 export { TextInput };
+

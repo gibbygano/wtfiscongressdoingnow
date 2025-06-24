@@ -34,6 +34,8 @@
 		"appConfig": "./config.ts",
 		"clsx": "https://esm.sh/clsx@2.1.1",
 		"components": "./components/index.ts",
+		"components/shared": "./components/shared/index.ts",
+		"components/Bills": "./components/Bills/index.ts",
 		"dayjs": "npm:dayjs",
 		"hooks": "./hooks/index.ts",
 		"humanizer/": "https://deno.land/x/humanizer@1.1/",

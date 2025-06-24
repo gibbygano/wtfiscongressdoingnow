@@ -4,7 +4,7 @@ import Loading from "./Loading.tsx";
 import clsx from "clsx";
 
 type Props = {
-	error: Error | undefined;
+	error: Error | null;
 	loading: boolean | undefined;
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
 	fullscreen?: boolean;

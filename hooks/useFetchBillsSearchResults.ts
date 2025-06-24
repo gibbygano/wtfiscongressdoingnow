@@ -1,7 +1,7 @@
 import type { BillsCollectionSearchResults } from "types";
 import useFetch from "./useFetch.ts";
 
-const useFetchSearchResults = (
+const useFetchBillsSearchResults = (
 	search: string | null,
 	offsetMark: string,
 	pageSize: number,
@@ -20,4 +20,5 @@ const useFetchSearchResults = (
 	};
 };
 
-export { useFetchSearchResults };
+export { useFetchBillsSearchResults };
+

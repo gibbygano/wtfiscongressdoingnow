@@ -1,6 +1,5 @@
-import { BillsGrid, Status } from "components";
-
-import { BillsSearch } from "components";
+import { BillsGrid, BillsSearch } from "components/Bills";
+import { Status } from "components/shared";
 import { useBillsContext } from "context";
 import { useIntersectionObserver } from "hooks";
 

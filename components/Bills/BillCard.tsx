@@ -1,10 +1,9 @@
+import { Card, LinkButton } from "components/shared";
 import { useBillSummaryContext } from "context";
-import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import dayjs from "dayjs";
+import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import "humanizer/ordinalize.ts";
-
 import { BillSummaryAccordion } from "islands";
-import { Card, LinkButton } from "components";
 import { CongressionalBill } from "types";
 
 const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
@@ -62,3 +61,4 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
 };
 
 export { BillCard };
+

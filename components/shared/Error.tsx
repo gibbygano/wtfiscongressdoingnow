@@ -1,5 +1,5 @@
-import { JSX } from "preact/jsx-runtime";
 import { clsx } from "clsx";
+import { JSX } from "preact/jsx-runtime";
 
 type Props = {
 	children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
