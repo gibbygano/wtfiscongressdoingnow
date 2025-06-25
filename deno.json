@@ -36,6 +36,7 @@
 		"components": "./components/index.ts",
 		"components/shared": "./components/shared/index.ts",
 		"components/Bills": "./components/Bills/index.ts",
+		"components/ExecutiveOrders": "./components/ExecutiveOrders/index.ts",
 		"dayjs": "npm:dayjs",
 		"hooks": "./hooks/index.ts",
 		"humanizer/": "https://deno.land/x/humanizer@1.1/",

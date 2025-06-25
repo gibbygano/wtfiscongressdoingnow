@@ -8,10 +8,10 @@ import type { ExecutiveOrders } from "types";
 interface ExecutiveOrderContextValue {
 	executiveOrders: ExecutiveOrders | null;
 	count: number;
-	pageSignal: Signal<string>;
 	querySignal: Signal<string | null>;
 	loading: boolean;
 	isSearching: boolean;
+	handleIntersection: (entries: IntersectionObserverEntry[]) => void;
 	clearSearchResults: () => void;
 	error: Error | null;
 }
@@ -51,12 +51,21 @@ const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProvid
 		executiveOrdersResults.value = null;
 	};
 
+	const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+		const [entry] = entries;
+		if (entry.isIntersecting && currentTarget.value.value?.next_page_url) {
+			page.value =
+				new URL(currentTarget.value.value.next_page_url).searchParams.get("page") ??
+					page.value;
+		}
+	};
+
 	return (
 		<ExecutiveOrderContext.Provider
 			value={{
 				executiveOrders: currentTarget.value.value,
 				count: currentTarget.value.value?.count ?? 0,
-				pageSignal: page,
+				handleIntersection,
 				clearSearchResults,
 				isSearching: isSearching.value,
 				querySignal: query,
@@ -81,4 +90,3 @@ const useExecutiveOrderContext = (): ExecutiveOrderContextValue => {
 };
 
 export { ExecutiveOrderContextProvider, useExecutiveOrderContext };
-

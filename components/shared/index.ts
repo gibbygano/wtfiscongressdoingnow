@@ -1,6 +1,7 @@
 import Accordion from "./Accordion.tsx";
 import { Badge } from "./Badge.tsx";
 import Card from "./Card.tsx";
+import { CardGrid } from "./CardGrid.tsx";
 import Error from "./Error.tsx";
 import { GroupedAccordionDetails } from "./GroupedAccordionDetails.tsx";
 import LinkButton from "./LinkButton.tsx";
@@ -15,6 +16,7 @@ export {
     Accordion,
     Badge,
     Card,
+    CardGrid,
     Error,
     GroupedAccordionDetails,
     LinkButton,

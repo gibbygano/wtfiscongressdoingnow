@@ -1,9 +1,9 @@
-import { Footer, Header } from "components";
 import { asset, Head } from "$fresh/runtime.ts";
+import { Footer, Header } from "components";
 
 import { PageProps } from "$fresh/server.ts";
 
-const App = ({ Component }: PageProps) => (
+const App = ({ Component, url }: PageProps) => (
 	<html lang="en">
 		<Head>
 			<meta charset="utf-8" />
@@ -39,7 +39,7 @@ const App = ({ Component }: PageProps) => (
 			<main class="w-full h-full flex flex-col flex-grow bg-linear-to-tr from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
 				<Component />
 			</main>
-			<Footer />
+			<Footer path={url.pathname} />
 		</body>
 	</html>
 );

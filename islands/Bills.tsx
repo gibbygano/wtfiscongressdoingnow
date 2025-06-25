@@ -6,9 +6,7 @@ import { useIntersectionObserver } from "hooks";
 export default () => {
 	const { bills, loading, error, searchResults, isSearching, handleIntersection } =
 		useBillsContext();
-	const { containerRef, isIntersecting } = useIntersectionObserver();
-	handleIntersection(isIntersecting);
-
+	const containerRef = useIntersectionObserver(handleIntersection);
 	const packages = isSearching ? searchResults?.results : bills?.packages;
 
 	return (

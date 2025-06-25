@@ -10,7 +10,7 @@ interface BillsContextValue {
 	searchResults: BillsCollectionSearchResults | null;
 	isSearching: boolean;
 	clearSearchResults: () => void;
-	handleIntersection: (isIntersecting: boolean) => void;
+	handleIntersection: (entries: IntersectionObserverEntry[]) => void;
 	resultsCount: number;
 	querySignal: Signal<string | null>;
 	loading: boolean;
@@ -69,8 +69,9 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 		isSearching.value,
 	);
 
-	const handleIntersection = (isIntersecting: boolean) => {
-		if (isIntersecting) {
+	const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+		const [entry] = entries;
+		if (entry.isIntersecting) {
 			if (
 				isSearching.value && searchResults.value?.offsetMark &&
 				searchResults.value.count > pageSize.value
@@ -117,4 +118,3 @@ const useBillsContext = (): BillsContextValue => {
 };
 
 export { BillsContextProvider, useBillsContext };
-

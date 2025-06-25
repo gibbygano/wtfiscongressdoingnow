@@ -11,5 +11,6 @@ export {
 	ExecutiveOrderContextProvider,
 	useBillsContext,
 	useBillSummaryContext,
-	useExecutiveOrderContext,
+	useExecutiveOrderContext
 };
+

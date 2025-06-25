@@ -1,17 +1,10 @@
 import { useEffect, useRef } from "preact/hooks";
 
-import { useSignal } from "@preact/signals";
-
 const useIntersectionObserver = (
+	callback: (entries: IntersectionObserverEntry[]) => void,
 	options: IntersectionObserverInit = { root: null, rootMargin: "0px", threshold: 1.0 },
 ) => {
-	const isIntersecting = useSignal(false);
 	const containerRef = useRef(null);
-
-	const callback = (entries: IntersectionObserverEntry[]) => {
-		const [entry] = entries;
-		isIntersecting.value = entry.isIntersecting;
-	};
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(callback, options);
@@ -26,7 +19,7 @@ const useIntersectionObserver = (
 		};
 	}, [containerRef, options]);
 
-	return { containerRef, isIntersecting: isIntersecting.value };
+	return containerRef;
 };
 
 export { useIntersectionObserver };

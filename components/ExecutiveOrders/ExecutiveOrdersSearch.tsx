@@ -1,6 +1,6 @@
+import { Search } from "components/shared";
 import { useExecutiveOrderContext } from "context";
 import { JSX } from "preact";
-import { Search } from "./shared/Search.tsx";
 
 const ExecutiveOrdersSearch = () => {
 	const { querySignal, clearSearchResults, count, loading, isSearching } =
