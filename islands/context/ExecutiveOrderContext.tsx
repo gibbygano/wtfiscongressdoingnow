@@ -47,8 +47,8 @@ const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProvid
 	);
 
 	const clearSearchResults = () => {
-		query.value = null;
 		executiveOrdersResults.value = null;
+		page.value = "1";
 	};
 
 	const handleIntersection = (entries: IntersectionObserverEntry[]) => {
