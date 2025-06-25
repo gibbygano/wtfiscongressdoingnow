@@ -10,7 +10,7 @@ const useFetchBillsSearchResults = (
 ) => {
 	return {
 		...useFetch(
-			`/api/bills/search/collection:(BILLS) and ${search}?${new URLSearchParams({
+			`/api/bills/search/collection:BILLS and ${search}?${new URLSearchParams({
 				"offsetMark": offsetMark,
 				"pageSize": pageSize.toString(),
 			})}`,

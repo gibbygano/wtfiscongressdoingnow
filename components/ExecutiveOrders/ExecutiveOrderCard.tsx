@@ -6,21 +6,26 @@ import type { ExecutiveOrder } from "types";
 const ExecutiveOrderCard = (
 	{ document_number, agencies, title, publication_date, pdf_url }: ExecutiveOrder,
 ) => {
+	const actionChildren = [];
+	if (pdf_url) {
+		actionChildren.push(
+			<LinkButton
+				label="Download PDF"
+				className="mt-7"
+				href={pdf_url.toString()}
+				target="_blank"
+				key={`${document_number}-pdfLink`}
+			>
+				<IconFileTypePdf class="w-8 h-8" />
+			</LinkButton>,
+		);
+	}
+
 	return (
 		<Card
 			key={`${document_number}-card`}
 			headerText={`${agencies[0].name} | ${document_number}`}
-			actionChildren={[
-				<LinkButton
-					label="Download PDF"
-					className="mt-7"
-					href={pdf_url.toString()}
-					target="_blank"
-					key={`${document_number}-pdfLink`}
-				>
-					<IconFileTypePdf class="w-8 h-8" />
-				</LinkButton>,
-			]}
+			actionChildren={actionChildren}
 		>
 			<blockquote class="dark:prose-invert line-clamp-6 text-pretty">
 				{title}
@@ -36,3 +41,4 @@ const ExecutiveOrderCard = (
 };
 
 export { ExecutiveOrderCard };
+

@@ -45,7 +45,7 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 		offsetSafe.value,
 		(congressionalBills) =>
 			bills.value = {
-				packages: bills.value
+				packages: bills.value?.packages
 					? [...bills.value?.packages, ...congressionalBills.packages]
 					: congressionalBills.packages,
 				count: bills.value?.count ?? 0 + congressionalBills.count,
@@ -60,7 +60,7 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 		pageSize.value,
 		(responseObject) =>
 			searchResults.value = {
-				results: searchResults.value
+				results: searchResults.value?.results
 					? [...searchResults.value.results, ...responseObject.results]
 					: responseObject.results,
 				count: responseObject.count,
