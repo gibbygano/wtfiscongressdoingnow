@@ -24,17 +24,15 @@ const ExecutiveOrderContext = createContext<ExecutiveOrderContextValue | null>(n
 
 const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProviderProps) => {
 	const executiveOrders = useSignal<ExecutiveOrders | null>(null);
-	const executiveOrdersResults = useSignal<ExecutiveOrders | null>(null);
 	const page = useSignal("1");
 	const query = useSignal<string | null>(null);
 	const isSearching = useComputed(() => (query.value?.length ?? 0) > 0);
-	const currentTarget = useComputed(() => isSearching ? executiveOrdersResults : executiveOrders);
 
 	const { loading, error } = useFetchExecutiveOrders(
 		(responseObject) => {
-			currentTarget.value.value = {
-				results: currentTarget.value.value
-					? [...currentTarget.value.value?.results, ...responseObject.results]
+			executiveOrders.value = {
+				results: executiveOrders.value
+					? [...executiveOrders.value?.results, ...responseObject.results]
 					: responseObject.results,
 				description: responseObject.description,
 				next_page_url: responseObject.next_page_url,
@@ -47,24 +45,23 @@ const ExecutiveOrderContextProvider = ({ children }: ExecutiveOrderContextProvid
 	);
 
 	const clearSearchResults = () => {
-		executiveOrdersResults.value = null;
+		executiveOrders.value = null;
 		page.value = "1";
 	};
 
 	const handleIntersection = (entries: IntersectionObserverEntry[]) => {
 		const [entry] = entries;
-		if (entry.isIntersecting && currentTarget.value.value?.next_page_url) {
-			page.value =
-				new URL(currentTarget.value.value.next_page_url).searchParams.get("page") ??
-					page.value;
+		if (entry.isIntersecting && executiveOrders.value?.next_page_url) {
+			page.value = new URL(executiveOrders.value.next_page_url).searchParams.get("page") ??
+				page.value;
 		}
 	};
 
 	return (
 		<ExecutiveOrderContext.Provider
 			value={{
-				executiveOrders: currentTarget.value.value,
-				count: currentTarget.value.value?.count ?? 0,
+				executiveOrders: executiveOrders.value,
+				count: executiveOrders.value?.count ?? 0,
 				handleIntersection,
 				clearSearchResults,
 				isSearching: isSearching.value,

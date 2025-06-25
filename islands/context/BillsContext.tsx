@@ -1,18 +1,20 @@
 import type { Signal } from "@preact/signals";
 import { useComputed, useSignal } from "@preact/signals";
-import { useFetchBills, useFetchBillsSearchResults } from "hooks";
+import { useFetchBillsSearchResults } from "hooks";
 import { createContext, JSX } from "preact";
 import { useContext } from "preact/hooks";
-import type { BillsCollectionSearchResults, CongressionalBills } from "types";
+import type { BillsCollectionSearchResults, Filter, Filters } from "types";
 
 interface BillsContextValue {
-	bills: CongressionalBills | null;
 	searchResults: BillsCollectionSearchResults | null;
 	isSearching: boolean;
 	clearSearchResults: () => void;
 	handleIntersection: (entries: IntersectionObserverEntry[]) => void;
+	addFilter: (filterType: string, filter: Filter) => void;
+	toggleFilter: (enabled: boolean, filterType: string) => void;
 	resultsCount: number;
-	querySignal: Signal<string | null>;
+	querySignal: Signal<string | undefined>;
+	filters: Filters;
 	loading: boolean;
 	error: Error | null;
 }
@@ -24,38 +26,23 @@ interface BillsContextProviderProps {
 const BillsContext = createContext<BillsContextValue | null>(null);
 
 const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
-	const bills = useSignal<CongressionalBills | null>(null);
 	const pageSize = useSignal(12);
-	const offsetUnsafe = useSignal<string | null>("0");
-	const offsetSafe = useComputed(() => offsetUnsafe.value ?? "0");
-
-	const searchResults = useSignal<BillsCollectionSearchResults | null>(null);
-	const query = useSignal<string | null>(null);
 	const offsetMark = useSignal("*");
+	const searchResults = useSignal<BillsCollectionSearchResults | null>(null);
+	const query = useSignal<string | undefined>();
 	const isSearching = useComputed(() => (query.value?.length ?? 0) > 0);
+	const filters = useSignal<Filters>({
+		collection: {
+			filterValue: "BILLS",
+			enabled: true,
+			visibleToUi: false,
+			label: "",
+		},
+	});
 
-	const fromDate = new Date("04/26/2023");
-	const fromDateISO = fromDate.toISOString().split(".")[0] + "Z";
-	const {
-		loading,
-		error,
-	} = useFetchBills(
-		fromDateISO,
-		pageSize.value,
-		offsetSafe.value,
-		(congressionalBills) =>
-			bills.value = {
-				packages: bills.value
-					? [...bills.value?.packages, ...congressionalBills.packages]
-					: congressionalBills.packages,
-				count: bills.value?.count ?? 0 + congressionalBills.count,
-				message: congressionalBills.message,
-				nextPage: congressionalBills.nextPage,
-			},
-	);
-
-	const { loading: searchResultsLoading, error: searchError } = useFetchBillsSearchResults(
+	const { loading, error } = useFetchBillsSearchResults(
 		query.value,
+		filters.value,
 		offsetMark.value,
 		pageSize.value,
 		(responseObject) =>
@@ -66,20 +53,16 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 				count: responseObject.count,
 				offsetMark: responseObject.offsetMark,
 			},
-		isSearching.value,
 	);
 
 	const handleIntersection = (entries: IntersectionObserverEntry[]) => {
 		const [entry] = entries;
 		if (entry.isIntersecting) {
 			if (
-				isSearching.value && searchResults.value?.offsetMark &&
+				searchResults.value?.offsetMark &&
 				searchResults.value.count > pageSize.value
 			) {
 				offsetMark.value = searchResults.value.offsetMark;
-			}
-			if (!isSearching.value && bills.value?.nextPage && bills.value.count > pageSize.value) {
-				offsetUnsafe.value = new URL(bills.value.nextPage).searchParams.get("offset");
 			}
 		}
 	};
@@ -89,18 +72,30 @@ const BillsContextProvider = ({ children }: BillsContextProviderProps) => {
 		offsetMark.value = "*";
 	};
 
+	const addFilter = (filterType: string, filter: Filter) => {
+		clearSearchResults();
+		filters.value[filterType] = filter;
+	};
+
+	const toggleFilter = (enabled: boolean, filterType: string) => {
+		clearSearchResults();
+		filters.value[filterType].enabled = enabled;
+	};
+
 	return (
 		<BillsContext.Provider
 			value={{
-				bills: isSearching.value ? null : bills.value,
 				searchResults: searchResults.value,
 				querySignal: query,
+				filters: filters.value,
 				resultsCount: searchResults.value?.count ?? 0,
+				addFilter,
+				toggleFilter,
 				clearSearchResults: clearSearchResults,
 				handleIntersection: handleIntersection,
 				isSearching: isSearching.value,
-				loading: loading || searchResultsLoading,
-				error: error || searchError,
+				loading,
+				error,
 			}}
 		>
 			{children}

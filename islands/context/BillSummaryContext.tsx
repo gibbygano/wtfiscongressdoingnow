@@ -1,10 +1,11 @@
 import type { Signal } from "@preact/signals";
 import { useSignal } from "@preact/signals";
+import { useBillsContext } from "context";
 import { uniqWith } from "es-toolkit";
 import { useFetchActions, useFetchBillSummary } from "hooks";
 import { createContext, JSX } from "preact";
 import { useContext } from "preact/hooks";
-import type { Action, Member, Reference } from "types";
+import type { Action, Filter, Member, Reference } from "types";
 import { mapBillStatus } from "../../utilities/billStatusMapper.ts";
 
 interface BillSummaryContextValue {
@@ -16,6 +17,7 @@ interface BillSummaryContextValue {
 	versionNumber?: string;
 	sponsors: Array<Member> | null;
 	references: Array<Reference> | null;
+	addFilter: (filterType: string, filter: Filter) => void;
 	actions: Array<Action> | null;
 	summaryLoading: boolean;
 	summaryError: Error | null;
@@ -70,6 +72,8 @@ const BillSummaryContextProvider = ({ packageId, children }: BillsSummaryContext
 		cardHasInteraction.value && !actions.value,
 	);
 
+	const { addFilter } = useBillsContext();
+
 	return (
 		<BillSummaryContext.Provider
 			value={{
@@ -79,6 +83,7 @@ const BillSummaryContextProvider = ({ packageId, children }: BillsSummaryContext
 				docId,
 				docStatus,
 				versionNumber,
+				addFilter,
 				sponsors: sponsors.value,
 				references: references.value,
 				summaryLoading: loading ?? true,
@@ -104,4 +109,3 @@ const useBillSummaryContext = (): BillSummaryContextValue => {
 };
 
 export { BillSummaryContextProvider, useBillSummaryContext };
-

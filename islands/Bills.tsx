@@ -4,17 +4,15 @@ import { useBillsContext } from "context";
 import { useIntersectionObserver } from "hooks";
 
 export default () => {
-	const { bills, loading, error, searchResults, isSearching, handleIntersection } =
-		useBillsContext();
+	const { loading, error, searchResults, handleIntersection } = useBillsContext();
 	const containerRef = useIntersectionObserver(handleIntersection);
-	const packages = isSearching ? searchResults?.results : bills?.packages;
 
 	return (
 		<>
 			<BillsSearch />
 			<Status error={error} loading={loading} fullscreen>
 				<div class="flex-1 flex flex-col">
-					{packages && <BillsGrid packages={packages} />}
+					{searchResults?.results && <BillsGrid packages={searchResults.results} />}
 					{!loading &&
 						(
 							<span

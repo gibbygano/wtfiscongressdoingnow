@@ -14,6 +14,7 @@ import {
 } from "./CongressionalBillSummary.ts";
 import type ExecutiveOrder from "./ExecutiveOrder.ts";
 import type { ExecutiveOrders } from "./ExecutiveOrders.ts";
+import type { Filter, Filters } from "./Filters.ts";
 import { type Member, Role } from "./Member.ts";
 import type Reference from "./Reference.ts";
 import type Subcommittee from "./Subcommittee.ts";
@@ -28,10 +29,10 @@ export type {
 	CongressionalBills,
 	CongressionalBillSummary,
 	ExecutiveOrder,
-	ExecutiveOrders,
-	Member,
+	ExecutiveOrders, Filter, Filters, Member,
 	Reference,
-	Subcommittee,
+	Subcommittee
 };
 
-export { CongressionalBillsDefault, CongressionalBillSummaryDefault, Role };
+	export { CongressionalBillsDefault, CongressionalBillSummaryDefault, Role };
+

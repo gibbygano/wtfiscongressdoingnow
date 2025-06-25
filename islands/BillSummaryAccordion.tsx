@@ -18,6 +18,7 @@ export default () => {
 		actionsLoading,
 		actionsError,
 		cardHasInteractionSignal,
+		addFilter,
 	} = useBillSummaryContext();
 
 	const sponsorSectionId = `${packageId}-sponsors`;
@@ -37,7 +38,19 @@ export default () => {
 						{sponsors || summaryLoading
 							? sponsors?.map(({ memberName, party, state, role }) => (
 								<p>
-									{memberName} - {party} {state}
+									<span
+										onClick={() =>
+											addFilter("member", {
+												filterValue: memberName,
+												enabled: true,
+												visibleToUi: true,
+												label: "Sponsor",
+											})}
+										class="hover:underline hover:cursor-pointer"
+									>
+										{memberName}
+									</span>{" "}
+									- {party} {state}
 									<br />
 									<MemberRoleBadge role={role} />
 								</p>

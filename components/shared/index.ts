@@ -8,6 +8,7 @@ import LinkButton from "./LinkButton.tsx";
 import Loading from "./Loading.tsx";
 import { Modal } from "./Modal/index.ts";
 import { Search } from "./Search.tsx";
+import { SearchWithFilter } from "./SearchWithFilter.tsx";
 import Select from "./Select.tsx";
 import Status from "./Status.tsx";
 import { TextInput } from "./TextInput.tsx";
@@ -23,6 +24,7 @@ export {
     Loading,
     Modal,
     Search,
+    SearchWithFilter,
     Select,
     Status,
     TextInput

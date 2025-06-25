@@ -1,10 +1,17 @@
-import { Search } from "components/shared";
+import { SearchWithFilter } from "components/shared";
 import { useBillsContext } from "context";
 import { JSX } from "preact";
 
 const BillsSearch = () => {
-	const { querySignal, clearSearchResults, isSearching, resultsCount, loading } =
-		useBillsContext();
+	const {
+		querySignal,
+		clearSearchResults,
+		toggleFilter,
+		isSearching,
+		resultsCount,
+		loading,
+		filters,
+	} = useBillsContext();
 
 	const handleSearch = (e: JSX.TargetedKeyboardEvent<HTMLInputElement>) => {
 		const target = e.target as HTMLInputElement;
@@ -24,7 +31,9 @@ const BillsSearch = () => {
 		: "Search Congressional Bills";
 
 	return (
-		<Search
+		<SearchWithFilter
+			toggleFilter={toggleFilter}
+			filters={filters}
 			label={label}
 			isLoading={loading && isSearching}
 			id="bills-search"
@@ -34,3 +43,4 @@ const BillsSearch = () => {
 };
 
 export { BillsSearch };
+
