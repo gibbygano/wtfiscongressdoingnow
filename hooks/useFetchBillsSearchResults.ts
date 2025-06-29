@@ -21,4 +21,3 @@ const useFetchBillsSearchResults = (
 };
 
 export { useFetchBillsSearchResults };
-

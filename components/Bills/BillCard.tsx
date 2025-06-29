@@ -61,4 +61,3 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
 };
 
 export { BillCard };
-

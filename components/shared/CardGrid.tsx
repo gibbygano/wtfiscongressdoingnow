@@ -19,4 +19,3 @@ const CardGrid = ({ children, id }: CardGridProps) => {
 };
 
 export { CardGrid };
-

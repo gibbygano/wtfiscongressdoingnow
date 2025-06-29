@@ -1,6 +1,6 @@
 import { CardGrid } from "components/shared";
+import type { ExecutiveOrder } from "types";
 import { ExecutiveOrderCard } from "./ExecutiveOrderCard.tsx";
-import ExecutiveOrder from "../../types/ExecutiveOrder.ts";
 
 interface ExecutiveOrdersGridProps {
 	executiveOrders: Array<ExecutiveOrder>;

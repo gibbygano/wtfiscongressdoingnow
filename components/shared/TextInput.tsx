@@ -51,4 +51,3 @@ const TextInput = (
 };
 
 export { TextInput };
-

@@ -4,4 +4,3 @@ import { BillsSearch } from "./BillsSearch.tsx";
 import { MemberRoleBadge } from "./MemberRoleBadge.tsx";
 
 export { BillCard, BillsGrid, BillsSearch, MemberRoleBadge };
-

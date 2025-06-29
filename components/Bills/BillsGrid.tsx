@@ -20,4 +20,3 @@ const BillsGrid = ({ packages }: BillsGridProps) => {
 };
 
 export { BillsGrid };
-

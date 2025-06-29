@@ -104,4 +104,3 @@ const useBillSummaryContext = (): BillSummaryContextValue => {
 };
 
 export { BillSummaryContextProvider, useBillSummaryContext };
-

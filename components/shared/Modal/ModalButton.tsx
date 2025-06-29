@@ -1,6 +1,5 @@
-import { JSX, RefObject } from "preact";
-
 import clsx from "clsx";
+import { JSX, RefObject } from "preact";
 
 interface ModalButtonProps {
 	dialogRef: RefObject<HTMLDialogElement>;

@@ -23,4 +23,3 @@ const MemberRoleBadge = ({ role }: MemberRoleBadgeProps) => {
 };
 
 export { MemberRoleBadge };
-

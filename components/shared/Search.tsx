@@ -39,4 +39,3 @@ const Search = ({ label, isLoading, id, callback }: SearchProps) => {
 };
 
 export { Search };
-

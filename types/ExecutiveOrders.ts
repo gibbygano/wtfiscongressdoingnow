@@ -7,4 +7,5 @@ interface ExecutiveOrders {
 	next_page_url: URL;
 	results: Array<ExecutiveOrder>;
 }
+
 export type { ExecutiveOrders };

@@ -13,6 +13,5 @@ export {
 	useFetchBillsSearchResults,
 	useFetchBillSummary,
 	useFetchExecutiveOrders,
-	useIntersectionObserver
+	useIntersectionObserver,
 };
-

@@ -1,29 +1,29 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --breakpoint-3xl: 160rem;
+	--breakpoint-3xl: 160rem;
 }
 
 @layer base {
-  details > div {
-    scrollbar-width: thin;
-  }
+	details > div {
+		scrollbar-width: thin;
+	}
 
-  details > summary {
-    list-style: none;
-  }
+	details > summary {
+		list-style: none;
+	}
 
-  details > summary::-webkit-details-marker {
-    display: none;
-  }
+	details > summary::-webkit-details-marker {
+		display: none;
+	}
 
-  html {
-    font-family: 'Montserrat', system-ui, sans-serif;
-  }
+	html {
+		font-family: "Montserrat", system-ui, sans-serif;
+	}
 
-  body {
-    overscroll-behavior: none;
-    touch-action: pan-y;
-  }
+	body {
+		overscroll-behavior: none;
+		touch-action: pan-y;
+	}
 }

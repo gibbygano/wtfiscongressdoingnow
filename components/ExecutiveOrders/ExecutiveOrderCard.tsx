@@ -1,6 +1,7 @@
 import { Card, LinkButton } from "components/shared";
 import dayjs from "dayjs";
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
+
 import type { ExecutiveOrder } from "types";
 
 const ExecutiveOrderCard = (
@@ -41,4 +42,3 @@ const ExecutiveOrderCard = (
 };
 
 export { ExecutiveOrderCard };
-
