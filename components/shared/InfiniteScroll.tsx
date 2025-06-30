@@ -15,7 +15,7 @@ const InfiniteScroll = ({ children, callback, enabled = true }: ObservedProps) =
 		<>
 			{children}
 			<span
-				class={clsx("h-0 w-0 overflow-hidden opacity-0 mb-1", { hidden: !enabled })}
+				class={clsx("h-0 w-0 overflow-hidden opacity-0 mb-44", { hidden: !enabled })}
 				ref={containerRef}
 			/>
 		</>

@@ -7,7 +7,7 @@ interface FooterProps {
 
 export default ({ path }: FooterProps) => {
 	return (
-		<footer class="z-20 fixed bottom-0 w-full bg-white/95 border-t border-gray-200 shadow flex items-center h-12 justify-between p-4 dark:bg-gray-700/95 dark:border-gray-600">
+		<footer class="z-20 fixed mt-auto bottom-0 w-full bg-white/95 border-t border-gray-200 shadow flex items-center h-12 justify-between p-4 dark:bg-gray-700/95 dark:border-gray-600">
 			<span class="text-sm text-gray-500 dark:text-gray-400 items-center">
 				<a
 					href="https://github.com/gibbygano/wtfiscongressdoingnow"
