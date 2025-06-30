@@ -5,7 +5,7 @@ interface CardGridProps {
 	id: string;
 }
 
-const CardGrid = ({ children, id }: CardGridProps) => {
+const Grid = ({ children, id }: CardGridProps) => {
 	return (
 		<div class="pb-16 flex-1">
 			<div
@@ -18,4 +18,4 @@ const CardGrid = ({ children, id }: CardGridProps) => {
 	);
 };
 
-export { CardGrid };
+export { Grid };

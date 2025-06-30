@@ -1,9 +1,9 @@
 import Accordion from "./Accordion.tsx";
 import { Badge } from "./Badge.tsx";
 import Card from "./Card.tsx";
-import { CardGrid } from "./CardGrid.tsx";
+import { Grid } from "./Grid.tsx";
 import Error from "./Error.tsx";
-import { GroupedAccordionDetails } from "./GroupedAccordionDetails.tsx";
+import { GroupedDetails } from "./GroupedDetails.tsx";
 import { InfiniteScroll } from "./InfiniteScroll.tsx";
 import LinkButton from "./LinkButton.tsx";
 import Loading from "./Loading.tsx";
@@ -17,9 +17,9 @@ export {
 	Accordion,
 	Badge,
 	Card,
-	CardGrid,
 	Error,
-	GroupedAccordionDetails,
+	Grid,
+	GroupedDetails,
 	InfiniteScroll,
 	LinkButton,
 	Loading,

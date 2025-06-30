@@ -8,7 +8,7 @@ interface DetailsProps {
 	icon: JSX.Element;
 }
 
-const GroupedAccordionDetails = (
+const GroupedDetails = (
 	{ sectionId, packageId, icon, title, children }: DetailsProps,
 ) => {
 	return (
@@ -48,4 +48,4 @@ const GroupedAccordionDetails = (
 	);
 };
 
-export { GroupedAccordionDetails };
+export { GroupedDetails };

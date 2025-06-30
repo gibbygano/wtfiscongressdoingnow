@@ -12,9 +12,7 @@ import * as $api_bills_summary_packageId_ from "./routes/api/bills/summary/[pack
 import * as $api_eo_index from "./routes/api/eo/index.ts";
 import * as $executive_orders from "./routes/executive-orders.tsx";
 import * as $index from "./routes/index.tsx";
-import * as $BillSummaryAccordion from "./islands/BillSummaryAccordion.tsx";
 import * as $Bills from "./islands/Bills.tsx";
-import * as $BillsNav from "./islands/BillsNav.tsx";
 import * as $ExecutiveOrders from "./islands/ExecutiveOrders.tsx";
 import * as $context_BillSummaryContext from "./islands/context/BillSummaryContext.tsx";
 import * as $context_BillsContext from "./islands/context/BillsContext.tsx";
@@ -38,9 +36,7 @@ const manifest = {
 		"./routes/index.tsx": $index,
 	},
 	islands: {
-		"./islands/BillSummaryAccordion.tsx": $BillSummaryAccordion,
 		"./islands/Bills.tsx": $Bills,
-		"./islands/BillsNav.tsx": $BillsNav,
 		"./islands/ExecutiveOrders.tsx": $ExecutiveOrders,
 		"./islands/context/BillSummaryContext.tsx": $context_BillSummaryContext,
 		"./islands/context/BillsContext.tsx": $context_BillsContext,

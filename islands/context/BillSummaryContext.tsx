@@ -5,7 +5,7 @@ import { useFetchActions, useFetchBillSummary } from "hooks";
 import { createContext, JSX } from "preact";
 import { useContext } from "preact/hooks";
 import type { Action, Member, Reference } from "types";
-import { mapBillStatus } from "../../utilities/billStatusMapper.ts";
+import { mapBillStatus } from "utils";
 
 interface BillSummaryContextValue {
 	packageId: string;

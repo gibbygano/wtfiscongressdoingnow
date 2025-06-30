@@ -1,14 +1,13 @@
 import { MemberRoleBadge } from "components/Bills";
-import { GroupedAccordionDetails, Status } from "components/shared";
-import { useBillSummaryContext } from "context";
+import { GroupedDetails, Status } from "components/shared";
 import dayjs from "dayjs";
 import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
 import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
 import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
-
 import type { Action } from "types";
+import { useBillSummaryContext } from "context";
 
-export default () => {
+const BillSummaryAccordion = () => {
 	const {
 		packageId,
 		sponsors,
@@ -27,7 +26,7 @@ export default () => {
 
 	return (
 		<div onFocusInCapture={() => cardHasInteractionSignal.value = true}>
-			<GroupedAccordionDetails
+			<GroupedDetails
 				packageId={packageId}
 				title="Sponsors"
 				icon={<IconUsersGroup class="w-6 h-6" />}
@@ -46,8 +45,8 @@ export default () => {
 							: <p>No sponsers, check back later.</p>}
 					</div>
 				</Status>
-			</GroupedAccordionDetails>
-			<GroupedAccordionDetails
+			</GroupedDetails>
+			<GroupedDetails
 				packageId={packageId}
 				title="References"
 				icon={<IconBook class="w-6 h-6" />}
@@ -84,8 +83,8 @@ export default () => {
 							: <p>No references, check back later.</p>}
 					</div>
 				</Status>
-			</GroupedAccordionDetails>
-			<GroupedAccordionDetails
+			</GroupedDetails>
+			<GroupedDetails
 				packageId={packageId}
 				title="Actions"
 				icon={<IconFileStack class="w-6 h-6" />}
@@ -105,7 +104,9 @@ export default () => {
 							: <p>No actions, check back later.</p>}
 					</div>
 				</Status>
-			</GroupedAccordionDetails>
+			</GroupedDetails>
 		</div>
 	);
 };
+
+export { BillSummaryAccordion };

@@ -3,7 +3,7 @@ import { useBillSummaryContext } from "context";
 import dayjs from "dayjs";
 import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
 import "humanizer/ordinalize.ts";
-import { BillSummaryAccordion } from "islands";
+import { BillSummaryAccordion } from "./BillSummaryAccordion.tsx";
 import { CongressionalBill } from "types";
 
 const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
