@@ -34,7 +34,7 @@ const App = ({ Component, url }: PageProps) => (
 			/>
 			<link defer rel="stylesheet" href={asset("/styles.css")} />
 		</Head>
-		<body class="min-h-screen max-h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
+		<body class="max-h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
 			<Header />
 			<main class="max-w-screen mb-12 md:overflow-y-auto">
 				<Component />
