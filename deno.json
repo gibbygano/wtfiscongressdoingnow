@@ -1,42 +1,50 @@
 {
-	"tasks": {
-		"check": "deno fmt --check && deno lint && deno check",
-		"start": "deno run -A --watch=static/,routes/ dev.ts",
-		"build": "deno run -A dev.ts build",
-		"preview": "deno serve -A _fresh/server.js",
-		"update": "deno run -A -r jsr:@fresh/update ."
-	},
-	"lint": { "rules": { "tags": ["fresh", "recommended"] } },
-	"exclude": ["**/_fresh/*"],
-	"imports": {
-		"es-toolkit": "jsr:@es-toolkit/es-toolkit@^1.39.4",
-		"@pakornv/fresh-plugin-tailwindcss": "jsr:@pakornv/fresh-plugin-tailwindcss",
-		"@preact/signals": "npm:@preact/signals@^2.3.1",
-		"preact": "npm:preact@^10.27.2",
-		"preact/": "https://esm.sh/preact@10.24.2/",
-		"@std/dotenv": "jsr:@std/dotenv@^0.225.2",
-		"appConfig": "./config.ts",
-		"clsx": "https://esm.sh/clsx@2.1.1",
-		"components": "./components/index.ts",
-		"components/shared": "./components/shared/index.ts",
-		"components/Bills": "./components/Bills/index.ts",
-		"components/ExecutiveOrders": "./components/ExecutiveOrders/index.ts",
-		"context": "./islands/context/index.ts",
-		"dayjs": "npm:dayjs",
-		"hooks": "./hooks/index.ts",
-		"humanizer/": "https://deno.land/x/humanizer@1.1/",
-		"islands": "./islands/index.ts",
-		"types": "./types/index.ts",
-		"tailwindcss": "npm:tailwindcss@^4.1.7",
-		"@tailwindcss/typography": "npm:@tailwindcss/typography",
-		"utils": "./utilities/index.ts",
-		"fresh": "jsr:@fresh/core@^2.1.1"
-	},
-	"compilerOptions": {
-		"jsx": "precompile",
-		"jsxImportSource": "preact",
-		"jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head"]
-	},
-	"fmt": { "useTabs": true, "lineWidth": 100, "indentWidth": 4, "semiColons": true },
-	"nodeModulesDir": "auto"
+  "tasks": {
+    "check": "deno fmt --check && deno lint && deno check",
+    "build": "vite build",
+    "preview": "deno serve -A _fresh/server.js",
+    "dev": "vite",
+    "update": "deno run -A -r jsr:@fresh/update ."
+  },
+  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
+  "exclude": ["**/_fresh/*"],
+  "imports": {
+    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.4",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.13",
+    "es-toolkit": "jsr:@es-toolkit/es-toolkit@^1.39.4",
+    "@pakornv/fresh-plugin-tailwindcss": "jsr:@pakornv/fresh-plugin-tailwindcss",
+    "@preact/signals": "npm:@preact/signals@^2.3.1",
+    "preact": "npm:preact@^10.27.2",
+    "preact/": "https://esm.sh/preact@10.24.2/",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "appConfig": "./config.ts",
+    "clsx": "https://esm.sh/clsx@2.1.1",
+    "components": "./components/index.ts",
+    "components/shared": "./components/shared/index.ts",
+    "components/Bills": "./components/Bills/index.ts",
+    "components/ExecutiveOrders": "./components/ExecutiveOrders/index.ts",
+    "context": "./islands/context/index.ts",
+    "dayjs": "npm:dayjs",
+    "hooks": "./hooks/index.ts",
+    "humanizer/": "https://deno.land/x/humanizer@1.1/",
+    "islands": "./islands/index.ts",
+    "types": "./types/index.ts",
+    "tailwindcss": "npm:tailwindcss@^4.1.7",
+    "@tailwindcss/typography": "npm:@tailwindcss/typography",
+    "utils": "./utilities/index.ts",
+    "fresh": "jsr:@fresh/core@^2.1.1",
+    "vite": "npm:vite@^7.1.6"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "preact",
+    "jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head"]
+  },
+  "fmt": {
+    "useTabs": true,
+    "lineWidth": 100,
+    "indentWidth": 4,
+    "semiColons": true
+  },
+  "nodeModulesDir": "auto"
 }
