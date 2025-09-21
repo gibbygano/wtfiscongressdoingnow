@@ -1,9 +1,7 @@
 import { MemberRoleBadge } from "components/Bills";
 import { GroupedDetails, Status } from "components/shared";
-import dayjs from "dayjs";
-import IconBook from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/book.tsx";
-import IconFileStack from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-stack.tsx";
-import IconUsersGroup from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/users-group.tsx";
+import "dayjs";
+import {TbBook, TbFileStack, TbUsersGroup} from "@preact-icons/tb"
 import type { Action } from "types";
 import { useBillSummaryContext } from "context";
 
@@ -29,7 +27,7 @@ const BillSummaryAccordion = () => {
 			<GroupedDetails
 				packageId={packageId}
 				title="Sponsors"
-				icon={<IconUsersGroup class="w-6 h-6" />}
+				icon={<TbUsersGroup class="w-6 h-6" />}
 				sectionId={sponsorSectionId}
 			>
 				<Status error={summaryError} loading={summaryLoading}>
@@ -49,7 +47,7 @@ const BillSummaryAccordion = () => {
 			<GroupedDetails
 				packageId={packageId}
 				title="References"
-				icon={<IconBook class="w-6 h-6" />}
+				icon={<TbBook class="w-6 h-6" />}
 				sectionId={referenceSectionId}
 			>
 				<Status error={summaryError} loading={summaryLoading}>
@@ -87,7 +85,7 @@ const BillSummaryAccordion = () => {
 			<GroupedDetails
 				packageId={packageId}
 				title="Actions"
-				icon={<IconFileStack class="w-6 h-6" />}
+				icon={<TbFileStack class="w-6 h-6" />}
 				sectionId={actionSectionId}
 			>
 				<Status error={actionsError} loading={actionsLoading}>

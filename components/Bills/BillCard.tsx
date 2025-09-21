@@ -1,10 +1,10 @@
 import { Card, LinkButton } from "components/shared";
 import { useBillSummaryContext } from "context";
-import dayjs from "dayjs";
-import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
-import "humanizer/ordinalize.ts";
+import "dayjs";
+import {TbFileTypePdf} from "@preact-icons/tb"
 import { BillSummaryAccordion } from "./BillSummaryAccordion.tsx";
 import { CongressionalBill } from "types";
+import { ordinalize } from "utils";
 
 const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
 	const { docClass, docId, docStatus, congress, packageId, versionNumber } =
@@ -26,7 +26,7 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
 					label="Download PDF"
 					rel="noreferrer"
 				>
-					<IconFileTypePdf class="w-8 h-8" />
+					<TbFileTypePdf class="w-8 h-8" />
 				</LinkButton>,
 			]}
 		>
@@ -38,11 +38,11 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
 				<br />
 				{versionNumber && (
 					<>
-						{`${versionNumber.ordinalize()} Version`}
+						{`${ordinalize(versionNumber)} Version`}
 						<br />
 					</>
 				)}
-				{congress.ordinalize()} Congress
+				{ordinalize(congress)} Congress
 			</p>
 			<p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
 				Date Issued:{" "}

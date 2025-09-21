@@ -1,6 +1,6 @@
 import { Card, LinkButton } from "components/shared";
-import dayjs from "dayjs";
-import IconFileTypePdf from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/file-type-pdf.tsx";
+import "dayjs";
+import {TbFileTypePdf} from "@preact-icons/tb"
 
 import type { ExecutiveOrder } from "types";
 
@@ -21,7 +21,7 @@ const ExecutiveOrderCard = ({
         target="_blank"
         key={`${document_number}-pdfLink`}
       >
-        <IconFileTypePdf class="w-8 h-8" />
+        <TbFileTypePdf class="w-8 h-8" />
       </LinkButton>,
     );
   }

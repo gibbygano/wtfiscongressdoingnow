@@ -1,5 +1,5 @@
 import { asset } from "fresh/runtime";
-import IconBrandGithub from "https://deno.land/x/tabler_icons_tsx@0.0.5/tsx/brand-github.tsx";
+import {TbBrandGithub} from "@preact-icons/tb"
 
 interface FooterProps {
 	path: string;
@@ -16,7 +16,7 @@ export default ({ path }: FooterProps) => {
 					class="hover:underline"
 					title="Open https://github.com/gibbygano/wtfiscongressdoingnow in a New Tab"
 				>
-					<IconBrandGithub class="w-8 h-8" />
+					<TbBrandGithub class="w-8 h-8" />
 				</a>
 			</span>
 			<ul class="flex md:flex-wrap items-center md:justify-around text-sm font-medium text-gray-500 dark:text-gray-400">
