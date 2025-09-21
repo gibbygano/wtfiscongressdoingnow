@@ -1,11 +1,10 @@
-import { asset, Head } from "fresh/runtime";
+import { asset } from "fresh/runtime";
 import { Footer, Header } from "components";
+import { define } from "../utils.ts";
 
-import { PageProps } from "fresh";
-
-const App = ({ Component, url }: PageProps) => (
+const App = define.page(({ Component, url }) => (
   <html lang="en">
-    <Head>
+    <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="WTF Is Congress Doing Now?" />
@@ -33,7 +32,7 @@ const App = ({ Component, url }: PageProps) => (
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       />
       <link defer rel="stylesheet" href={asset("/styles.css")} />
-    </Head>
+    </head>
     <body class="max-h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
       <Header />
       <main class="max-w-screen mb-12 md:overflow-y-auto">
@@ -42,6 +41,6 @@ const App = ({ Component, url }: PageProps) => (
       <Footer path={url.pathname} />
     </body>
   </html>
-);
+));
 
 export default App;
