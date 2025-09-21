@@ -1,5 +1,5 @@
-import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
+import { Handlers } from "fresh/compat";
 
 const fetchDoc = async (packageId: string, docType: string | null) => {
 	if (!docType) throw new Error("Request document type must be defined");
@@ -28,7 +28,8 @@ const fetchDoc = async (packageId: string, docType: string | null) => {
 };
 
 export const handler: Handlers<Blob> = {
-	async GET(req, ctx) {
+	async GET(ctx) {
+		const req = ctx.req;
 		const url = new URL(req.url);
 		const docType = url.searchParams.get("docType");
 		const doc = await fetchDoc(ctx.params.packageId, docType);

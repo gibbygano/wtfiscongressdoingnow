@@ -1,7 +1,7 @@
-import { asset, Head } from "$fresh/runtime.ts";
+import { asset, Head } from "fresh/runtime";
 import { Footer, Header } from "components";
 
-import { PageProps } from "$fresh/server.ts";
+import { PageProps } from "fresh";
 
 const App = ({ Component, url }: PageProps) => (
 	<html lang="en">

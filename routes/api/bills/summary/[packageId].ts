@@ -1,6 +1,6 @@
 import { CongressionalBillSummary } from "types";
-import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
+import { Handlers } from "fresh/compat";
 
 const fetchRelatedInfo = async (packageId: string) => {
 	const { DataGovAPIKey } = getAppConfig();
@@ -22,7 +22,7 @@ const fetchRelatedInfo = async (packageId: string) => {
 };
 
 export const handler: Handlers<CongressionalBillSummary> = {
-	async GET(_req, ctx) {
+	async GET(ctx) {
 		const data = await fetchRelatedInfo(ctx.params.packageId);
 		return new Response(JSON.stringify(data));
 	},

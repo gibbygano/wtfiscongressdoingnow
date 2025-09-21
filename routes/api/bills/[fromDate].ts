@@ -1,6 +1,6 @@
 import { CongressionalBills } from "types";
-import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
+import { Handlers } from "fresh/compat";
 
 const fetchBills = async (fromDate: string, pageSize: string, offset: string) => {
 	const { DataGovAPIKey } = getAppConfig();
@@ -25,7 +25,9 @@ const fetchBills = async (fromDate: string, pageSize: string, offset: string) =>
 };
 
 export const handler: Handlers<CongressionalBills> = {
-	async GET(req, ctx): Promise<Response> {
+	async GET(ctx): Promise<Response> {
+		const req = ctx.req;
+
 		try {
 			const url = new URL(req.url);
 			const pageSize = url.searchParams.get("pageSize");

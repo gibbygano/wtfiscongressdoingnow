@@ -1,6 +1,6 @@
 import { Action } from "types";
-import { Handlers } from "$fresh/server.ts";
 import { getAppConfig } from "appConfig";
+import { Handlers } from "fresh/compat";
 
 const fetchActions = async (congress: string, type: string, number: string) => {
 	const { DataGovAPIKey } = getAppConfig();
@@ -24,7 +24,7 @@ const fetchActions = async (congress: string, type: string, number: string) => {
 };
 
 export const handler: Handlers<Action[]> = {
-	async GET(_req, ctx): Promise<Response> {
+	async GET(ctx): Promise<Response> {
 		try {
 			const actions = await fetchActions(
 				ctx.params.congress,
