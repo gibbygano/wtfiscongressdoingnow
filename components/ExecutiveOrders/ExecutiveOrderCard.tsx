@@ -1,6 +1,6 @@
 import { Card, LinkButton } from "components/shared";
 import "dayjs";
-import {TbFileTypePdf} from "@preact-icons/tb"
+import { TbFileTypePdf } from "@preact-icons/tb";
 
 import type { ExecutiveOrder } from "types";
 
