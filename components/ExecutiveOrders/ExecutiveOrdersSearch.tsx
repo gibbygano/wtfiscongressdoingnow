@@ -1,12 +1,12 @@
 import { Search } from "components/shared";
 import { useExecutiveOrderContext } from "context";
-import { JSX } from "preact";
+import { TargetedKeyboardEvent } from "preact";
 
 const ExecutiveOrdersSearch = () => {
   const { querySignal, clearSearchResults, count, loading, isSearching } =
     useExecutiveOrderContext();
 
-  const handleSearch = (e: JSX.TargetedKeyboardEvent<HTMLInputElement>) => {
+  const handleSearch = (e: TargetedKeyboardEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const currentQueryLength = target.value?.length ?? 0;
     const newValue = target?.value.trim() ?? null;

@@ -14,8 +14,8 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
     <Card
       key={`${packageId}-card`}
       headerText={`${docClass} ${docId}`}
+      bodyChildren={[<BillSummaryAccordion key={`${packageId}-accordion`} />]}
       actionChildren={[
-        <BillSummaryAccordion key={`${packageId}-accordion`} />,
         <LinkButton
           key={`${packageId}-pdf`}
           className="mt-7"
