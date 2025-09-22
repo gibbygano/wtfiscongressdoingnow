@@ -1,7 +1,7 @@
 export default interface Reference {
-  contents: Array<{
-    label: string;
-    title: string;
-    sections: Array<string>;
-  }>;
+	contents: Array<{
+		label: string;
+		title: string;
+		sections: Array<string>;
+	}>;
 }
