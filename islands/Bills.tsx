@@ -1,4 +1,4 @@
-import { BillsGrid, BillsSearch } from "components/Bills";
+import { BillsTable, BillsSearch } from "components/Bills";
 import { InfiniteScroll, Status } from "components/shared";
 import { useBillsContext } from "context";
 
@@ -20,7 +20,7 @@ export default () => {
         <div class="flex-1 flex flex-col">
           {packages && (
             <InfiniteScroll enabled={!loading} callback={handleIntersection}>
-              <BillsGrid packages={packages} />
+              <BillsTable packages={packages} />
             </InfiniteScroll>
           )}
         </div>

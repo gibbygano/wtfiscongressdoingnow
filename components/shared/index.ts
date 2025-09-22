@@ -12,6 +12,8 @@ import { Search } from "./Search.tsx";
 import Select from "./Select.tsx";
 import Status from "./Status.tsx";
 import { TextInput } from "./TextInput.tsx";
+import Table from "./Table.tsx";
+import Collapse from "./Collapse.tsx";
 
 export {
   Accordion,
@@ -28,4 +30,6 @@ export {
   Select,
   Status,
   TextInput,
+  Table,
+  Collapse,
 };
