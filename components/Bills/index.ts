@@ -7,11 +7,11 @@ import BillsTable from "./BillsTable.tsx";
 import BillTableCollapse from "./BillTableCollapse.tsx";
 
 export {
-	BillCard,
-	BillsGrid,
-	BillsSearch,
-	BillsTable,
-	BillSummaryAccordion,
-	BillTableCollapse,
-	MemberRoleBadge,
+  BillCard,
+  BillsGrid,
+  BillsSearch,
+  BillsTable,
+  BillSummaryAccordion,
+  BillTableCollapse,
+  MemberRoleBadge,
 };
