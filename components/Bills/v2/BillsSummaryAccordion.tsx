@@ -25,9 +25,10 @@ const BillsSummaryAccordion = () => {
         id={`${packageId}-sponsors`}
         joinName={joinName}
         collapseTitle={
-          <>
-            Sponsors <TbUsersGroup />
-          </>
+          <span class="flex items-center">
+            <TbUsersGroup />
+            &nbsp; Sponsors
+          </span>
         }
       >
         <Status error={summaryError} loading={summaryLoading}>
@@ -50,9 +51,10 @@ const BillsSummaryAccordion = () => {
         id={`${packageId}-references`}
         joinName={joinName}
         collapseTitle={
-          <>
-            References <TbBook />
-          </>
+          <span class="flex items-center">
+            <TbBook />
+            &nbsp; References
+          </span>
         }
       >
         <Status error={summaryError} loading={summaryLoading}>
@@ -94,9 +96,10 @@ const BillsSummaryAccordion = () => {
         id={`${packageId}-actions`}
         joinName={joinName}
         collapseTitle={
-          <>
-            Actions <TbFileStack />
-          </>
+          <span class="flex items-center">
+            <TbFileStack />
+            &nbsp; Actions
+          </span>
         }
       >
         <Status error={actionsError} loading={actionsLoading}>

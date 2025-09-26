@@ -13,7 +13,7 @@ const Collapse: FunctionComponent<collapseProps> = ({
       class="collapse collapse-arrow join-item bg-base-100 border border-base-300"
     >
       <input type="radio" name={joinName} />
-      <div class="collapse-title">{collapseTitle}</div>
+      <div class="collapse-title text-base">{collapseTitle}</div>
       <div class="collapse-content">{children}</div>
     </div>
   );

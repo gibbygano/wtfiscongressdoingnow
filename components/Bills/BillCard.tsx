@@ -2,7 +2,7 @@ import { Card, LinkButton } from "components/shared";
 import { useBillSummaryContext } from "context";
 import "dayjs";
 import { TbFileTypePdf } from "@preact-icons/tb";
-import BillSummaryAccordion from "./v2/BillsSummaryAccordion.tsx";
+import { BillSummaryAccordion } from "./BillSummaryAccordion.tsx";
 import { CongressionalBill } from "types";
 import { ordinalize } from "utils";
 
