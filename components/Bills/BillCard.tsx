@@ -18,7 +18,6 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
       actionChildren={[
         <LinkButton
           key={`${packageId}-pdf`}
-          className="mt-7"
           href={`/api/bills/download/${packageId}?docType=pdf`}
           target="_PDF"
           label="Download PDF"

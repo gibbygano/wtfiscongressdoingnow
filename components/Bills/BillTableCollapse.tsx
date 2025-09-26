@@ -15,13 +15,14 @@ const BillTableCollapse = ({
     useBillSummaryContext();
 
   const collapseTitle = (
-    <tr>
+    <>
       <td aria-name="name">
         {docClass} {docId}
       </td>
       <td aria-name="title">{title}</td>
       <td aria-name="status">
-        {docStatus} {versionNumber && (
+        {docStatus}{" "}
+        {versionNumber && (
           <>
             <br />
             {`${ordinalize(versionNumber)} Version`}
@@ -33,13 +34,15 @@ const BillTableCollapse = ({
       <td aria-name="lastchange">
         {dayjs(lastModified).format(dateFormatString)}
       </td>
-    </tr>
+    </>
   );
 
   return (
-    <Collapse packageId={packageId} collapseTitle={collapseTitle}>
-      Sponsors Here References Here Actions Here
-    </Collapse>
+    <tr>
+      <Collapse packageId={packageId} collapseTitle={collapseTitle}>
+        Sponsors Here References Here Actions Here
+      </Collapse>
+    </tr>
   );
 };
 
