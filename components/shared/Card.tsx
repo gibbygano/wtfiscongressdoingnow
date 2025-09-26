@@ -24,7 +24,7 @@ export default ({
   actionChildren,
 }: Props) => (
   <div class="flex flex-col card card-border bg-white border rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]n shadow-xl break-inside-avoid mb-5 bottom-0">
-    <div class="card-body">
+    <div class="card-body p-9">
       <div class="prose leading-6">
         <h3 class="text-lg card-title font-semibold text-gray-800 dark:text-white">
           {headerText}

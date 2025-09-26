@@ -1,7 +1,7 @@
-import { GenericEventHandler, JSX } from "preact";
+import { GenericEventHandler, ComponentChildren } from "preact";
 
 type Props = {
-  children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+  children: ComponentChildren;
   label: string;
   inputId: string;
   value: string;

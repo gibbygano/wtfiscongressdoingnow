@@ -1,35 +1,15 @@
-import Accordion from "./Accordion.tsx";
-import { Badge } from "./Badge.tsx";
-import Card from "./Card.tsx";
-import { Grid } from "./Grid.tsx";
-import Error from "./Error.tsx";
-import { GroupedDetails } from "./GroupedDetails.tsx";
-import { InfiniteScroll } from "./InfiniteScroll.tsx";
-import LinkButton from "./LinkButton.tsx";
-import Loading from "./Loading.tsx";
-import { Modal } from "./Modal/index.ts";
-import { Search } from "./Search.tsx";
-import Select from "./Select.tsx";
-import Status from "./Status.tsx";
-import { TextInput } from "./TextInput.tsx";
-import Table from "./Table.tsx";
-import Collapse from "./Collapse.tsx";
-
-export {
-  Accordion,
-  Badge,
-  Card,
-  Collapse,
-  Error,
-  Grid,
-  GroupedDetails,
-  InfiniteScroll,
-  LinkButton,
-  Loading,
-  Modal,
-  Search,
-  Select,
-  Status,
-  Table,
-  TextInput,
-};
+export { Accordion, Collapse } from "./Accordion/index.ts";
+export { Badge } from "./Badge.tsx";
+export { default as Card } from "./Card.tsx";
+export { Grid } from "./Grid.tsx";
+export { default as Error } from "./Error.tsx";
+export { GroupedDetails } from "./GroupedDetails.tsx";
+export { InfiniteScroll } from "./InfiniteScroll.tsx";
+export { default as LinkButton } from "./LinkButton.tsx";
+export { default as Loading } from "./Loading.tsx";
+export { Modal } from "./Modal/index.ts";
+export { Search } from "./Search.tsx";
+export { default as Select } from "./Select.tsx";
+export { default as Status } from "./Status.tsx";
+export { TextInput } from "./TextInput.tsx";
+export { default as Table } from "./Table.tsx";

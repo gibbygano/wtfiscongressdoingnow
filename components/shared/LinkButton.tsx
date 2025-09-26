@@ -1,15 +1,15 @@
 import { clsx } from "clsx";
-import { HTMLAttributes, JSX } from "preact";
+import { HTMLAttributes, ComponentChildren } from "preact";
 
 interface Props extends HTMLAttributes<HTMLAnchorElement> {
   href?: string;
   target?: string;
   className?: string;
-  children: string | JSX.Element | JSX.Element[] | (() => JSX.Element);
+  children: ComponentChildren;
   label: string;
 }
 
-export default ({
+const LinkButton = ({
   href,
   target,
   className,
@@ -33,3 +33,5 @@ export default ({
     {children}
   </a>
 );
+
+export default LinkButton;
