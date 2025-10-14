@@ -1,4 +1,4 @@
-import { BillsSearch, BillsGrid } from "components/Bills";
+import { BillsGrid, BillsSearch } from "components/Bills";
 import { InfiniteScroll, Status } from "components/shared";
 import { useBillsContext } from "context";
 

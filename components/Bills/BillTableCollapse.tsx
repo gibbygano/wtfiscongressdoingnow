@@ -21,8 +21,7 @@ const BillTableCollapse = ({
       </td>
       <td aria-name="title">{title}</td>
       <td aria-name="status">
-        {docStatus}{" "}
-        {versionNumber && (
+        {docStatus} {versionNumber && (
           <>
             <br />
             {`${ordinalize(versionNumber)} Version`}

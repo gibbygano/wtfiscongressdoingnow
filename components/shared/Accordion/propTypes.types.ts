@@ -10,4 +10,4 @@ interface accordionProps extends HTMLAttributes<HTMLDivElement> {
   children: VNode<collapseProps> | VNode<collapseProps>[];
 }
 
-export type { collapseProps, accordionProps };
+export type { accordionProps, collapseProps };

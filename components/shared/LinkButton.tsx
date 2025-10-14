@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { HTMLAttributes, ComponentChildren } from "preact";
+import { ComponentChildren, HTMLAttributes } from "preact";
 
 interface Props extends HTMLAttributes<HTMLAnchorElement> {
   href?: string;

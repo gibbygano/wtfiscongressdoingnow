@@ -1,4 +1,4 @@
-import { GenericEventHandler, ComponentChildren } from "preact";
+import { ComponentChildren, GenericEventHandler } from "preact";
 
 type Props = {
   children: ComponentChildren;
