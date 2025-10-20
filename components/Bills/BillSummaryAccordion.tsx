@@ -32,17 +32,17 @@ const BillSummaryAccordion = () => {
       >
         <Status error={summaryError} loading={summaryLoading}>
           <div class="prose prose-slate dark:prose-invert mb-5">
-            {sponsors || summaryLoading
-              ? (
-                sponsors?.map(({ memberName, party, state, role }) => (
-                  <p>
-                    {memberName} - {party} {state}
-                    <br />
-                    <MemberRoleBadge role={role} />
-                  </p>
-                ))
-              )
-              : <p>No sponsers, check back later.</p>}
+            {sponsors || summaryLoading ? (
+              sponsors?.map(({ memberName, party, state, role }) => (
+                <p>
+                  {memberName} - {party} {state}
+                  <br />
+                  <MemberRoleBadge role={role} />
+                </p>
+              ))
+            ) : (
+              <p>No sponsers, check back later.</p>
+            )}
           </div>
         </Status>
       </GroupedDetails>
@@ -54,36 +54,36 @@ const BillSummaryAccordion = () => {
       >
         <Status error={summaryError} loading={summaryLoading}>
           <div class="prose prose-slate dark:prose-invert mb-5 ml-7">
-            {references || summaryLoading
-              ? (
-                references?.map(({ contents }) => (
-                  <ul class="pl-2.5">
-                    {contents.map(({ title, label, sections }) => (
-                      <li>
-                        <span class="whitespace-nowrap">
-                          {title} {label}
-                        </span>
-                        &nbsp;
-                        <ul class="pl-2.5">
-                          {sections &&
-                            sections.map((section) => (
-                              <li>
-                                <a
-                                  target="_blank"
-                                  href={`https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title${title}-section${section}&num=0&edition=prelim`}
-                                >
-                                  §{section}
-                                </a>
-                                &nbsp;
-                              </li>
-                            ))}
-                        </ul>
-                      </li>
-                    ))}
-                  </ul>
-                ))
-              )
-              : <p>No references, check back later.</p>}
+            {references || summaryLoading ? (
+              references?.map(({ contents }) => (
+                <ul class="pl-2.5">
+                  {contents.map(({ title, label, sections }) => (
+                    <li>
+                      <span class="whitespace-nowrap">
+                        {title} {label}
+                      </span>
+                      &nbsp;
+                      <ul class="pl-2.5">
+                        {sections &&
+                          sections.map((section) => (
+                            <li>
+                              <a
+                                target="_blank"
+                                href={`https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title${title}-section${section}&num=0&edition=prelim`}
+                              >
+                                §{section}
+                              </a>
+                              &nbsp;
+                            </li>
+                          ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              ))
+            ) : (
+              <p>No references, check back later.</p>
+            )}
           </div>
         </Status>
       </GroupedDetails>
@@ -94,20 +94,22 @@ const BillSummaryAccordion = () => {
         sectionId={actionSectionId}
       >
         <Status error={actionsError} loading={actionsLoading}>
-          <div class="prose prose-slate dark:prose-invert mb-5">
-            {actions || actionsLoading
-              ? (
-                actions?.map(({ actionDate, text }: Action) => (
-                  <>
-                    <p class="border-b font-bold">
+          <ul class="list rounded-box shadow-md bg-white dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]n">
+            {actions || actionsLoading ? (
+              actions?.map(({ actionDate, text }: Action) => (
+                <li class="list-row">
+                  <div class="prose prose-slate dark:prose-invert">
+                    <div class="font-bold text-nowrap">
                       {dayjs(actionDate).format("dddd MMMM D, YYYY")}
-                    </p>
-                    <p>{text}</p>
-                  </>
-                ))
-              )
-              : <p>No actions, check back later.</p>}
-          </div>
+                    </div>
+                    <p class="list-col-wrap">{text}</p>
+                  </div>
+                </li>
+              ))
+            ) : (
+              <p>No actions, check back later.</p>
+            )}
+          </ul>
         </Status>
       </GroupedDetails>
     </div>
