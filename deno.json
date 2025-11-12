@@ -6,8 +6,17 @@
     "dev": "vite",
     "update": "deno run -A -r jsr:@fresh/update ."
   },
-  "lint": { "rules": { "tags": ["fresh", "recommended"] } },
-  "exclude": ["**/_fresh/*"],
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
+  },
+  "exclude": [
+    "**/_fresh/*"
+  ],
   "imports": {
     "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.6",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
@@ -24,7 +33,7 @@
     "components/Bills": "./components/Bills/index.ts",
     "components/ExecutiveOrders": "./components/ExecutiveOrders/index.ts",
     "context": "./islands/context/index.ts",
-    "dayjs": "npm:dayjs@^1.11.18",
+    "dayjs": "npm:dayjs@^1.11.19",
     "hooks": "./hooks/index.ts",
     "islands": "./islands/index.ts",
     "types": "./types/index.ts",
@@ -37,7 +46,14 @@
   "compilerOptions": {
     "jsx": "precompile",
     "jsxImportSource": "preact",
-    "jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head"]
+    "jsxPrecompileSkipElements": [
+      "a",
+      "img",
+      "source",
+      "body",
+      "html",
+      "head"
+    ]
   },
   "fmt": {
     "useTabs": false,
