@@ -31,7 +31,6 @@ const App = define.page(({ Component, url }) => (
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       />
-      <link defer rel="stylesheet" href={asset("/styles.css")} />
     </head>
     <body class="max-h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
       <Header />

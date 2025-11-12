@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
@@ -20,7 +20,7 @@
   }
 
   html {
-    font-family: "Montserrat", system-ui, sans-serif;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
 
   body {
