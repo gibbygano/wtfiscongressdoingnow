@@ -4,6 +4,7 @@ interface collapseProps extends HTMLAttributes<HTMLDivElement> {
   joinName: string;
   collapseTitle: ComponentChildren;
   children: ComponentChildren;
+  packageId: string;
 }
 
 interface accordionProps extends HTMLAttributes<HTMLDivElement> {

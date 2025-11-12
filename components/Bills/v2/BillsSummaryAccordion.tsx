@@ -1,6 +1,6 @@
 import { MemberRoleBadge } from "components/Bills";
 import { Accordion, Collapse, Status } from "components/shared";
-import "dayjs";
+import * as dayjs_ from "dayjs";
 import { TbBook, TbFileStack, TbUsersGroup } from "@preact-icons/tb";
 import { useBillSummaryContext } from "context";
 
@@ -16,12 +16,14 @@ const BillsSummaryAccordion = () => {
     actionsError,
     cardHasInteractionSignal,
   } = useBillSummaryContext();
+  const dayjs = dayjs_.default || dayjs_;
 
   const joinName = `${packageId}-accordion`;
 
   return (
     <Accordion onFocusInCapture={() => (cardHasInteractionSignal.value = true)}>
       <Collapse
+        packageId={packageId}
         id={`${packageId}-sponsors`}
         joinName={joinName}
         collapseTitle={
@@ -48,6 +50,7 @@ const BillsSummaryAccordion = () => {
         </Status>
       </Collapse>
       <Collapse
+        packageId={packageId}
         id={`${packageId}-references`}
         joinName={joinName}
         collapseTitle={
@@ -93,6 +96,7 @@ const BillsSummaryAccordion = () => {
         </Status>
       </Collapse>
       <Collapse
+        packageId={packageId}
         id={`${packageId}-actions`}
         joinName={joinName}
         collapseTitle={

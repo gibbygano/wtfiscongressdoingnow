@@ -1,6 +1,6 @@
 import { Card, LinkButton } from "components/shared";
 import { useBillSummaryContext } from "context";
-import "dayjs";
+import * as dayjs_ from "dayjs";
 import { TbFileTypePdf } from "@preact-icons/tb";
 import { BillSummaryAccordion } from "./BillSummaryAccordion.tsx";
 import { CongressionalBill } from "types";
@@ -9,6 +9,8 @@ import { ordinalize } from "utils";
 const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
   const { docClass, docId, docStatus, congress, packageId, versionNumber } =
     useBillSummaryContext();
+
+  const dayjs = dayjs_.default || dayjs_;
 
   return (
     <Card

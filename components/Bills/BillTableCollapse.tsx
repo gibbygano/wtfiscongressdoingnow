@@ -1,7 +1,7 @@
 import { Collapse } from "components/shared";
 import { ordinalize } from "utils";
 import { useBillSummaryContext } from "context";
-import "dayjs";
+import * as dayjs_ from "dayjs";
 import type { CongressionalBill } from "types";
 
 const dateFormatString = "dddd MMMM D, YYYY";
@@ -13,6 +13,8 @@ const BillTableCollapse = ({
 }: CongressionalBill) => {
   const { docClass, docId, docStatus, congress, packageId, versionNumber } =
     useBillSummaryContext();
+
+  const dayjs = dayjs_.default || dayjs_;
 
   const collapseTitle = (
     <>
@@ -38,7 +40,7 @@ const BillTableCollapse = ({
 
   return (
     <tr>
-      <Collapse packageId={packageId} collapseTitle={collapseTitle}>
+      <Collapse joinName="" packageId={packageId} collapseTitle={collapseTitle}>
         Sponsors Here References Here Actions Here
       </Collapse>
     </tr>

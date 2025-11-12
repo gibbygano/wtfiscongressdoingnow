@@ -1,5 +1,5 @@
 import { Card, LinkButton } from "components/shared";
-import "dayjs";
+import * as dayjs_ from "dayjs";
 import { TbFileTypePdf } from "@preact-icons/tb";
 
 import type { ExecutiveOrder } from "types";
@@ -11,6 +11,8 @@ const ExecutiveOrderCard = ({
   publication_date,
   pdf_url,
 }: ExecutiveOrder) => {
+  const dayjs = dayjs_.default || dayjs_;
+
   const actionChildren = [];
   if (pdf_url) {
     actionChildren.push(
