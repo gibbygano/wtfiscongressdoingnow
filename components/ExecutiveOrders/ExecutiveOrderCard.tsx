@@ -1,8 +1,8 @@
 import { Card, LinkButton } from "components/shared";
-import * as dayjs_ from "dayjs";
+import { format } from "date-fns/format";
 import { TbFileTypePdf } from "@preact-icons/tb";
-
 import type { ExecutiveOrder } from "types";
+import { dateFormatString } from "../../constants.tsx";
 
 const ExecutiveOrderCard = ({
   document_number,
@@ -11,8 +11,6 @@ const ExecutiveOrderCard = ({
   publication_date,
   pdf_url,
 }: ExecutiveOrder) => {
-  const dayjs = dayjs_.default || dayjs_;
-
   const actionChildren = [];
   if (pdf_url) {
     actionChildren.push(
@@ -40,7 +38,7 @@ const ExecutiveOrderCard = ({
       <p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
         Publication Date:{" "}
         <span class="text-nowrap">
-          {dayjs(publication_date).format("dddd MMMM D, YYYY")}
+          {format(publication_date, dateFormatString)}
         </span>
       </p>
     </Card>

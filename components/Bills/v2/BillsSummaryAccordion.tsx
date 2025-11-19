@@ -1,8 +1,9 @@
 import { MemberRoleBadge } from "components/Bills";
 import { Accordion, Collapse, Status } from "components/shared";
-import * as dayjs_ from "dayjs";
+import { format } from "date-fns/format";
 import { TbBook, TbFileStack, TbUsersGroup } from "@preact-icons/tb";
 import { useBillSummaryContext } from "context";
+import { dateFormatString } from "../../../constants.tsx";
 
 const BillsSummaryAccordion = () => {
   const {
@@ -16,7 +17,6 @@ const BillsSummaryAccordion = () => {
     actionsError,
     cardHasInteractionSignal,
   } = useBillSummaryContext();
-  const dayjs = dayjs_.default || dayjs_;
 
   const joinName = `${packageId}-accordion`;
 
@@ -113,7 +113,7 @@ const BillsSummaryAccordion = () => {
                 actions?.map(({ actionDate, text }) => (
                   <>
                     <p class="border-b font-bold">
-                      {dayjs(actionDate).format("dddd MMMM D, YYYY")}
+                      {format(actionDate, dateFormatString)}
                     </p>
                     <p>{text}</p>
                   </>

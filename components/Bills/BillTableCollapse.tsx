@@ -1,10 +1,9 @@
 import { Collapse } from "components/shared";
 import { ordinalize } from "utils";
 import { useBillSummaryContext } from "context";
-import * as dayjs_ from "dayjs";
+import { format } from "date-fns/format";
 import type { CongressionalBill } from "types";
-
-const dateFormatString = "dddd MMMM D, YYYY";
+import { dateFormatString } from "../../constants.tsx";
 
 const BillTableCollapse = ({
   dateIssued,
@@ -13,8 +12,6 @@ const BillTableCollapse = ({
 }: CongressionalBill) => {
   const { docClass, docId, docStatus, congress, packageId, versionNumber } =
     useBillSummaryContext();
-
-  const dayjs = dayjs_.default || dayjs_;
 
   const collapseTitle = (
     <>
@@ -31,9 +28,9 @@ const BillTableCollapse = ({
         )}
       </td>
       <td aria-name="congress">{ordinalize(congress)}</td>
-      <td aria-name="issued">{dayjs(dateIssued).format(dateFormatString)}</td>
+      <td aria-name="issued">{format(dateIssued, dateFormatString)}</td>
       <td aria-name="lastchange">
-        {dayjs(lastModified).format(dateFormatString)}
+        {format(lastModified, dateFormatString)}
       </td>
     </>
   );

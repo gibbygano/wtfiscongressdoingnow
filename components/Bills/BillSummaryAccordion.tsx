@@ -1,9 +1,10 @@
 import { MemberRoleBadge } from "components/Bills";
 import { GroupedDetails, Status } from "components/shared";
-import * as dayjs_ from "dayjs";
+import { format } from "date-fns/format";
 import { TbBook, TbFileStack, TbUsersGroup } from "@preact-icons/tb";
 import type { Action } from "types";
 import { useBillSummaryContext } from "context";
+import { dateFormatCompactString } from "../../constants.tsx";
 
 const BillSummaryAccordion = () => {
   const {
@@ -21,8 +22,6 @@ const BillSummaryAccordion = () => {
   const sponsorSectionId = `${packageId}-sponsors`;
   const referenceSectionId = `${packageId}-references`;
   const actionSectionId = `${packageId}-actions`;
-
-  const dayjs = dayjs_.default || dayjs_;
 
   return (
     <div onFocusInCapture={() => (cardHasInteractionSignal.value = true)}>
@@ -102,8 +101,8 @@ const BillSummaryAccordion = () => {
                 actions?.map(({ actionDate, text }: Action) => (
                   <li class="list-row">
                     <div class="prose prose-slate dark:prose-invert">
-                      <div class="font-bold text-nowrap">
-                        {dayjs(actionDate).format("dddd MMMM D, YYYY")}
+                      <div class="font-bold">
+                        {format(actionDate, dateFormatCompactString)}
                       </div>
                       <p class="list-col-wrap">{text}</p>
                     </div>

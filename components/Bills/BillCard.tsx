@@ -1,16 +1,15 @@
 import { Card, LinkButton } from "components/shared";
 import { useBillSummaryContext } from "context";
-import * as dayjs_ from "dayjs";
+import { format } from "date-fns/format";
 import { TbFileTypePdf } from "@preact-icons/tb";
 import { BillSummaryAccordion } from "./BillSummaryAccordion.tsx";
 import { CongressionalBill } from "types";
 import { ordinalize } from "utils";
+import { dateFormatString } from "../../constants.tsx";
 
 const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
   const { docClass, docId, docStatus, congress, packageId, versionNumber } =
     useBillSummaryContext();
-
-  const dayjs = dayjs_.default || dayjs_;
 
   return (
     <Card
@@ -46,13 +45,13 @@ const BillCard = ({ dateIssued, lastModified, title }: CongressionalBill) => {
       <p class="text-gray-800 dark:text-gray-400 clear-left text-pretty">
         Date Issued:{" "}
         <span class="text-nowrap">
-          {dayjs(dateIssued).format("dddd MMMM D, YYYY")}
+          {format(dateIssued, dateFormatString)}
         </span>
         <br />
         <br />
         Last Change:{" "}
         <span class="text-nowrap">
-          {dayjs(lastModified).format("dddd MMMM D, YYYY")}
+          {format(lastModified, dateFormatString)}
         </span>
       </p>
     </Card>
