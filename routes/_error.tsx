@@ -1,4 +1,5 @@
 import { HttpError, PageProps } from "fresh";
+import { TbError404 } from "@preact-icons/tb";
 
 export default function ErrorPage(props: PageProps) {
   const error = props.error; // Contains the thrown Error or HTTPError
@@ -7,7 +8,14 @@ export default function ErrorPage(props: PageProps) {
 
     // Render a 404 not found page
     if (status === 404) {
-      return <h1>404 - Page not found</h1>;
+      return (
+        <div class="w-full text-center p-10">
+          <span class="text-6xl">
+            <TbError404 class="m-auto text-red-500" />
+            Page not found
+          </span>
+        </div>
+      );
     }
   }
 

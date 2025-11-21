@@ -32,9 +32,9 @@ const App = define.page(({ Component, url }) => (
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       />
     </head>
-    <body class="max-h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
+    <body class="sm:min-h-screen md:h-screen flex flex-col md:overflow-y-hidden bg-linear-to-tr bg-fixed from-[#B31942]/80 via-slate-300 to-[#0A3161]/80">
       <Header />
-      <main class="max-w-screen mb-12 md:overflow-y-auto">
+      <main class="w-screen mb-12 md:overflow-y-auto">
         <Component />
       </main>
       <Footer path={url.pathname} />

@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { TbBomb } from "@preact-icons/tb";
 import { JSX } from "preact";
 
 type Props = {
@@ -9,11 +10,16 @@ type Props = {
 export default ({ children, fullscreen }: Props) => (
   <div
     class={clsx(
-      "mt-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative flex items-center justify-center",
-      { "h-screen": fullscreen },
+      "relative flex items-center justify-center",
+      {
+        "h-screen mt-0 bg-red-100 border border-red-400 text-red-700 px-4 py-3":
+          fullscreen,
+        "mt-5 rounded alert alert-error": !fullscreen,
+      },
     )}
     role="alert"
   >
+    <TbBomb class="text-6xl" />
     {children}
   </div>
 );

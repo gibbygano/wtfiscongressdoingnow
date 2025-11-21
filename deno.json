@@ -18,13 +18,13 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.6",
+    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
     "@preact-icons/tb": "jsr:@preact-icons/tb@^1.0.14",
-    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.16",
-    "daisyui": "npm:daisyui@^5.3.10",
+    "@tailwindcss/vite": "npm:@tailwindcss/vite@^4.1.17",
+    "daisyui": "npm:daisyui@^5.5.5",
     "date-fns": "npm:date-fns@^4.1.0",
-    "es-toolkit": "jsr:@es-toolkit/es-toolkit@^1.41.0",
-    "@preact/signals": "npm:@preact/signals@^2.3.2",
+    "es-toolkit": "jsr:@es-toolkit/es-toolkit@^1.42.0",
+    "@preact/signals": "npm:@preact/signals@^2.5.1",
     "preact": "npm:preact@^10.27.2",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
     "appConfig": "./config.ts",
@@ -37,11 +37,11 @@
     "hooks": "./hooks/index.ts",
     "islands": "./islands/index.ts",
     "types": "./types/index.ts",
-    "tailwindcss": "npm:tailwindcss@^4.1.16",
+    "tailwindcss": "npm:tailwindcss@^4.1.17",
     "@tailwindcss/typography": "npm:@tailwindcss/typography@^0.5.19",
     "utils": "./utilities/index.ts",
-    "fresh": "jsr:@fresh/core@^2.1.3",
-    "vite": "npm:vite@^7.1.12"
+    "fresh": "jsr:@fresh/core@^2.2.0",
+    "vite": "npm:vite@^7.2.4"
   },
   "compilerOptions": {
     "jsx": "precompile",
