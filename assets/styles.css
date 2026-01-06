@@ -27,4 +27,8 @@
     overscroll-behavior: none;
     touch-action: pan-y;
   }
+
+  .masonry {
+    display: masonry;
+  }
 }
