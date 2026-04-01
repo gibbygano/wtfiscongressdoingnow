@@ -14,7 +14,7 @@ const pageSizes = [12, 24, 48, 96];
 
 export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
   return (
-    <span class="sticky bottom-0 w-full z-[1] bg-white opacity-95 grid grid-col-3 py-1 px-5">
+    <span class="sticky bottom-0 w-full z-1 bg-white opacity-95 grid grid-col-3 py-1 px-5">
       <a
         id="previousPage"
         onClick={(e) =>
@@ -54,7 +54,11 @@ export default ({ nextPage, previousPage, offsetUnsafe, pageSize }: Props) => {
           onChange={(e) =>
             onEvent(e, () => (pageSize.value = e.currentTarget.value))}
         >
-          {pageSizes.map((s) => <option value={s}>{s}</option>)}
+          {pageSizes.map((s, i) => (
+            <option key={`pageSize-opt-${i}`} value={s}>
+              {s}
+            </option>
+          ))}
         </Select>
       </span>
       <a

@@ -28,7 +28,9 @@
     touch-action: pan-y;
   }
 
-  .masonry {
-    display: masonry;
+  #bills-grid {
+    display: grid-lanes;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
   }
 }
