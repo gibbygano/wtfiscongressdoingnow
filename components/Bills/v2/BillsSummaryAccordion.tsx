@@ -1,0 +1,130 @@
+import { MemberRoleBadge } from "components/Bills";
+import { Accordion, Collapse, Status } from "components/shared";
+import { format } from "date-fns/format";
+import { TbBook, TbFileStack, TbUsersGroup } from "@preact-icons/tb";
+import { useBillSummaryContext } from "context";
+import { dateFormatString } from "../../../constants.tsx";
+
+const BillsSummaryAccordion = () => {
+  const {
+    packageId,
+    sponsors,
+    references,
+    summaryLoading,
+    summaryError,
+    actions,
+    actionsLoading,
+    actionsError,
+    cardHasInteractionSignal,
+  } = useBillSummaryContext();
+
+  const joinName = `${packageId}-accordion`;
+
+  return (
+    <Accordion onFocusInCapture={() => (cardHasInteractionSignal.value = true)}>
+      <Collapse
+        packageId={packageId}
+        id={`${packageId}-sponsors`}
+        joinName={joinName}
+        collapseTitle={
+          <span class="flex items-center">
+            <TbUsersGroup />
+            &nbsp; Sponsors
+          </span>
+        }
+      >
+        <Status error={summaryError} loading={summaryLoading}>
+          <div class="prose prose-slate dark:prose-invert mb-5">
+            {sponsors || summaryLoading
+              ? (
+                sponsors?.map(({ memberName, party, state, role }) => (
+                  <p>
+                    {memberName} - {party} {state}
+                    <br />
+                    <MemberRoleBadge role={role} />
+                  </p>
+                ))
+              )
+              : <p>No sponsers, check back later.</p>}
+          </div>
+        </Status>
+      </Collapse>
+      <Collapse
+        packageId={packageId}
+        id={`${packageId}-references`}
+        joinName={joinName}
+        collapseTitle={
+          <span class="flex items-center">
+            <TbBook />
+            &nbsp; References
+          </span>
+        }
+      >
+        <Status error={summaryError} loading={summaryLoading}>
+          <div class="prose prose-slate dark:prose-invert mb-5 ml-7">
+            {references || summaryLoading
+              ? (
+                references?.map(({ contents }) => (
+                  <ul class="pl-2.5">
+                    {contents.map(({ title, label, sections }) => (
+                      <li>
+                        <span class="whitespace-nowrap">
+                          {title} {label}
+                        </span>
+                        &nbsp;
+                        <ul class="pl-2.5">
+                          {sections &&
+                            sections.map((section) => (
+                              <li>
+                                <a
+                                  target="_blank"
+                                  href={`https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title${title}-section${section}&num=0&edition=prelim`}
+                                >
+                                  §{section}
+                                </a>
+                                &nbsp;
+                              </li>
+                            ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                ))
+              )
+              : <p>No references, check back later.</p>}
+          </div>
+        </Status>
+      </Collapse>
+      <Collapse
+        packageId={packageId}
+        id={`${packageId}-actions`}
+        joinName={joinName}
+        collapseTitle={
+          <span class="flex items-center">
+            <TbFileStack />
+            &nbsp; Actions
+          </span>
+        }
+      >
+        <Status error={actionsError} loading={actionsLoading}>
+          <div class="prose prose-slate dark:prose-invert mb-5">
+            {actions || actionsLoading
+              ? (
+                actions?.map(({ actionDate, text }) => (
+                  <>
+                    <p class="border-b font-bold">
+                      {format(actionDate, dateFormatString)}
+                    </p>
+                    <p>{text}</p>
+                  </>
+                ))
+              )
+              : <p>No actions, check back later.</p>}
+          </div>
+        </Status>
+      </Collapse>
+    </Accordion>
+  );
+};
+
+export default BillsSummaryAccordion;
