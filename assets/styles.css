@@ -7,15 +7,15 @@
 }
 
 @layer base {
-  details > div {
+  details>div {
     scrollbar-width: thin;
   }
 
-  details > summary {
+  details>summary {
     list-style: none;
   }
 
-  details > summary::-webkit-details-marker {
+  details>summary::-webkit-details-marker {
     display: none;
   }
 
@@ -30,7 +30,7 @@
 
   #bills-grid {
     display: grid-lanes;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
     gap: 1rem;
   }
 }
